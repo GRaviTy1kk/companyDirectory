@@ -71,3 +71,33 @@
         transform: rotate(360deg);
     }
 }
+
+
+/*Web page */
+
+/* navbar */
+
+nav {
+    z-index: 10;
+    position: fixed;
+    
+    min-height: 6vh;
+   
+}
+
+.b-w {
+    width: 13vw;
+}
+
+
+/* main */
+
+main {
+    height: 90vh;
+}
+
+/* footer */ 
+
+footer {
+    height: 4vh;
+} 
