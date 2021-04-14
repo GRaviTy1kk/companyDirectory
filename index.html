@@ -29,19 +29,12 @@
   
         <div class="collapse navbar-collapse" id="companynav">
 
-          <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+          <form class="d-sm-none d-lg-flex ms-5">
+            <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-info ms-3" type="submit">Search</button>
+          </form>
 
-            <li class="nav-item dropdown mx-auto mx-lg-5">
-              <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Sort By &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-              </button>
-              <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <li><button class="dropdown-item" type="button">Show All</button></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><button class="dropdown-item" type="button">Locations</button></li>
-                <li><button class="dropdown-item" type="button">Departments</button></li>
-              </ul>
-            </li>
+          <ul class="navbar-nav ms-5 mb-2 mb-lg-0">
 
             <li class="nav-item dropdown mx-auto mx-lg-5">
               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
@@ -52,13 +45,14 @@
                 <li><button class="dropdown-item" type="button">Departments modal</button></li>
               </ul>
             </li>
+
+            <li class="nav-item">
+              
+              <button class="btn btn-success" type="button">Add Personell</button>
+
+            </li>
             
           </ul>
-
-          <form class="d-flex ms-auto">
-            <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-            <button class="btn btn-outline-info" type="submit">Search</button>
-          </form>
 
         </div>
 
@@ -66,18 +60,59 @@
 
     </nav>
  
-      <main class="w-100">
+      <main class="w-100 pt-lg-5">
+        <div class="container-fluid h-100">
+          <div class="row h-100">
 
-        <input type="text" id="text" placeholder="Send some data">
-        <br><br><br>
-        <button id="sendInfo">Post</button>
-        <br><br><br>
-        <button id="getAll">Get All People</button>
-        <br><br><br>
-        <button id="getAllDep">Get All Departments</button>
-        <br><br><br>
-        <textarea id="result" ></textarea>
-      
+            <div class="col-lg-2 col-sm-12 d-flex flex-row flex-lg-column p-0">
+              
+              <form class="d-flex d-lg-none">
+                <input class="form-control" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-info" type="submit">Search</button>
+              </form>
+              
+              <button id="sendInfo">Post</button>
+              
+              <button id="getAll">Get All</button>
+              
+              <button id="getAllDep">Get All Departments</button>
+              
+              <textarea id="result" ></textarea>
+              
+            </div>
+
+            <div class="col-lg-10 col-sm-12 p-0">
+
+              <table>
+
+                <thead>
+
+                  <tr>
+                    <th>First Name</th>
+                    <th>Last Name</th>
+                    <th>Departmnet</th>
+                    <th>Location</th>
+                    <th>Email</th>
+                    <th>Edit</th>
+                  </tr>
+                  
+                </thead>
+
+                <tbody>
+
+                </tbody>
+
+                <tfoot>
+
+                </tfoot>
+
+              </table>
+
+            </div>
+
+          </div>
+        </div>
+
       </main>
 
       <footer class="d-flex position-fixed start-0 bottom-0 w-100">

@@ -79,7 +79,6 @@
 
 nav {
     z-index: 10;
-    position: fixed;
     
     min-height: 6vh;
    
@@ -94,6 +93,14 @@ nav {
 
 main {
     height: 90vh;
+}
+
+main div[class*='col-lg-2'] {
+    height: 6vh;
+}
+
+main div[class*='col-lg-10'] {
+    height: 84vh;
 }
 
 /* footer */ 
