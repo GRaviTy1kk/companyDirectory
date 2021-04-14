@@ -8,7 +8,7 @@ $(window).on('load', function() {
         });
     }
 
-  });
+});
 
 
 //get all staff
@@ -20,11 +20,20 @@ $("#getAll").on("click", function() {
     });
 });
 
+
 //get all departments
 
 $("#getAllDep").on("click", function() {
     $.get("./php/getAllDepartments.php",  function(result) {
         console.log(result.data);
-        //$('#result').text(result.data[0].lastName);
+
+        result.data.forEach(dep => {
+            $('#selectDepartmens').append(`<option value=1>${dep.name}</option>`);
+        });
+
+        $('#selectDepartmens').change(function(){ 
+            $('#menu_dep').collapse('toggle');
+        });
+
     });
 });

@@ -75,7 +75,7 @@
 
 /*Web page */
 
-/* navbar */
+/*       navbar        */
 
 nav {
     z-index: 10;
@@ -89,7 +89,7 @@ nav {
 }
 
 
-/* main */
+/*         main        */
 
 main {
     height: 90vh;
@@ -103,8 +103,58 @@ main div[class*='col-lg-10'] {
     height: 84vh;
 }
 
-/* footer */ 
+/*sidebar*/
+.sidebar li .submenu{ 
+	list-style: none; 
+	margin: 0; 
+	padding: 0; 
+	padding-left: 1rem; 
+	padding-right: 1rem;
+}
+.sidebar .nav-link {
+    font-weight: 500;
+    color: var(--bs-dark);
+}
+.sidebar .nav-link:hover {
+    color: var(--bs-primary);
+}
+
+/*       footer       */ 
 
 footer {
     height: 4vh;
 } 
+
+
+/*responsive*/
+  /*sm*/
+  @media only screen and (max-width:767px) {
+
+    main div[class*='col-lg-2'] {
+        height: 20vh;
+    }
+    
+    main div[class*='col-lg-10'] {
+        height: 70vh;
+    }
+
+}
+
+   /*md*/
+  @media only screen and (min-width:768px) and (max-width:991px) {
+
+   
+  }
+   /*lg*/
+  @media only screen and (min-width:992px) {
+
+    main div[class*='col-lg-2'] {
+        height: 100%;
+    }
+    
+    main div[class*='col-lg-10'] {
+        height: 100%;
+    }
+
+
+  }
