@@ -92,16 +92,10 @@ nav {
 /*         main        */
 
 main {
-    height: 90vh;
+    height: 94vh;
+    background-color: rgb(98, 191, 209);
 }
 
-main div[class*='col-lg-2'] {
-    height: 6vh;
-}
-
-main div[class*='col-lg-10'] {
-    height: 84vh;
-}
 
 /*sidebar*/
 .sidebar li .submenu{ 
@@ -121,21 +115,27 @@ main div[class*='col-lg-10'] {
 
 /*       footer       */ 
 
-footer {
-    height: 4vh;
-} 
-
-
 /*responsive*/
+
   /*sm*/
   @media only screen and (max-width:767px) {
 
-    main div[class*='col-lg-2'] {
-        height: 20vh;
+    main div[class*='col-lg-3'] {
+        min-height: 20vh;
+        height: auto;
     }
     
-    main div[class*='col-lg-10'] {
-        height: 70vh;
+    main div[class*='col-lg-9'] {
+        min-height: 70vh;
+        height: auto;
+    }
+
+    main form input {
+        width: 300px;
+    }
+
+    .sidebar {
+        width: 300px;
     }
 
 }
@@ -143,17 +143,40 @@ footer {
    /*md*/
   @media only screen and (min-width:768px) and (max-width:991px) {
 
+
+    main div[class*='col-lg-3'] {
+        min-height: 20vh;
+        height: auto;
+    }
+    
+    main div[class*='col-lg-9'] {
+        min-height: 70vh;
+        height: auto;
+    }
+
+    main form input {
+        width: 400px;
+    }
+
+    .sidebar {
+        width: 400px;
+
+    }
+
    
   }
    /*lg*/
   @media only screen and (min-width:992px) {
 
-    main div[class*='col-lg-2'] {
+    main div[class*='col-lg-3'] {
         height: 100%;
+        width: 240px;
+        
     }
     
-    main div[class*='col-lg-10'] {
+    main div[class*='col-lg-9'] {
         height: 100%;
+        width: calc(100% - 240px);
     }
 
 
