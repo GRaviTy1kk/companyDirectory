@@ -77,11 +77,9 @@
 
 /*       navbar        */
 
-nav {
+#mainNav {
     z-index: 10;
-    
     min-height: 6vh;
-   
 }
 
 .b-w {
@@ -121,21 +119,27 @@ main {
   @media only screen and (max-width:767px) {
 
     main div[class*='col-lg-3'] {
-        min-height: 20vh;
-        height: auto;
+        min-height: 15vh;
+        
     }
     
     main div[class*='col-lg-9'] {
-        min-height: 70vh;
-        height: auto;
+        height: 79vh;
     }
 
     main form input {
         width: 300px;
     }
 
+    main form {
+        height: 40px;
+        margin-top: 5px;
+    }
+
     .sidebar {
         width: 300px;
+        padding: 0 !important;
+        margin-top: 10px;
     }
 
 }
@@ -145,22 +149,30 @@ main {
 
 
     main div[class*='col-lg-3'] {
-        min-height: 10vh;
-        height: auto;
+        min-height: 20vh;
     }
     
     main div[class*='col-lg-9'] {
-        min-height: 80vh;
-        height: auto;
+        height: 74vh;
+        
     }
 
     main form input {
         width: 300px;
     }
 
+    main form {
+        height: 40px;
+        margin-top: 10px;
+    }
+
     .sidebar {
         width: 300px;
+        padding: 0 !important;
+    }
 
+    main div[class*='col-lg-3'] div[class*='row'] {
+        height: 60%;
     }
 
    
