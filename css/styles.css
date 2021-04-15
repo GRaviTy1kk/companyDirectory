@@ -93,7 +93,7 @@ nav {
 
 main {
     height: 94vh;
-    background-color: rgb(98, 191, 209);
+    background-color: rgb(118, 130, 133);
 }
 
 
@@ -145,21 +145,21 @@ main {
 
 
     main div[class*='col-lg-3'] {
-        min-height: 20vh;
+        min-height: 10vh;
         height: auto;
     }
     
     main div[class*='col-lg-9'] {
-        min-height: 70vh;
+        min-height: 80vh;
         height: auto;
     }
 
     main form input {
-        width: 400px;
+        width: 300px;
     }
 
     .sidebar {
-        width: 400px;
+        width: 300px;
 
     }
 
