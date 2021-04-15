@@ -90,7 +90,10 @@
 /*         main        */
 
 main {
-    height: 94vh;
+    position: relative;
+    bottom: 0;
+    left: 0;
+    right: 0;
     background-color: rgb(118, 130, 133);
 }
 
@@ -119,12 +122,15 @@ main {
   @media only screen and (max-width:767px) {
 
     main div[class*='col-lg-3'] {
-        min-height: 15vh;
+        height: auto;
         
     }
     
     main div[class*='col-lg-9'] {
-        height: 79vh;
+        position: relative;
+        bottom: 0;
+        left: 0;
+        right: 0;
     }
 
     main form input {
@@ -149,12 +155,14 @@ main {
 
 
     main div[class*='col-lg-3'] {
-        min-height: 20vh;
+        height: auto;
     }
     
     main div[class*='col-lg-9'] {
-        height: 74vh;
-        
+        position: relative;
+        bottom: 0;
+        left: 0;
+        right: 0; 
     }
 
     main form input {
@@ -172,7 +180,7 @@ main {
     }
 
     main div[class*='col-lg-3'] div[class*='row'] {
-        height: 60%;
+        height: 50%;
     }
 
    
