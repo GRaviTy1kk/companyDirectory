@@ -3,7 +3,8 @@ $(window).on('load', function() {
     
     //load data
     getAllDepartments();
-    getAllStaff();  
+    getAllStaff();
+    getAllLocations();
 
 
 });
@@ -23,10 +24,20 @@ $("#getAll").on("click", function() {
 
 $('#selectDepartmens').change(function(){ 
     $('#menu_dep').collapse('toggle');
-    if (window.matchMedia('(max -width: 991px)').matches) {
+    if (window.matchMedia('(max-width: 991px)').matches) {
         $('#nav_accordion').collapse('toggle');
       }
 });
+
+//select by location
+
+$('#selectLocation').change(function(){ 
+    $('#menu_loc').collapse('toggle');
+    if (window.matchMedia('(max-width: 991px)').matches) {
+        $('#nav_accordion').collapse('toggle');
+      }
+});
+
 
 
 
@@ -34,23 +45,37 @@ $('#selectDepartmens').change(function(){
 
 $("#reset").on("click", function() {
 
-    $.get("./php/getAll.php",   function(result) {
-        console.log(result.data[0]);
-        $('#result').text(result.data[0].lastName);
-    });
+    $('#tableBody').text("");
+    $('#selectDepartmens').text("");
+    $('#selectLocation').text("");
 
-    //getAllDepartments();
+    getAllStaff();
+    getAllDepartments();
+    getAllLocations();
 
 });
 
 
+//sort table columns
+
+
+const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
+
+const comparer = (idx, asc) => (a, b) => ((v1, v2) => 
+    v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
+    )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
+
+document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() => {
+    
+    Array.from($("tr").slice(1))
+        .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
+        .forEach(tr => $('table').append(tr) );
+})));
 
 
 
 
 //functions 
-
-
 
 //get all departments function 
 
@@ -61,13 +86,6 @@ function getAllDepartments() {
 
         result.data.forEach(dep => {
             $('#selectDepartmens').append(`<option value=1>${dep.name}</option>`);
-        });
-
-        $('#selectDepartmens').change(function(){ 
-            $('#menu_dep').collapse('toggle');
-            if (window.matchMedia('(max -width: 991px)').matches) {
-                $('#nav_accordion').collapse('toggle');
-              }
         });
 
     });
@@ -86,5 +104,21 @@ function getAllStaff() {
         
     });
     
+}
+
+//get all locations
+
+function getAllLocations() {
+
+    $.get("./php/getAllLocations.php",  function(result) {
+        console.log(result.data);
+
+        result.data.forEach(loc => {
+            $('#selectLocation').append(`<option value=1>${loc.name}</option>`);
+        });
+
+    });
+
+
 }
 

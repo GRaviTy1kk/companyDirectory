@@ -12,7 +12,7 @@
 
       <meta content="width=device-width, initial-scale=1.0" name="viewport">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
-      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+      <link href="./vendors/bootrtrap/css/bootstrap.min.css" rel="stylesheet">
       <link href="css/styles.css" rel="stylesheet" type="text/css">
       <link href="" rel="icon">
       <title>Company Management</title>
@@ -89,8 +89,8 @@
                   <ul class="nav flex-column" id="nav_accordion">
               
                     <li class="nav-item">
-                      <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#menu_item1" href="#"> Locations <i class="bi small bi-caret-down-fill"></i> </a>
-                      <ul id="menu_item1" class="submenu collapse" data-bs-parent="#nav_accordion">
+                      <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#menu_loc" href="#"> Locations <i class="bi small bi-caret-down-fill"></i> </a>
+                      <ul id="menu_loc" class="submenu collapse" data-bs-parent="#nav_accordion">
                         <li>
                           <select id="selectLocation">
                             
@@ -111,7 +111,7 @@
                     </li>
 
                     <li class="nav-item">
-                      <a class="nav-link" id="reset">Reset</a>
+                      <a class="nav-link" id="reset" href="#">Reset <i class="bi bi-arrow-counterclockwise"></i></a>
                     </li>
 
                   </ul>
@@ -128,15 +128,15 @@
 
             <div class="col-sm-12 col-lg-9 overflow-auto p-0">
 
-              <table class="table table-sm table-dark table-striped table-hover table-bordered m-0">
+              <table class="table table-dark table-striped table-hover table-bordered m-0">
 
                 <thead>
 
                   <tr>
-                    <th>Name(First, Last)</th>
-                    <th>Departmnet</th>
-                    <th>Location</th>
-                    <th>Email</th>
+                    <th><div class="d-flex">Name(First, Last)<i class="ms-auto bi bi-arrows-expand"></i></div></th>
+                    <th><div class="d-flex">Departmnet<i class="ms-auto bi bi-arrows-expand"></i></div></th>
+                    <th><div class="d-flex">Location<i class="ms-auto bi bi-arrows-expand"></i></div></th>
+                    <th><div class="d-flex">Email<i class="ms-auto bi bi-arrows-expand"></i></div></th>
                     <th>Edit</th>
                   </tr>
                   
@@ -166,8 +166,7 @@
       </div>
 
       <script src="vendors/jquery/jquery-3.5.1.min.js"></script>
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
-   integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+      <script src="./vendors/bootrtrap/js/bootstrap.bundle.min.js"></script>
       <script src="js/pageFunctionality.js"></script>
       <script src="js/index.js"></script>
 
