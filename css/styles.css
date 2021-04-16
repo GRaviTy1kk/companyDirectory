@@ -116,6 +116,11 @@ main {
     color: var(--bs-primary);
 }
 
+
+table th {
+    cursor: pointer;
+}
+
 /*       footer       */ 
 
 /*responsive*/
