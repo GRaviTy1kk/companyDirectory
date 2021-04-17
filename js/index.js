@@ -7,7 +7,27 @@ $(window).on('load', function() {
     getAllLocations();
 
 
+
 });
+
+
+//test post 
+
+$("#insertNew").on("click", function(){
+    console.log("did");
+    $.post("./php/insertPerson.php", {
+        
+        firstname: $("#firstname").val(),
+        lastname: $("#lastname").val(),
+        jobTitle: $("#jobTitle").val(),
+        email: $("#email1").val(),
+        departmentID: $("#departmentID").val()
+
+    }, function(data, status){
+        console.log(data.status.code);
+        
+    });
+  });
 
 
 //get all staff
@@ -85,7 +105,7 @@ function getAllDepartments() {
         console.log(result.data);
 
         result.data.forEach(dep => {
-            $('#selectDepartmens').append(`<option value=1>${dep.name}</option>`);
+            $('#selectDepartmens').append(`<option value=${dep.id}>${dep.name}</option>`);
         });
 
     });
@@ -99,7 +119,11 @@ function getAllStaff() {
         console.log(result.data[0]);
 
         result.data.forEach(person => {
-            $('#tableBody').append(`<tr><td>${person.firstName + " " + person.lastName}</td><td>${person.department}</td><td>${person.location}</td><td>${person.email}</td><td><button>Edit</button></td></tr>`);
+            $('#tableBody').append(`<tr><td><div class='d-flex'>${person.firstName + " " + person.lastName}<i class="ms-auto bi bi-file-person"></i></div></td>
+            <td><div class='d-flex'>${person.department}<i class=" ms-auto bi bi-briefcase"></i></div></td>
+            <td><div class='d-flex'>${person.location}<i class="ms-auto bi bi-building"></i></div></td>
+            <td><div class='d-flex'>${person.email}<i class="ms-auto bi bi-envelope"></div></i></td>
+            <td><button>Edit</button></td></tr>`);
         });
         
     });
@@ -114,7 +138,7 @@ function getAllLocations() {
         console.log(result.data);
 
         result.data.forEach(loc => {
-            $('#selectLocation').append(`<option value=1>${loc.name}</option>`);
+            $('#selectLocation').append(`<option value=${loc.id}>${loc.name}</option>`);
         });
 
     });
