@@ -255,9 +255,11 @@
 
                     <form id="insertDepartment">
                       <input type="text" name="name">
-                      <br><br><br>
-                      <input type="number" name="locationID">
-                      <br><br><br>
+                      <br>
+                      <select class="locations" name="locationID">
+                              
+                      </select>
+                      <br>
                       <input class="submit" type="submit" value="Add" />
                     </form>
 
@@ -297,14 +299,45 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
+
               <form id="addPerson">
                 <input type="text" name="firstname" />
                 <input type="text" name="lastname" />
                 <input type="text" name="jobTitle" />
-                <input type="text" name="email1" />
+                <input type="email" name="email" />
                 <input type="number" name="departmentID" />
                 <input class="submit" type="submit" value="Add" />
               </form>
+
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!--edit existing person modal-->
+
+      <div class="modal fade" id="updatePerson" tabindex="-1" aria-labelledby="#updatePersonLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="updatePersonLabel">Update details</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+
+            
+                  <div class="">
+                    edit
+
+                  </div>
+                  <br />
+                  <div class="">
+                    <button type="button" class="btn btn-secondary" id="deletePerson">Delete</button>
+                  </div>   
+              
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>

@@ -21,18 +21,45 @@ $('#addPerson').submit(function (e) {
         success: function (result) {
         console.log(result.status.code);
         getAllStaff();
-        },
-        error: function(xhr, status, error){
-            console.log(error);
+        $('#addPerson')[0].reset();
         }
     });
 
     return false;
 });
 
-//delete person
+//update and delete person
 
-//update person
+/*$(document).on("click",".updatePer", function(){
+    $(this).closest("tr").find("td").each(function(column, td) {
+        console.log($(td).find("div").text());
+    });
+    console.log($(this).closest("tr").find("td")[0]);
+});*/
+
+$(document).on("click",".updatePer", function(){
+    globalThis.id = $(this).next().val();
+});
+
+$('#deletePerson').click(function (e) {
+    
+    e.preventDefault();
+
+    $.ajax({
+        type: 'post',
+        url: window.location.href + 'php/delete/deletePerson.php',
+        data: {id: id},
+        success: function (result) {
+        console.log(result.status.code);
+        $('#updatePerson').modal("toggle");
+        getAllStaff();
+        }
+    });
+
+    return false;
+});
+
+
 
 //insert department
 
@@ -47,6 +74,7 @@ $('#insertDepartment').submit(function (e) {
         success: function (result) {
         console.log(result.status.code);
         getAllDepartments();
+        $('#insertDepartment')[0].reset();
         }
     });
 
@@ -66,6 +94,7 @@ $('#deleteDepartment').submit(function (e) {
         success: function (result) {
         console.log(result.status.code);
         getAllDepartments();
+        $('#deleteDepartment')[0].reset();
         }
     });
 
@@ -73,6 +102,12 @@ $('#deleteDepartment').submit(function (e) {
 });
 
 //update department
+
+
+
+
+
+
 
 
 //insert location
@@ -88,6 +123,7 @@ $('#insertLocation').submit(function (e) {
         success: function (result) {
         console.log(result.status.code);
         getAllLocations();
+        $('#insertLocation')[0].reset();
         }
     });
 
@@ -107,6 +143,7 @@ $('#deleteLocation').submit(function (e) {
         success: function (result) {
         console.log(result.status.code);
         getAllLocations();
+        $('#deleteLocation')[0].reset();
         }
     });
 
@@ -114,6 +151,13 @@ $('#deleteLocation').submit(function (e) {
 });
 
 //update location
+
+
+
+
+
+
+
 
 
 //get all staff
@@ -176,6 +220,13 @@ document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() =
 
 
 
+
+
+
+
+
+
+
 //functions 
 
 //get all departments 
@@ -208,11 +259,11 @@ function getAllStaff() {
             <td><div class='d-flex'>${person.department}<i class=" ms-auto bi bi-briefcase"></i></div></td>
             <td><div class='d-flex'>${person.location}<i class="ms-auto bi bi-building"></i></div></td>
             <td><div class='d-flex'>${person.email}<i class="ms-auto bi bi-envelope"></div></i></td>
-            <td><button>Edit</button></td></tr>`);
+            <td><button type="button" class="updatePer" data-bs-toggle="modal" data-bs-target="#updatePerson">Edit</button>
+            <input class="d-none perIdVal" type="number" value=${person.id} /></td></tr>`);
         });
         
     });
-    
 }
 
 //get all locations
