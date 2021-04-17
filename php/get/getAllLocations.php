@@ -7,7 +7,7 @@
 
 	$executionStartTime = microtime(true);
 
-	include("../sql/config.php");
+	include("../../sql/config.php");
 
 	header('Content-Type: application/json; charset=UTF-8');
 
@@ -29,7 +29,7 @@
 
 	}	
 
-	$query = 'SELECT id, name, locationID FROM department';
+	$query = 'SELECT id, name FROM location';
 
 	$result = $conn->query($query);
 	

@@ -1,5 +1,8 @@
 <?php
 
+	// example use from browser
+	// http://localhost/companydirectory/libs/php/insertDepartment.php?name=New%20Department&locationID=1
+
 	// remove next two lines for production
 	
 	ini_set('display_errors', 'On');
@@ -7,7 +10,7 @@
 
 	$executionStartTime = microtime(true);
 
-	include("../sql/config.php");
+	include("../../sql/config.php");
 
 	header('Content-Type: application/json; charset=UTF-8');
 
@@ -27,9 +30,11 @@
 
 		exit;
 
-	}	
+	}	 
 
-	$query = 'SELECT id, name FROM location';
+	// $_REQUEST used for development / debugging. Remember to cange to $_POST for production
+
+	$query = 'INSERT INTO department (name, locationID) VALUES("' . $_POST['name'] . '",' . $_POST["locationID"] . ')';
 
 	$result = $conn->query($query);
 	
@@ -47,20 +52,12 @@
 		exit;
 
 	}
-   
-   	$data = [];
-
-	while ($row = mysqli_fetch_assoc($result)) {
-
-		array_push($data, $row);
-
-	}
 
 	$output['status']['code'] = "200";
 	$output['status']['name'] = "ok";
 	$output['status']['description'] = "success";
 	$output['status']['returnedIn'] = (microtime(true) - $executionStartTime) / 1000 . " ms";
-	$output['data'] = $data;
+	$output['data'] = [];
 	
 	mysqli_close($conn);
 

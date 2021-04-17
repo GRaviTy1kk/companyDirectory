@@ -1,6 +1,6 @@
 <?php
 
-	// example use from browser
+	// example use from browser 
 	// http://localhost/companydirectory/libs/php/insertDepartment.php?name=New%20Department&locationID=1
 
 	// remove next two lines for production
@@ -10,7 +10,7 @@
 
 	$executionStartTime = microtime(true);
 
-	include("../sql/config.php");
+	include("../../sql/config.php");
 
 	header('Content-Type: application/json; charset=UTF-8');
 
@@ -34,7 +34,7 @@
 
 	// $_REQUEST used for development / debugging. Remember to change to $_POST for production
 
-	$query = 'INSERT INTO personnel (firstName, lastName, jobTitle, email, departmentID) VALUES(' . $_REQUEST['firstname'] . ',' . $_REQUEST["lastname"] . ',' . $_REQUEST["jobTitle"] . ',' . $_REQUEST["email"] . ',' . $_REQUEST["departmentID"] . ')';
+	$query = 'INSERT INTO personnel (firstName, lastName, jobTitle, email, departmentID) VALUES("' . $_POST['firstname'] . '","' . $_POST["lastname"] . '","' . $_POST["jobTitle"] . '","' . $_POST["email"] . '",' . $_POST["departmentID"] . ')';
 
 	$result = $conn->query($query);
 	

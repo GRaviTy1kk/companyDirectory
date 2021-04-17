@@ -8,6 +8,32 @@ $(window).on('load', function() {
 
 });
 
+//insert Person
+
+$('#addPerson').submit(function (e) {
+    
+    e.preventDefault();
+
+    $.ajax({
+        type: 'post',
+        url: window.location.href + 'php/insert/insertPerson.php',
+        data: $('#addPerson').serialize(),
+        success: function (result) {
+        console.log(result.status.code);
+        getAllStaff();
+        },
+        error: function(xhr, status, error){
+            console.log(error);
+        }
+    });
+
+    return false;
+});
+
+//delete person
+
+//update person
+
 //insert department
 
 $('#insertDepartment').submit(function (e) {
@@ -16,14 +42,14 @@ $('#insertDepartment').submit(function (e) {
 
     $.ajax({
         type: 'post',
-        url: window.location.href + 'php/insertDepartment.php',
+        url: window.location.href + 'php/insert/insertDepartment.php',
         data: $('#insertDepartment').serialize(),
         success: function (result) {
         console.log(result.status.code);
+        getAllDepartments();
         }
     });
 
-    getAllDepartments();
     return false;
 });
 
@@ -35,14 +61,14 @@ $('#deleteDepartment').submit(function (e) {
 
     $.ajax({
         type: 'post',
-        url: window.location.href + 'php/deleteDepartmentByID.php',
+        url: window.location.href + 'php/delete/deleteDepartmentByID.php',
         data: $('#deleteDepartment').serialize(),
         success: function (result) {
         console.log(result.status.code);
+        getAllDepartments();
         }
     });
 
-    getAllDepartments();
     return false;
 });
 
@@ -57,20 +83,37 @@ $('#insertLocation').submit(function (e) {
 
     $.ajax({
         type: 'post',
-        url: window.location.href + 'php/insertLocation.php',
+        url: window.location.href + 'php/insert/insertLocation.php',
         data: $('#insertLocation').serialize(),
         success: function (result) {
         console.log(result.status.code);
+        getAllLocations();
         }
     });
 
-    getAllDepartments();
     return false;
 });
 
 //delete location
 
-//update location]
+$('#deleteLocation').submit(function (e) {
+    
+    e.preventDefault();
+
+    $.ajax({
+        type: 'post',
+        url: window.location.href + 'php/delete/deleteLocationbyID.php',
+        data: $('#deleteLocation').serialize(),
+        success: function (result) {
+        console.log(result.status.code);
+        getAllLocations();
+        }
+    });
+
+    return false;
+});
+
+//update location
 
 
 //get all staff
@@ -78,7 +121,6 @@ $('#insertLocation').submit(function (e) {
 $("#getAll").on("click", function() {
     $.get("./php/getAll.php",   function(result) {
         console.log(result.data[0]);
-        $('#result').text(result.data[0].lastName);
     });
 });
 
@@ -108,10 +150,6 @@ $('#selectLocation').change(function(){
 
 $("#reset").on("click", function() {
 
-    $('#tableBody').text("");
-    $('.deparments').text("");
-    $('.locations').text("");
-
     getAllStaff();
     getAllDepartments();
     getAllLocations();
@@ -140,13 +178,13 @@ document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() =
 
 //functions 
 
-//get all departments function 
+//get all departments 
 
 function getAllDepartments() {
 
     $('.deparments').text("");
 
-    $.get("./php/getAllDepartments.php",  function(result) {
+    $.get("./php/get/getAllDepartments.php",  function(result) {
         console.log(result.data);
 
         result.data.forEach(dep => {
@@ -160,7 +198,9 @@ function getAllDepartments() {
 
 function getAllStaff() {
 
-    $.get("./php/getAll.php",   function(result) {
+    $('#tableBody').text("");
+
+    $.get("./php/get/getAll.php",   function(result) {
         console.log(result.data[0]);
 
         result.data.forEach(person => {
@@ -181,7 +221,7 @@ function getAllLocations() {
 
     $('.locations').text("");
 
-    $.get("./php/getAllLocations.php",  function(result) {
+    $.get("./php/get/getAllLocations.php",  function(result) {
         console.log(result.data);
 
         result.data.forEach(loc => {

@@ -1,7 +1,8 @@
 <?php
 
 	// example use from browser
-	// http://localhost/companydirectory/libs/php/insertDepartment.php?name=New%20Department&locationID=1
+	// use insertDepartment.php first to create new dummy record and then specify it's id in the command below
+	// http://localhost/companydirectory/libs/php/deleteDepartmentByID.php?id= <id>
 
 	// remove next two lines for production
 	
@@ -10,7 +11,7 @@
 
 	$executionStartTime = microtime(true);
 
-	include("../sql/config.php");
+	include("../../sql/config.php");
 
 	header('Content-Type: application/json; charset=UTF-8');
 
@@ -34,7 +35,7 @@
 
 	// $_REQUEST used for development / debugging. Remember to cange to $_POST for production
 
-	$query = 'INSERT INTO location (name) VALUES(' . $_POST['name'] . ')';
+	$query = 'DELETE FROM location WHERE id = ' . $_POST['id'];
 
 	$result = $conn->query($query);
 	
