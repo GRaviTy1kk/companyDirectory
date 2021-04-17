@@ -23,7 +23,7 @@
       
     <nav id="mainNav" class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="instrument panel">
       <div class="container-fluid">
-        <a class="navbar-brand" href="">Company Directory</a>
+        <a class="navbar-brand"  href="">Company Directory</a> <!--put the home link to the app-->
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#companynav" aria-controls="companynav" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
         </button>
@@ -80,15 +80,15 @@
 
                 <nav class="sidebar card pt-2 my-md-auto">
                   
-                  <a id="toggleSort" class="nav-link"  href="#"> Sort By </a>
+                  <a id="toggleSort" class="nav-link" href="" onclick="return false;" > Sort By </a>
                   
                   <ul class="nav flex-column" id="nav_accordion">
               
                     <li class="nav-item">
-                      <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#menu_loc" href="#"> Locations <i class="bi small bi-caret-down-fill"></i> </a>
+                      <a class="nav-link" data-bs-toggle="collapse" data-bs-target="#menu_loc" href=""> Locations <i class="bi small bi-caret-down-fill"></i> </a>
                       <ul id="menu_loc" class="submenu collapse" data-bs-parent="#nav_accordion">
                         <li>
-                          <select id="selectLocation">
+                          <select class="locations" id="selectLocation">
                             
                           </select>
                       </li>
@@ -96,10 +96,10 @@
                     </li>
 
                     <li class="nav-item">
-                      <a id="getByDep" class="nav-link" data-bs-toggle="collapse" data-bs-target="#menu_dep" href="#"> Departments <i class="bi small bi-caret-down-fill"></i> </a>
+                      <a id="getByDep" class="nav-link" data-bs-toggle="collapse" data-bs-target="#menu_dep" href=""> Departments <i class="bi small bi-caret-down-fill"></i> </a>
                       <ul id="menu_dep" class="submenu collapse" data-bs-parent="#nav_accordion">
                           <li>
-                            <select id="selectDepartmens">
+                            <select class="deparments" id="selectDepartmens">
                               
                             </select>
                           </li>
@@ -107,7 +107,7 @@
                     </li>
 
                     <li class="nav-item">
-                      <a class="nav-link" id="reset" href="#">Reset <i class="bi bi-arrow-counterclockwise"></i></a>
+                      <a class="nav-link" id="reset" style="cursor: pointer;">Reset <i class="bi bi-arrow-counterclockwise"></i></a>
                     </li>
 
                   </ul>
@@ -156,11 +156,10 @@
         <!--mail<i class="bi bi-envelope"></i>   -->
       </main>
 
+
+
       <!--location modal-->
-
-    
-
-      <!-- Modal -->
+  
       <div class="modal fade" id="locationModal" tabindex="-1" aria-labelledby="#locationModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
           <div class="modal-content">
@@ -169,17 +168,55 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              ...
+
+              <div class="container-fluid">
+                <div classs="row">
+
+                  <div class="col-12">
+                    <div class="btn-group" role="group">
+                      <input type="radio" class="btn-check" name="locrad" id="btnradioAddLoc" autocomplete="off" checked>
+                      <label class="btn btn-outline-primary" for="btnradioAddLoc">Add Location</label>
+                    
+                      <input type="radio" class="btn-check" name="locrad" id="btnradioEditLoc" autocomplete="off">
+                      <label class="btn btn-outline-primary" for="btnradioEditLoc">Update Location</label>
+                    
+                      <input type="radio" class="btn-check" name="locrad" id="btnradioDeleteLoc" autocomplete="off">
+                      <label class="btn btn-outline-primary" for="btnradioDeleteLoc">Delete Location</label>
+                    </div>
+                  </div>
+
+                  <div class="col-12 aadLoc">
+                    <form id="insertLocation">
+                      <input type="text" name="name">
+                      <input class="submit" type="submit" value="Add" />
+                    </form>
+                  </div>
+
+                  <div class="col-12 editLoc collapse">
+                    edit
+                  </div>
+
+                  <div class="col-12 delLoc collapse">
+                    <form id="deleteLocation">
+                      <select class="locations" name="id">
+                              
+                      </select>
+                      <input class="submit" type="submit" value="Delete" />
+                    </form>
+                  </div>
+
+                </div>
+              </div>
+              
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
             </div>
           </div>
         </div>
       </div>
 
-       <!--location modal-->
+       <!--department modal-->
 
       <div class="modal fade" id="departmentModal" tabindex="-1" aria-labelledby="#departmentModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered">
@@ -189,11 +226,54 @@
               <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <div class="modal-body">
-              ...
+
+              <div class="container-fluid">
+                <div classs="row">
+
+                  <div class="col-12">
+                    <div class="btn-group" role="group">
+                      <input type="radio" class="btn-check" name="deprad" id="btnradioAddDep" autocomplete="off" checked>
+                      <label class="btn btn-outline-primary" for="btnradioAddDep">Add Department</label>
+                    
+                      <input type="radio" class="btn-check" name="deprad" id="btnradioEditDep" autocomplete="off">
+                      <label class="btn btn-outline-primary" for="btnradioEditDep">Update Department</label>
+                    
+                      <input type="radio" class="btn-check" name="deprad" id="btnradioDeleteDep" autocomplete="off">
+                      <label class="btn btn-outline-primary" for="btnradioDeleteDep">Delete Department</label>
+                    </div>
+                  </div>
+
+                  <div class="col-12 aadDep">
+
+                    <form id="insertDepartment">
+                      <input type="text" name="name">
+                      <br><br><br>
+                      <input type="number" name="locationID">
+                      <br><br><br>
+                      <input class="submit" type="submit" value="Add" />
+                    </form>
+
+                  </div>
+
+                  <div class="col-12 editDep collapse">
+                    edit
+                  </div>
+
+                  <div class="col-12 delDep collapse">
+                    <form id="deleteDepartment">
+                      <select class="deparments" name="id">
+                              
+                      </select>
+                      <input class="submit" type="submit" value="Delete" />
+                    </form>
+                  </div>
+
+                </div>
+              </div>
+
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
             </div>
           </div>
         </div>
@@ -218,7 +298,6 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary">Save changes</button>
             </div>
           </div>
         </div>

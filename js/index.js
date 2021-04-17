@@ -6,28 +6,71 @@ $(window).on('load', function() {
     getAllStaff();
     getAllLocations();
 
-
-
 });
 
+//insert department
 
-//test post 
+$('#insertDepartment').submit(function (e) {
+    
+    e.preventDefault();
 
-$("#insertNew").on("click", function(){
-    console.log("did");
-    $.post("./php/insertPerson.php", {
-        
-        firstname: $("#firstname").val(),
-        lastname: $("#lastname").val(),
-        jobTitle: $("#jobTitle").val(),
-        email: $("#email1").val(),
-        departmentID: $("#departmentID").val()
-
-    }, function(data, status){
-        console.log(data.status.code);
-        
+    $.ajax({
+        type: 'post',
+        url: window.location.href + 'php/insertDepartment.php',
+        data: $('#insertDepartment').serialize(),
+        success: function (result) {
+        console.log(result.status.code);
+        }
     });
-  });
+
+    getAllDepartments();
+    return false;
+});
+
+//delete department
+
+$('#deleteDepartment').submit(function (e) {
+    
+    e.preventDefault();
+
+    $.ajax({
+        type: 'post',
+        url: window.location.href + 'php/deleteDepartmentByID.php',
+        data: $('#deleteDepartment').serialize(),
+        success: function (result) {
+        console.log(result.status.code);
+        }
+    });
+
+    getAllDepartments();
+    return false;
+});
+
+//update department
+
+
+//insert location
+
+$('#insertLocation').submit(function (e) {
+    
+    e.preventDefault();
+
+    $.ajax({
+        type: 'post',
+        url: window.location.href + 'php/insertLocation.php',
+        data: $('#insertLocation').serialize(),
+        success: function (result) {
+        console.log(result.status.code);
+        }
+    });
+
+    getAllDepartments();
+    return false;
+});
+
+//delete location
+
+//update location]
 
 
 //get all staff
@@ -66,8 +109,8 @@ $('#selectLocation').change(function(){
 $("#reset").on("click", function() {
 
     $('#tableBody').text("");
-    $('#selectDepartmens').text("");
-    $('#selectLocation').text("");
+    $('.deparments').text("");
+    $('.locations').text("");
 
     getAllStaff();
     getAllDepartments();
@@ -101,11 +144,13 @@ document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() =
 
 function getAllDepartments() {
 
+    $('.deparments').text("");
+
     $.get("./php/getAllDepartments.php",  function(result) {
         console.log(result.data);
 
         result.data.forEach(dep => {
-            $('#selectDepartmens').append(`<option value=${dep.id}>${dep.name}</option>`);
+            $('.deparments').append(`<option value=${dep.id}>${dep.name}</option>`);
         });
 
     });
@@ -134,11 +179,13 @@ function getAllStaff() {
 
 function getAllLocations() {
 
+    $('.locations').text("");
+
     $.get("./php/getAllLocations.php",  function(result) {
         console.log(result.data);
 
         result.data.forEach(loc => {
-            $('#selectLocation').append(`<option value=${loc.id}>${loc.name}</option>`);
+            $('.locations').append(`<option value=${loc.id}>${loc.name}</option>`);
         });
 
     });
