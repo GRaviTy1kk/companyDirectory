@@ -128,7 +128,7 @@ table th {
 }
 
 #editPerson input {
-    width: 150px;
+    width: 200px;
     margin-left: 5px;
 }
 
@@ -139,8 +139,38 @@ table th {
 }
 
 #addPerson input {
-    width: 150px;
+    width: 200px;
     margin-left: 5px;
+}
+
+/*       modal edit departments       */
+
+#insertDepartment input, #editDepartment input, #deleteDepartment input {
+    width: 200px;
+    margin-left: 5px;
+}
+
+#insertDepartment input[type="submit"], #editDepartment input[type="submit"], #deleteDepartment input[type="submit"] {
+    width: 100px;
+}
+
+#insertDepartment span, #editDepartment span, #deleteDepartment span {
+    width: 150px;
+}
+
+/*       modal edit locations       */
+
+#insertLocation input, #editLocation input, #deleteLocation input {
+    width: 200px;
+    margin-left: 5px;
+}
+
+#insertLocation input[type="submit"], #editLocation input[type="submit"], #deleteLocation input[type="submit"] {
+    width: 100px;
+}
+
+#insertLocation span, #editLocation span, #deleteLocation span {
+    width: 150px;
 }
 
 /*responsive*/

@@ -14,7 +14,7 @@
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
       <link href="./vendors/bootrtrap/css/bootstrap.min.css" rel="stylesheet">
       <link href="css/styles.css" rel="stylesheet" type="text/css">
-      <link href="" rel="icon">
+      <link href="img/group.png" rel="icon">
       <title>Company Management</title>
       
   </head>
@@ -31,7 +31,7 @@
         <div class="collapse navbar-collapse" id="companynav">
 
           <form class="d-none d-lg-flex ms-5">
-            <input class="form-control searchInput" type="text" onkeyup="searchTable()" placeholder="Search">
+            <input class="form-control" id="searchNav" type="text"  placeholder="Search">
           </form>
 
           <ul class="navbar-nav ms-5 mb-2 mb-lg-0">
@@ -69,7 +69,7 @@
               <div class="col-sm-12 col-md-7 d-flex align-items-center d-lg-none">
               
                 <form class="d-flex">
-                  <input class="form-control searchInput" type="text" onkeyup="searchTable()" placeholder="Search">
+                  <input class="form-control" id="searchMain" type="text"  placeholder="Search">
                 </form>
 
               </div>
@@ -185,29 +185,41 @@
 
                   <div class="col-12 aadLoc">
                     <form id="insertLocation">
-                      <input type="text" name="name">
-                      <input class="submit" type="submit" value="Add" />
+                      <div class="input-group my-3">
+                        <span class="input-group-text">New Location</span>
+                        <input type="text" name="name" required />
+                      </div>
+                      <div class="d-flex">
+                        <input class="btn btn-success mx-auto" type="submit" value="Add" />
+                      </div>
                     </form>
                   </div>
 
                   <div class="col-12 editLoc collapse">
                     <form id="editLocation">
-                      <select class="locations" name="id">
-                              
-                      </select>
-                      <br>
-                      <input type="text" name="name">
-                      <br>
-                      <input class="submit" type="submit" value="Edit" />
+                      <div class="input-group my-3">
+                        <label class="input-group-text">Locations</label>
+                        <select class="form-select locations" name="id"></select>
+                      </div>
+                      <div class="input-group my-3">
+                        <span class="input-group-text">New Name</span>
+                        <input type="text" name="name"  />
+                      </div>
+                      <div class="d-flex">
+                        <input class="btn btn-success mx-auto" type="submit" value="Update" />
+                      </div>
                     </form>
                   </div>
 
                   <div class="col-12 delLoc collapse">
                     <form id="deleteLocation">
-                      <select class="locations" name="id">
-                              
-                      </select>
-                      <input class="submit" type="submit" value="Delete" />
+                      <div class="input-group my-3">
+                        <label class="input-group-text">Location</label>
+                        <select class="form-select locations" name="id" required></select>
+                      </div>
+                      <div class="d-flex">
+                        <input class="btn btn-success mx-auto" type="submit" value="Delete" />
+                      </div>
                     </form>
                   </div>
 
@@ -252,35 +264,47 @@
                   <div class="col-12 aadDep">
 
                     <form id="insertDepartment">
-                      <input type="text" name="name">
-                      <br>
-                      <select class="locations" name="locationID">
-                              
-                      </select>
-                      <br>
-                      <input class="submit" type="submit" value="Add" />
+                      <div class="input-group my-3">
+                        <span class="input-group-text">New Department</span>
+                        <input type="text" name="name"  required />
+                      </div>
+                      <div class="input-group mb-3">
+                        <label class="input-group-text">Location</label>
+                        <select class="form-select locations" name="locationID" required></select>
+                      </div>
+                      <div class="d-flex">
+                        <input class="btn btn-success mx-auto" type="submit" value="Add" />
+                      </div>
                     </form>
 
                   </div>
 
                   <div class="col-12 editDep collapse">
+
                     <form id="editDepartment">
-                      <select class="deparments" name="id">
-                              
-                      </select>
-                      <br>
-                      <input type="text" name="name">
-                      <br>
-                      <input class="submit" type="submit" value="Edit" />
+                      <div class="input-group my-3">
+                        <label class="input-group-text">Departments</label>
+                        <select class="form-select deparments" name="id"></select>
+                      </div>
+                      <div class="input-group mb-3">
+                        <span class="input-group-text">New Name</span>
+                        <input type="text" name="name"  />
+                      </div>
+                      <div class="d-flex">
+                        <input class="btn btn-success mx-auto" type="submit" value="Edit" />
+                      </div>
                     </form>
                   </div>
 
                   <div class="col-12 delDep collapse">
                     <form id="deleteDepartment">
-                      <select class="deparments" name="id">
-                              
-                      </select>
-                      <input class="submit" type="submit" value="Delete" />
+                      <div class="input-group my-3">
+                        <label class="input-group-text">Departments</label>
+                        <select class="form-select deparments" name="id" required></select>
+                      </div>
+                      <div class="d-flex">
+                        <input class="btn btn-success mx-auto" type="submit" value="Delete" />
+                      </div>
                     </form>
                   </div>
 
@@ -309,11 +333,11 @@
               <form id="addPerson">
                 <div class="input-group mb-3">
                   <span class="input-group-text">First Name</span>
-                  <input type="text" name="firstName"  />
+                  <input type="text" name="firstName"  required/>
                 </div>
                 <div class="input-group mb-3">
                   <span class="input-group-text">Last Name</span>
-                  <input type="text" name="lastName" />
+                  <input type="text" name="lastName" required />
                 </div>
                 <div class="input-group mb-3">
                   <span class="input-group-text">Job Title</span>
@@ -321,11 +345,11 @@
                 </div>
                 <div class="input-group mb-3">
                   <span class="input-group-text">Email</span>
-                  <input type="email" name="email" />
+                  <input type="email" name="email" required/>
                 </div>
                 <div class="input-group mb-3">
                   <label class="input-group-text">Departments</label>
-                  <select class="form-select deparments" name="departmentID"></select>
+                  <select class="form-select deparments" name="departmentID" required></select>
                 </div>
                 <div class="d-flex">
                   <input class="btn btn-success mx-auto" type="submit" value="Add" />

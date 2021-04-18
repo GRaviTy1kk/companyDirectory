@@ -304,24 +304,26 @@ $("#reset").on("click", function() {
 });
 
 
-//sort table columns
+//sort table by columns
 
-const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
-
-const comparer = (idx, asc) => (a, b) => ((v1, v2) => 
-    v1 !== '' && v2 !== '' && !isNaN(v1) && !isNaN(v2) ? v1 - v2 : v1.toString().localeCompare(v2)
-    )(getCellValue(asc ? a : b, idx), getCellValue(asc ? b : a, idx));
-
-document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() => {
-    
-    Array.from($("tr").slice(1))
-        .sort(comparer(Array.from(th.parentNode.children).indexOf(th), this.asc = !this.asc))
-        .forEach(tr => $('table').append(tr) );
-})));
-
+$('th').wrapInner('<span title="sort this column"/>').click(function(){
+    var table = $('table').eq(0);
+    var rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()));
+    this.asc = !this.asc;
+    if (!this.asc){rows = rows.reverse()};
+    for (var i = 0; i < rows.length; i++){table.append(rows[i])};
+})
+function comparer(index) {
+    return function(a, b) {
+        var valA = getCellValue(a, index), valB = getCellValue(b, index);
+        return $.isNumeric(valA) && $.isNumeric(valB) ? valA - valB : valA.toString().localeCompare(valB);
+    }
+}
+function getCellValue(row, index){ return $(row).children('td').eq(index).text() }
 
 
 //search engine
+
 function searchTable() {
 
     var table = $('#tableBody');
@@ -350,6 +352,8 @@ function searchTable() {
         $('#tableBody .hideDataRow').addClass("d-none");
     }
 }
+    
+
 
 //functions 
 
@@ -416,4 +420,5 @@ function getAllLocations() {
 
 
 }
+
 
