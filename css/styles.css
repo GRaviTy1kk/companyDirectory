@@ -132,6 +132,10 @@ table th {
     margin-left: 5px;
 }
 
+#editPerson input[type="submit"] {
+    width: 100px;
+}
+
 /*       modal add person       */
 
 #addPerson span {
