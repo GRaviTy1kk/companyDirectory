@@ -266,7 +266,15 @@
                   </div>
 
                   <div class="col-12 editDep collapse">
-                    edit
+                    <form id="editDepartment">
+                      <select class="deparments" name="id">
+                              
+                      </select>
+                      <br>
+                      <input type="text" name="name">
+                      <br>
+                      <input class="submit" type="submit" value="Edit" />
+                    </form>
                   </div>
 
                   <div class="col-12 delDep collapse">
@@ -335,8 +343,19 @@
 
             
                   <div class="">
-                    edit
-
+                    <form id="editPerson">
+                      <input type="text" name="firstName"  />
+                      <br>
+                      <input type="text" name="lastName" />
+                      <br>
+                      <input type="text" name="jobTitle" />
+                      <br>
+                      <input type="email" name="email" />
+                      <br>
+                      <select class="deparments" name="departmentID"></select>
+                      <br>
+                      <input class="submit" type="submit" value="Add" />
+                    </form>
                   </div>
                   <hr />
                   <div class="">

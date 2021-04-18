@@ -39,12 +39,19 @@ $('#addPerson').submit(function (e) {
 
 $(document).on("click",".updatePer", function(){
     globalThis.id = $(this).next().val();
+    
+    $('#editPerson input[name="firstName"]').attr("value", $($(this).closest("tr").find("td")[0]).children("div").text());
+    $('#editPerson input[name="lastName"]').attr("value", $($(this).closest("tr").find("td")[0]).children("div").text());
+    $('#editPerson input[name="email"]').attr("value", $($(this).closest("tr").find("td")[3]).children("div").text());
+    
+    
+
 });
 
 $('#deletePerson').click(function (e) {
     
     e.preventDefault();
-
+    
     $.ajax({
         type: 'post',
         url: window.location.href + 'php/delete/deletePerson.php',
@@ -53,6 +60,26 @@ $('#deletePerson').click(function (e) {
         console.log(result.status.code);
         $('#updatePerson').modal("toggle");
         getAllStaff();
+        $('#deletePerson')[0].reset();
+        }
+    });
+
+    return false;
+});
+
+$('#editPerson').submit(function (e) {
+    
+    e.preventDefault();
+    console.log($('#editPerson').serialize() + "&id=" + id);
+    $.ajax({
+        type: 'post',
+        url: window.location.href + 'php/update/updatePerson.php',
+        data: $('#editPerson').serialize() + "&id=" + id,
+        success: function (result) {
+        console.log(result.status.code);
+        $('#updatePerson').modal("toggle");
+        getAllStaff();
+        $('#editPerson')[0].reset();
         }
     });
 
@@ -103,6 +130,23 @@ $('#deleteDepartment').submit(function (e) {
 
 //update department
 
+$('#editDepartment').submit(function (e) {
+    
+    e.preventDefault();
+
+    $.ajax({
+        type: 'post',
+        url: window.location.href + 'php/update/updateDepartment.php',
+        data: $('#editDepartment').serialize(),
+        success: function (result) {
+        console.log(result.status.code);
+        getAllDepartments();
+        $('#editDepartment')[0].reset();
+        }
+    });
+
+    return false;
+});
 
 
 
@@ -152,9 +196,23 @@ $('#deleteLocation').submit(function (e) {
 
 //update location
 
+$('#editLocation').submit(function (e) {
+    
+    e.preventDefault();
 
+    $.ajax({
+        type: 'post',
+        url: window.location.href + 'php/update/updateLocation.php',
+        data: $('#editLocation').serialize(),
+        success: function (result) {
+        console.log(result.status.code);
+        getAllLocations();
+        $('#editLocation')[0].reset();
+        }
+    });
 
-
+    return false;
+});
 
 
 
