@@ -121,7 +121,27 @@ table th {
     cursor: pointer;
 }
 
-/*       footer       */ 
+/*       modal edit person       */
+
+#editPerson span {
+    width: 150px;
+}
+
+#editPerson input {
+    width: 150px;
+    margin-left: 5px;
+}
+
+/*       modal add person       */
+
+#addPerson span {
+    width: 150px;
+}
+
+#addPerson input {
+    width: 150px;
+    margin-left: 5px;
+}
 
 /*responsive*/
 

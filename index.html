@@ -307,17 +307,29 @@
             <div class="modal-body">
 
               <form id="addPerson">
-                <input type="text" name="firstname" />
-                <br>
-                <input type="text" name="lastname" />
-                <br>
-                <input type="text" name="jobTitle" />
-                <br>
-                <input type="email" name="email" />
-                <br>
-                <select class="deparments" name="departmentID"></select>
-                <br>
-                <input class="submit" type="submit" value="Add" />
+                <div class="input-group mb-3">
+                  <span class="input-group-text">First Name</span>
+                  <input type="text" name="firstName"  />
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">Last Name</span>
+                  <input type="text" name="lastName" />
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">Job Title</span>
+                  <input type="text" name="jobTitle" placeholder="optional" />
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">Email</span>
+                  <input type="email" name="email" />
+                </div>
+                <div class="input-group mb-3">
+                  <label class="input-group-text">Departments</label>
+                  <select class="form-select deparments" name="departmentID"></select>
+                </div>
+                <div class="d-flex">
+                  <input class="btn btn-success mx-auto" type="submit" value="Add" />
+                </div> 
               </form>
 
             </div>
@@ -339,26 +351,37 @@
             </div>
             <div class="modal-body">
 
-            
-                  <div class="">
-                    <form id="editPerson">
-                      <input type="text" name="firstName"  />
-                      <br>
-                      <input type="text" name="lastName" />
-                      <br>
-                      <input type="text" name="jobTitle" />
-                      <br>
-                      <input type="email" name="email" />
-                      <br>
-                      <select class="deparments" name="departmentID"></select>
-                      <br>
-                      <input class="submit" type="submit" value="Add" />
-                    </form>
-                  </div>
-                  <hr />
-                  <div class="">
-                    <button type="button" class="btn btn-secondary" id="deletePerson">Delete</button>
-                  </div>   
+              <form id="editPerson">
+                <div class="input-group mb-3">
+                  <span class="input-group-text">First Name</span>
+                  <input type="text" name="firstName"  />
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">Last Name</span>
+                  <input type="text" name="lastName" />
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">Job Title</span>
+                  <input type="text" name="jobTitle" placeholder="optional" />
+                </div>
+                <div class="input-group mb-3">
+                  <span class="input-group-text">Email</span>
+                  <input type="email" name="email" />
+                </div>
+                <div class="input-group mb-3">
+                  <label class="input-group-text">Departments</label>
+                  <select class="form-select deparments" name="departmentID"></select>
+                </div>
+                <div class="d-flex">
+                  <input class="btn btn-success mx-auto" type="submit" value="Update" />
+                </div>
+              </form>
+    
+              <hr />
+
+              <div class="d-flex">
+                <button type="button" class="btn btn-danger mx-auto" id="deletePerson">Delete</button>
+              </div>   
               
             </div>
             <div class="modal-footer">

@@ -222,6 +222,12 @@ $('#selectDepartmens').change(function(){
 
     $('#tableBody').text("");
 
+    if ($(this).val() == "refreshTable") {
+
+        getAllStaff();
+        return;
+    }
+
     $.post("./php/get/getAllbyDepID.php", {departmentID: $(this).val()},  function(result) {
   
         result.data.forEach(person => {
@@ -255,6 +261,12 @@ $('#selectLocation').change(function(){
 
     $('#tableBody').text("");
 
+    if ($(this).val() == "refreshTable") {
+
+        getAllStaff();
+        return;
+    }
+    
     $.post("./php/get/getAllbyLocID.php", {locationID: $(this).val()},  function(result) {
   
         result.data.forEach(person => {
@@ -332,11 +344,9 @@ function searchTable() {
     }); 
 
     if ($('#tableBody').find(':visible').length === 0) {
-        console.log("not found");
         $('#tableBody .hideDataRow').removeClass("d-none"); 
         $('#tableBody .hideDataRow').toggle();
     }else{
-        console.log("found");
         $('#tableBody .hideDataRow').addClass("d-none");
     }
 }
@@ -348,7 +358,7 @@ function searchTable() {
 function getAllDepartments() {
 
     $('.deparments').text("");
-    $('.deparments').append(`<option disabled selected>Choose Department</option>`);
+    $('.deparments').append(`<option value="refreshTable" selected>All Departments</option>`);
     $.get("./php/get/getAllDepartments.php",  function(result) {
         console.log(result.data);
 
@@ -373,7 +383,7 @@ function getAllStaff() {
             <td><div class='d-flex'>${person.department}<i class=" ms-auto bi bi-briefcase"></i></div></td>
             <td><div class='d-flex'>${person.location}<i class="ms-auto bi bi-building"></i></div></td>
             <td><div class='d-flex'>${person.email}<i class="ms-auto bi bi-envelope"></div></i></td>
-            <td d-flex><button type="button" class="d-block updatePer mx-auto" data-bs-toggle="modal" data-bs-target="#updatePerson">Edit</button>
+            <td d-flex><button type="button" class="btn btn-secondary d-block updatePer mx-auto" data-bs-toggle="modal" data-bs-target="#updatePerson">Edit</button>
             <input class="d-none perIdVal" type="number" value=${person.id} /><input class="d-none perIdDep" type="number" value=${person.departmentId} /></td></tr>`);
         });
 
@@ -393,7 +403,7 @@ function getAllStaff() {
 function getAllLocations() {
 
     $('.locations').text("");
-    $('.locations').append(`<option disabled selected>Choose Location</option>`);
+    $('.locations').append(`<option value="refreshTable" selected>All Locations</option>`);
 
     $.get("./php/get/getAllLocations.php",  function(result) {
         console.log(result.data);
