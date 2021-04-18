@@ -30,15 +30,11 @@ $('#addPerson').submit(function (e) {
 
 //update and delete person
 
-/*$(document).on("click",".updatePer", function(){
-    $(this).closest("tr").find("td").each(function(column, td) {
-        console.log($(td).find("div").text());
-    });
-    console.log($(this).closest("tr").find("td")[0]);
-});*/
-
 $(document).on("click",".updatePer", function(){
     globalThis.id = $(this).next().val();
+    var perDepId = $(this).next().next().val();
+    
+    $('#editPerson select').val(perDepId).trigger('change');
 
     var fullName = $($(this).closest("tr").find("td")[0]).children("div").text().split(" ");
     
@@ -79,7 +75,6 @@ $('#editPerson').submit(function (e) {
         console.log(result.status.code);
         $('#updatePerson').modal("toggle");
         getAllStaff();
-        $('#editPerson')[0].reset();
         }
     });
 
@@ -228,10 +223,6 @@ $('#selectDepartmens').change(function(){
     $('#tableBody').text("");
 
     $.post("./php/get/getAllbyDepID.php", {departmentID: $(this).val()},  function(result) {
-
-        if (result.data.length == 0 ) {
-            $('#tableBody').append("<tr><td class='text-center' colspan=5>No Results</td></tr>");
-        }
   
         result.data.forEach(person => {
             $('#tableBody').append(`<tr><td><div class='d-flex'>${person.firstName + " " + person.lastName}<i class="ms-auto bi bi-file-person"></i></div></td>
@@ -239,8 +230,16 @@ $('#selectDepartmens').change(function(){
             <td><div class='d-flex'>${person.location}<i class="ms-auto bi bi-building"></i></div></td>
             <td><div class='d-flex'>${person.email}<i class="ms-auto bi bi-envelope"></div></i></td>
             <td d-flex><button type="button" class="d-block updatePer mx-auto" data-bs-toggle="modal" data-bs-target="#updatePerson">Edit</button>
-            <input class="d-none perIdVal" type="number" value=${person.id} /></td></tr>`);
+            <input class="d-none perIdVal" type="number" value=${person.id} /><input class="d-none perIdDep" type="number" value=${person.departmentId} /></td></tr>`);
         });
+
+        $('#tableBody').append("<tr class='hideDataRow d-none'><td class='text-center' colspan=5>No Results</td></tr>");
+
+        if (result.data.length == 0 ) {
+            $('#tableBody .hideDataRow').removeClass("d-none");
+        } else {
+            $('#tableBody .hideDataRow').addClass("d-none");
+        }
           
     });
     
@@ -257,11 +256,6 @@ $('#selectLocation').change(function(){
     $('#tableBody').text("");
 
     $.post("./php/get/getAllbyLocID.php", {locationID: $(this).val()},  function(result) {
-
-
-        if (result.data.length == 0 ) {
-            $('#tableBody').append("<tr><td class='text-center' colspan=5>No Results</td></tr>");
-        }
   
         result.data.forEach(person => {
             $('#tableBody').append(`<tr><td><div class='d-flex'>${person.firstName + " " + person.lastName}<i class="ms-auto bi bi-file-person"></i></div></td>
@@ -269,8 +263,16 @@ $('#selectLocation').change(function(){
             <td><div class='d-flex'>${person.location}<i class="ms-auto bi bi-building"></i></div></td>
             <td><div class='d-flex'>${person.email}<i class="ms-auto bi bi-envelope"></div></i></td>
             <td d-flex><button type="button" class="d-block updatePer mx-auto" data-bs-toggle="modal" data-bs-target="#updatePerson">Edit</button>
-            <input class="d-none perIdVal" type="number" value=${person.id} /></td></tr>`);
+            <input class="d-none perIdVal" type="number" value=${person.id} /><input class="d-none perIdDep" type="number" value=${person.departmentId} /></td></tr>`);
         });
+
+        $('#tableBody').append("<tr class='hideDataRow d-none'><td class='text-center' colspan=5>No Results</td></tr>");
+
+        if (result.data.length == 0 ) {
+            $('#tableBody .hideDataRow').removeClass("d-none");
+        } else {
+            $('#tableBody .hideDataRow').addClass("d-none");
+        }
           
     });
 
@@ -310,23 +312,34 @@ document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() =
 //search engine
 function searchTable() {
 
-    var filter, table, tr, td, i, txtValue;
-    filter = $(".searchInput").val().toUpperCase();
-    tr = $("#tableBody tr");
-     
-    for (i = 0; i < tr.length; i++) {
-      td = tr[i].getElementsByTagName("td")[0];
-      if (td) {
-        txtValue = td.textContent || td.innerText;
-        if (txtValue.toUpperCase().indexOf(filter) > -1) {
-          tr[i].style.display = "";
-        } else {
-          tr[i].style.display = "none";
-        }
-      }
-    }
-  }
+    var table = $('#tableBody');
 
+    table.find('tr').each(function(index, row) {
+        var allCells = $(row).find('td');
+        if(allCells.length > 0) {
+            var found = false;
+            allCells.each(function(index, td) {
+                var regExp = new RegExp($(".searchInput").val(), 'i');
+                if(regExp.test($(td).text())) {
+                    found = true;
+                    return false;
+                }
+            });
+
+        if(found == true)$(row).show();else $(row).hide();
+    };
+        
+    }); 
+
+    if ($('#tableBody').find(':visible').length === 0) {
+        console.log("not found");
+        $('#tableBody .hideDataRow').removeClass("d-none"); 
+        $('#tableBody .hideDataRow').toggle();
+    }else{
+        console.log("found");
+        $('#tableBody .hideDataRow').addClass("d-none");
+    }
+}
 
 //functions 
 
@@ -355,18 +368,22 @@ function getAllStaff() {
     $.get("./php/get/getAll.php",   function(result) {
         console.log(result.data[0]);
 
-        if (result.data.length == 0 ) {
-            $('#tableBody').append("<tr><td class='text-center' colspan=5>No Results</td></tr>");
-        }
-
         result.data.forEach(person => {
             $('#tableBody').append(`<tr><td><div class='d-flex'>${person.firstName + " " + person.lastName}<i class="ms-auto bi bi-file-person"></i></div></td>
             <td><div class='d-flex'>${person.department}<i class=" ms-auto bi bi-briefcase"></i></div></td>
             <td><div class='d-flex'>${person.location}<i class="ms-auto bi bi-building"></i></div></td>
             <td><div class='d-flex'>${person.email}<i class="ms-auto bi bi-envelope"></div></i></td>
             <td d-flex><button type="button" class="d-block updatePer mx-auto" data-bs-toggle="modal" data-bs-target="#updatePerson">Edit</button>
-            <input class="d-none perIdVal" type="number" value=${person.id} /></td></tr>`);
+            <input class="d-none perIdVal" type="number" value=${person.id} /><input class="d-none perIdDep" type="number" value=${person.departmentId} /></td></tr>`);
         });
+
+        $('#tableBody').append("<tr class='hideDataRow d-none'><td class='text-center' colspan=5>No Results</td></tr>");
+
+        if (result.data.length == 0 ) {
+            $('#tableBody .hideDataRow').removeClass("d-none");
+        } else {
+            $('#tableBody .hideDataRow').addClass("d-none");
+        }
         
     });
 }
