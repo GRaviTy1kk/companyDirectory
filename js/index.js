@@ -158,17 +158,6 @@ $('#deleteLocation').submit(function (e) {
 
 
 
-
-
-//get all staff
-
-$("#getAll").on("click", function() {
-    $.get("./php/getAll.php",   function(result) {
-        console.log(result.data[0]);
-    });
-});
-
-
 //select by department
 
 $('#selectDepartmens').change(function(){ 
@@ -176,6 +165,27 @@ $('#selectDepartmens').change(function(){
     if (window.matchMedia('(max-width: 991px)').matches) {
         $('#nav_accordion').collapse('toggle');
       }
+
+
+    $('#tableBody').text("");
+
+    $.post("./php/get/getAllbyDepID.php", {departmentID: $(this).val()},  function(result) {
+
+        if (result.data.length == 0 ) {
+            $('#tableBody').append("<tr><td class='text-center' colspan=5>No Results</td></tr>");
+        }
+  
+        result.data.forEach(person => {
+            $('#tableBody').append(`<tr><td><div class='d-flex'>${person.firstName + " " + person.lastName}<i class="ms-auto bi bi-file-person"></i></div></td>
+            <td><div class='d-flex'>${person.department}<i class=" ms-auto bi bi-briefcase"></i></div></td>
+            <td><div class='d-flex'>${person.location}<i class="ms-auto bi bi-building"></i></div></td>
+            <td><div class='d-flex'>${person.email}<i class="ms-auto bi bi-envelope"></div></i></td>
+            <td d-flex><button type="button" class="d-block updatePer mx-auto" data-bs-toggle="modal" data-bs-target="#updatePerson">Edit</button>
+            <input class="d-none perIdVal" type="number" value=${person.id} /></td></tr>`);
+        });
+          
+    });
+    
 });
 
 //select by location
@@ -184,7 +194,28 @@ $('#selectLocation').change(function(){
     $('#menu_loc').collapse('toggle');
     if (window.matchMedia('(max-width: 991px)').matches) {
         $('#nav_accordion').collapse('toggle');
-      }
+    }
+
+    $('#tableBody').text("");
+
+    $.post("./php/get/getAllbyLocID.php", {locationID: $(this).val()},  function(result) {
+
+
+        if (result.data.length == 0 ) {
+            $('#tableBody').append("<tr><td class='text-center' colspan=5>No Results</td></tr>");
+        }
+  
+        result.data.forEach(person => {
+            $('#tableBody').append(`<tr><td><div class='d-flex'>${person.firstName + " " + person.lastName}<i class="ms-auto bi bi-file-person"></i></div></td>
+            <td><div class='d-flex'>${person.department}<i class=" ms-auto bi bi-briefcase"></i></div></td>
+            <td><div class='d-flex'>${person.location}<i class="ms-auto bi bi-building"></i></div></td>
+            <td><div class='d-flex'>${person.email}<i class="ms-auto bi bi-envelope"></div></i></td>
+            <td d-flex><button type="button" class="d-block updatePer mx-auto" data-bs-toggle="modal" data-bs-target="#updatePerson">Edit</button>
+            <input class="d-none perIdVal" type="number" value=${person.id} /></td></tr>`);
+        });
+          
+    });
+
 });
 
 
@@ -203,7 +234,6 @@ $("#reset").on("click", function() {
 
 //sort table columns
 
-
 const getCellValue = (tr, idx) => tr.children[idx].innerText || tr.children[idx].textContent;
 
 const comparer = (idx, asc) => (a, b) => ((v1, v2) => 
@@ -219,8 +249,7 @@ document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() =
 
 
 
-
-
+//search engine
 
 
 
@@ -234,7 +263,7 @@ document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() =
 function getAllDepartments() {
 
     $('.deparments').text("");
-
+    $('.deparments').append(`<option disabled selected>Choose Department</option>`);
     $.get("./php/get/getAllDepartments.php",  function(result) {
         console.log(result.data);
 
@@ -254,12 +283,16 @@ function getAllStaff() {
     $.get("./php/get/getAll.php",   function(result) {
         console.log(result.data[0]);
 
+        if (result.data.length == 0 ) {
+            $('#tableBody').append("<tr><td class='text-center' colspan=5>No Results</td></tr>");
+        }
+
         result.data.forEach(person => {
             $('#tableBody').append(`<tr><td><div class='d-flex'>${person.firstName + " " + person.lastName}<i class="ms-auto bi bi-file-person"></i></div></td>
             <td><div class='d-flex'>${person.department}<i class=" ms-auto bi bi-briefcase"></i></div></td>
             <td><div class='d-flex'>${person.location}<i class="ms-auto bi bi-building"></i></div></td>
             <td><div class='d-flex'>${person.email}<i class="ms-auto bi bi-envelope"></div></i></td>
-            <td><button type="button" class="updatePer" data-bs-toggle="modal" data-bs-target="#updatePerson">Edit</button>
+            <td d-flex><button type="button" class="d-block updatePer mx-auto" data-bs-toggle="modal" data-bs-target="#updatePerson">Edit</button>
             <input class="d-none perIdVal" type="number" value=${person.id} /></td></tr>`);
         });
         
@@ -271,6 +304,7 @@ function getAllStaff() {
 function getAllLocations() {
 
     $('.locations').text("");
+    $('.locations').append(`<option disabled selected>Choose Location</option>`);
 
     $.get("./php/get/getAllLocations.php",  function(result) {
         console.log(result.data);

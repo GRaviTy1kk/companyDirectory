@@ -42,8 +42,8 @@
                 Change Options
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                <li><button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#locationModal">Locations modal</button></li>
-                <li><button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#departmentModal">Departments modal</button></li>
+                <li><button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#locationModal">Locations</button></li>
+                <li><button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#departmentModal">Departments</button></li>
               </ul>
             </li>
             
@@ -200,7 +200,7 @@
                       <br>
                       <input type="text" name="name">
                       <br>
-                      <input class="submit" type="submit" value="Delete" />
+                      <input class="submit" type="submit" value="Edit" />
                     </form>
                   </div>
 
@@ -302,10 +302,15 @@
 
               <form id="addPerson">
                 <input type="text" name="firstname" />
+                <br>
                 <input type="text" name="lastname" />
+                <br>
                 <input type="text" name="jobTitle" />
+                <br>
                 <input type="email" name="email" />
-                <input type="number" name="departmentID" />
+                <br>
+                <select class="deparments" name="departmentID"></select>
+                <br>
                 <input class="submit" type="submit" value="Add" />
               </form>
 
@@ -333,7 +338,7 @@
                     edit
 
                   </div>
-                  <br />
+                  <hr />
                   <div class="">
                     <button type="button" class="btn btn-secondary" id="deletePerson">Delete</button>
                   </div>   

@@ -41,7 +41,7 @@ INSERT INTO `department` (`id`, `name`, `locationID`) VALUES
 	(11, 'Accounting', 5),
 	(12, 'Business Development', 3);
 /*!40000 ALTER TABLE `department` ENABLE KEYS */;
-
+ 
 -- Dumping structure for table companydirectory.location
 CREATE TABLE IF NOT EXISTS `location` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
