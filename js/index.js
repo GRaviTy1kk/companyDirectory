@@ -39,13 +39,13 @@ $('#addPerson').submit(function (e) {
 
 $(document).on("click",".updatePer", function(){
     globalThis.id = $(this).next().val();
+
+    var fullName = $($(this).closest("tr").find("td")[0]).children("div").text().split(" ");
     
-    $('#editPerson input[name="firstName"]').attr("value", $($(this).closest("tr").find("td")[0]).children("div").text());
-    $('#editPerson input[name="lastName"]').attr("value", $($(this).closest("tr").find("td")[0]).children("div").text());
+    $('#editPerson input[name="firstName"]').attr("value", fullName[0]);
+    $('#editPerson input[name="lastName"]').attr("value", fullName[1]);
     $('#editPerson input[name="email"]').attr("value", $($(this).closest("tr").find("td")[3]).children("div").text());
     
-    
-
 });
 
 $('#deletePerson').click(function (e) {
@@ -308,10 +308,24 @@ document.querySelectorAll('th').forEach(th => th.addEventListener('click', (() =
 
 
 //search engine
+function searchTable() {
 
-
-
-
+    var filter, table, tr, td, i, txtValue;
+    filter = $(".searchInput").val().toUpperCase();
+    tr = $("#tableBody tr");
+     
+    for (i = 0; i < tr.length; i++) {
+      td = tr[i].getElementsByTagName("td")[0];
+      if (td) {
+        txtValue = td.textContent || td.innerText;
+        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+          tr[i].style.display = "";
+        } else {
+          tr[i].style.display = "none";
+        }
+      }
+    }
+  }
 
 
 //functions 
