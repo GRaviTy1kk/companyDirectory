@@ -197,13 +197,14 @@ table th {
 
     main form {
         height: 40px;
-        margin-top: 5px;
+        margin-top: 20px;
+        margin-bottom: 20px;
     }
 
     .sidebar {
-        width: 300px;
+        width: 260px;
         padding: 0 !important;
-        margin-top: 10px;
+        margin: auto;
     }
 
 }
@@ -217,7 +218,7 @@ table th {
     }
     
     main div[class*='col-lg-9'] {
-         
+        font-size: 16px;
     }
 
     main form input {
@@ -226,16 +227,15 @@ table th {
 
     main form {
         height: 40px;
-        margin-top: 10px;
+        margin-top: 20px;
     }
 
     .sidebar {
-        width: 300px;
+        width: 260px;
         padding: 0 !important;
-    }
-
-    main div[class*='col-lg-3'] div[class*='row'] {
-        min-height: 8vh;
+        margin-right: auto;
+        margin-bottom: auto;
+        
     }
 
    
