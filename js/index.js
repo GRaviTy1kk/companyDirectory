@@ -171,10 +171,6 @@ $('#editDepartment').submit(function (e) {
 
 
 
-
-
-
-
 //insert location
 
 $('#insertLocation').submit(function (e) {
@@ -254,7 +250,7 @@ $('#selectDepartmens').change(function(){
         return;
     }
 
-    $.post("./php/get/getAllbyDepID.php", {departmentID: $(this).val()},  function(result) {
+    $.post(window.location.href +"php/get/getAllbyDepID.php", {departmentID: $(this).val()},  function(result) {
   
         result.data.forEach(person => {
             $('#tableBody').append(`<tr><td><div class='d-flex'>${person.firstName + " " + person.lastName}<i class="ms-auto bi bi-file-person"></i></div></td>
@@ -293,7 +289,7 @@ $('#selectLocation').change(function(){
         return;
     }
     
-    $.post("./php/get/getAllbyLocID.php", {locationID: $(this).val()},  function(result) {
+    $.post( window.location.href + "php/get/getAllbyLocID.php", {locationID: $(this).val()},  function(result) {
   
         result.data.forEach(person => {
             $('#tableBody').append(`<tr><td><div class='d-flex'>${person.firstName + " " + person.lastName}<i class="ms-auto bi bi-file-person"></i></div></td>
