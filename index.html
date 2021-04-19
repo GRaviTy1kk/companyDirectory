@@ -31,14 +31,17 @@
         <div class="collapse navbar-collapse" id="companynav">
 
           <form class="d-none d-lg-flex ms-5">
-            <input class="form-control" id="searchNav" type="text"  placeholder="Search">
+            <div class="input-group">
+              <input class="form-control" id="searchNav" type="text"  placeholder="Search...">
+              <label class="input-group-text">Search</label>
+            </div>
           </form>
 
           <ul class="navbar-nav ms-5 mb-2 mb-lg-0">
 
             <li class="nav-item dropdown mx-auto mx-lg-5">
               <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-                Change Options
+                Update Options
               </button>
               <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
                 <li><button class="dropdown-item" type="button" data-bs-toggle="modal" data-bs-target="#locationModal">Locations</button></li>
@@ -48,7 +51,7 @@
             
           </ul>
         
-          <button class="d-none d-lg-flex btn btn-success ms-auto me-5" type="button" data-bs-toggle="modal" data-bs-target="#insertNewPerson"><i class="bi bi-person-plus"></i></button>
+          <button class="d-none d-lg-flex btn btn-success btn-lg ms-auto me-5" type="button" data-bs-toggle="modal" data-bs-target="#insertNewPerson"><i class="bi bi-person-plus"></i></button>
 
         </div>
 
@@ -56,7 +59,7 @@
 
     </nav>
  
-      <main class="pt-lg-2">
+      <main>
 
         <div class="container-fluid">
 
@@ -69,22 +72,22 @@
                 <div class="col-12 d-flex align-items-center justify-content-center justify-content-md-start d-lg-none">
                   <form>
                     <div class="input-group">
-                      <label class="input-group-text">Search</label>
                       <input class="form-control" id="searchMain" type="text"  placeholder="Search...">
+                      <label class="input-group-text">Search</label>
                     </div>
                   </form>
                 </div>
 
                 <div class="col-12 d-flex flex-column flex-md-row align-items-start align-items-md-center my-2">
 
-                  <div class="text-center">Sort By: </div>
+                  <div class="text-center styleSortTitle">Sort By: </div>
 
                   <div class="dropdown">
                     <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                       Select Location
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                      <li class="dropdown-item"><select class="locations" id="selectLocation"></select></li>
+                      <li class="dropdown-item p-0"><select class="locations form-control" id="selectLocation"></select></li>
                     </ul>
                   </div>
 
@@ -93,12 +96,12 @@
                       Select Department
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                      <li class="dropdown-item"><select class="deparments" id="selectDepartmens"></select></li>
+                      <li class="dropdown-item p-0"><select class="deparments form-control" id="selectDepartmens"></select></li>
                     </ul>
                   </div>
 
                   <div class="d-flex">
-                    <button class="btn btn-secondary my-auto" id="reset">Reset Filters<i class="bi bi-arrow-counterclockwise pt-3"></i></button>
+                    <button class="btn btn-secondary" id="reset">Reset Filters<i class="bi bi-arrow-counterclockwise ms-2"></i></button>
                   </div>
 
                   <div class="d-flex d-block d-lg-none mx-auto mx-md-0 ms-md-auto me-md-2 my-2">
@@ -165,13 +168,13 @@
                   <div class="col-12">
                     <div class="btn-group" role="group">
                       <input type="radio" class="btn-check" name="locrad" id="btnradioAddLoc" autocomplete="off" checked>
-                      <label class="btn btn-outline-primary" for="btnradioAddLoc">Add Location</label>
+                      <label class="btn btn-outline-dark makeLabelWhite" for="btnradioAddLoc">Add Location</label>
                     
                       <input type="radio" class="btn-check" name="locrad" id="btnradioEditLoc" autocomplete="off">
-                      <label class="btn btn-outline-primary" for="btnradioEditLoc">Update Location</label>
+                      <label class="btn btn-outline-dark makeLabelWhite" for="btnradioEditLoc">Update Location</label>
                     
                       <input type="radio" class="btn-check" name="locrad" id="btnradioDeleteLoc" autocomplete="off">
-                      <label class="btn btn-outline-primary" for="btnradioDeleteLoc">Delete Location</label>
+                      <label class="btn btn-outline-dark makeLabelWhite" for="btnradioDeleteLoc">Delete Location</label>
                     </div>
                   </div>
 
@@ -179,7 +182,7 @@
                     <form id="insertLocation">
                       <div class="input-group my-3">
                         <span class="input-group-text">New Location</span>
-                        <input type="text" name="name" pattern="[a-zA-Z0-9\s]+" title="Only letters and numbers" required />
+                        <input type="text" class="form-control" name="name" pattern="[a-zA-Z0-9\s]+" title="Only letters and numbers" required />
                       </div>
                       <div class="d-flex">
                         <input class="btn btn-success mx-auto" type="submit" value="Add" />
@@ -195,7 +198,7 @@
                       </div>
                       <div class="input-group my-3">
                         <span class="input-group-text">New Name</span>
-                        <input type="text" name="name" pattern="[a-zA-Z0-9\s]+" title="Only letters and numbers" />
+                        <input type="text" class="form-control" name="name" pattern="[a-zA-Z0-9\s]+" title="Only letters and numbers" />
                       </div>
                       <div class="d-flex">
                         <input class="btn btn-success mx-auto" type="submit" value="Update" />
@@ -243,13 +246,13 @@
                   <div class="col-12">
                     <div class="btn-group" role="group">
                       <input type="radio" class="btn-check" name="deprad" id="btnradioAddDep" autocomplete="off" checked>
-                      <label class="btn btn-outline-primary" for="btnradioAddDep">Add Department</label>
+                      <label class="btn btn-outline-dark makeLabelWhite" for="btnradioAddDep">Add Department</label>
                     
                       <input type="radio" class="btn-check" name="deprad" id="btnradioEditDep" autocomplete="off">
-                      <label class="btn btn-outline-primary" for="btnradioEditDep">Update Department</label>
+                      <label class="btn btn-outline-dark makeLabelWhite" for="btnradioEditDep">Update Department</label>
                     
                       <input type="radio" class="btn-check" name="deprad" id="btnradioDeleteDep" autocomplete="off">
-                      <label class="btn btn-outline-primary" for="btnradioDeleteDep">Delete Department</label>
+                      <label class="btn btn-outline-dark makeLabelWhite" for="btnradioDeleteDep">Delete Department</label>
                     </div>
                   </div>
 
@@ -258,10 +261,10 @@
                     <form id="insertDepartment">
                       <div class="input-group my-3">
                         <span class="input-group-text">New Department</span>
-                        <input type="text" name="name" pattern="[a-zA-Z0-9\s]+" title="Only letters and numbers" required />
+                        <input type="text" class="form-control" name="name" pattern="[a-zA-Z0-9\s]+" title="Only letters and numbers" required />
                       </div>
                       <div class="input-group mb-3">
-                        <label class="input-group-text">Location</label>
+                        <label class="input-group-text">Choose Location</label>
                         <select class="form-select locations" name="locationID" required></select>
                       </div>
                       <div class="d-flex">
@@ -280,7 +283,7 @@
                       </div>
                       <div class="input-group mb-3">
                         <span class="input-group-text">New Name</span>
-                        <input type="text" name="name" pattern="[a-zA-Z0-9\s]+" title="Only letters and numbers"  />
+                        <input type="text" class="form-control" name="name" pattern="[a-zA-Z0-9\s]+" title="Only letters and numbers"  />
                       </div>
                       <div class="d-flex">
                         <input class="btn btn-success mx-auto" type="submit" value="Edit" />
@@ -325,19 +328,19 @@
               <form id="addPerson">
                 <div class="input-group mb-3">
                   <span class="input-group-text">First Name</span>
-                  <input type="text" name="firstName" pattern="[a-zA-Z\s]+" title="Only letters" required />
+                  <input type="text" class="form-control" name="firstName" pattern="[a-zA-Z\s]+" title="Only letters" required />
                 </div>
                 <div class="input-group mb-3">
                   <span class="input-group-text">Last Name</span>
-                  <input type="text" name="lastName" pattern="[a-zA-Z\s]+" title="Only letters" required />
+                  <input type="text" class="form-control" name="lastName" pattern="[a-zA-Z\s]+" title="Only letters" required />
                 </div>
                 <div class="input-group mb-3">
                   <span class="input-group-text">Job Title</span>
-                  <input type="text" name="jobTitle"  placeholder="optional" />
+                  <input type="text" class="form-control" name="jobTitle"  placeholder="optional" />
                 </div>
                 <div class="input-group mb-3">
                   <span class="input-group-text">Email</span>
-                  <input type="email" name="email" required/>
+                  <input type="email" class="form-control" name="email" required/>
                 </div>
                 <div class="input-group mb-3">
                   <label class="input-group-text">Departments</label>
@@ -370,19 +373,19 @@
               <form id="editPerson">
                 <div class="input-group mb-3">
                   <span class="input-group-text">First Name</span>
-                  <input type="text" name="firstName" pattern="[a-zA-Z\s]+" title="Only letters"  />
+                  <input type="text" class="form-control" name="firstName" pattern="[a-zA-Z\s]+" title="Only letters"  />
                 </div>
                 <div class="input-group mb-3">
                   <span class="input-group-text">Last Name</span>
-                  <input type="text" name="lastName" pattern="[a-zA-Z\s]+" title="Only letters"  />
+                  <input type="text" class="form-control" name="lastName" pattern="[a-zA-Z\s]+" title="Only letters"  />
                 </div>
                 <div class="input-group mb-3">
                   <span class="input-group-text">Job Title</span>
-                  <input type="text" name="jobTitle" pattern="[a-zA-Z\s]+" title="Only letters"  placeholder="optional" />
+                  <input type="text" class="form-control" name="jobTitle" pattern="[a-zA-Z\s]+" title="Only letters"  placeholder="optional" />
                 </div>
                 <div class="input-group mb-3">
                   <span class="input-group-text">Email</span>
-                  <input type="email" name="email" />
+                  <input type="email" class="form-control" name="email" />
                 </div>
                 <div class="input-group mb-3">
                   <label class="input-group-text">Departments</label>
@@ -393,7 +396,7 @@
                 </div>
               </form>
     
-              <hr />
+              <span class="divider"></span>
 
               <div class="d-flex">
                 <button type="button" class="btn btn-danger mx-auto" id="deletePerson">Delete</button>

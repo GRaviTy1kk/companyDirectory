@@ -97,23 +97,12 @@ main {
     right: 0;
     overflow-x: hidden;
     background-color: rgb(118, 130, 133);
-}
 
-
-/*sidebar*/
-.sidebar li .submenu{ 
-	list-style: none; 
-	margin: 0; 
-	padding: 0; 
-	padding-left: 1rem; 
-	padding-right: 1rem;
-}
-.sidebar .nav-link {
-    font-weight: 500;
-    color: var(--bs-dark);
-}
-.sidebar .nav-link:hover {
-    color: var(--bs-primary);
+    background-image: url("../img/mainBack.jpg");
+    background-color: lightblue;
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover;
 }
 
 
@@ -136,6 +125,36 @@ table th {
     width: 100px;
 }
 
+/*    modals    */
+
+.modal-content .btn-group label {
+    color: white;
+    font-weight: 600;
+    text-shadow: 2px 2px 1px #000000;
+}
+
+.divider {
+    display: block;
+    width: 100%;
+    border-bottom: 5px solid white;
+    margin: 15px 0;
+}
+
+
+.modal-content {
+    background-image: url("../img/modalBack.jpg");
+    background-color: lightgray;
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover;
+}
+.modal-content .modal-header h5 {
+    width: 100%;
+    text-align: center;
+    color: white;
+    text-shadow: 2px 2px 1px #000000;
+}
+
 /*       modal add person       */
 
 #addPerson span {
@@ -150,7 +169,7 @@ table th {
 /*       modal edit departments       */
 
 #insertDepartment input, #editDepartment input, #deleteDepartment input {
-    width: 200px;
+    width: 160px;
     margin-left: 5px;
 }
 
@@ -165,7 +184,7 @@ table th {
 /*       modal edit locations       */
 
 #insertLocation input, #editLocation input, #deleteLocation input {
-    width: 200px;
+    width: 160px;
     margin-left: 5px;
 }
 
@@ -188,23 +207,31 @@ table th {
     }
     
     #mainDiv2 {
-        font-size: 10px;
+        font-size: 11px;
     }
 
-    main form input {
-        width: 300px;
+    #mainDiv1 form {
+        margin-top: 15px;
     }
 
-    main form {
-        height: 40px;
-        margin-top: 20px;
-        margin-bottom: 20px;
+    #mainDiv1 form input {
+        width: 60vw;
     }
 
-    .sidebar {
-        width: 260px;
-        padding: 0 !important;
-        margin: auto;
+    #mainDiv1 div.dropdown button {
+        width: 180px;
+        margin: 4px;
+    }
+
+    .styleSortTitle {
+        font-weight: bold; 
+        font-size: 18px;
+        color: black;
+        margin-top: 10px;
+    }
+
+    #reset {
+        margin-left: 4px;
     }
 
 }
@@ -221,35 +248,41 @@ table th {
         font-size: 16px;
     }
 
-    main form input {
+    #mainDiv1 div.dropdown button {
+        width: 180px;
+        margin: 10px 10px;
+    }
+
+    #mainDiv1 form {
+        margin-top: 10px;
+    }
+
+    #mainDiv1 form input {
         width: 300px;
     }
 
-    main form {
-        height: 40px;
-        margin-top: 20px;
+    .styleSortTitle {
+        font-weight: bold; 
+        font-size: 20px;
+        color: black;
     }
-
-    .sidebar {
-        width: 260px;
-        padding: 0 !important;
-        margin-right: auto;
-        margin-bottom: auto;
-        
-    }
-
    
   }
    /*lg*/
   @media only screen and (min-width:992px) {
 
     #mainDiv1 {
-        
-        
+        height: auto;
     }
-    
-    #mainDiv2 {
-        
+
+    .styleSortTitle {
+        font-weight: bold; 
+        font-size: 22px;
+    }
+
+    #mainDiv1 div.dropdown button {
+        width: 250px;
+        margin: 10px 10px;
     }
 
 
