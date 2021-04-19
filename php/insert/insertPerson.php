@@ -32,9 +32,32 @@
 
 	}	
 
-	// $_REQUEST used for development / debugging. Remember to change to $_POST for production
+	// remove spaces and make cap
 
-	$query = 'INSERT INTO personnel (firstName, lastName, jobTitle, email, departmentID) VALUES("' . $_POST['firstname'] . '","' . $_POST["lastname"] . '","' . $_POST["jobTitle"] . '","' . $_POST["email"] . '",' . $_POST["departmentID"] . ')';
+	$_POST['firstName'] = trim($_POST['firstName']);
+	$_POST['firstName'] = preg_replace('# {2,}#', ' ', $_POST['firstName']);
+	$_POST['firstName'] = strtolower($_POST['firstName']);
+	$_POST['firstName'] = ucfirst($_POST['firstName']);
+
+
+	$_POST['lastName'] = trim($_POST['lastName']);
+	$_POST['lastName'] = preg_replace('# {2,}#', ' ', $_POST['lastName']);
+	$_POST['lastName'] = strtolower($_POST['lastName']);
+	$_POST['lastName'] = ucfirst($_POST['lastName']);
+
+
+	$_POST['jobTitle'] = trim($_POST['jobTitle']);
+	$_POST['jobTitle'] = preg_replace('# {2,}#', ' ', $_POST['jobTitle']);
+	$_POST['jobTitle'] = strtolower($_POST['jobTitle']);
+	$_POST['jobTitle'] = ucfirst($_POST['jobTitle']);
+
+
+	$_POST['email'] = trim($_POST['email']);
+	$_POST['email'] = preg_replace('# {2,}#', ' ', $_POST['email']);
+
+	//capital letters
+
+	$query = 'INSERT INTO personnel (firstName, lastName, jobTitle, email, departmentID) VALUES("' . $_POST['firstName'] . '","' . $_POST["lastName"] . '","' . $_POST["jobTitle"] . '","' . $_POST["email"] . '",' . $_POST["departmentID"] . ')';
 
 	$result = $conn->query($query);
 	

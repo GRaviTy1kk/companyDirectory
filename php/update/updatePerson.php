@@ -23,7 +23,30 @@
 
 		exit;
 
-	}	
+	}
+
+	//remove spaces
+
+	$_POST['firstName'] = trim($_POST['firstName']);
+	$_POST['firstName'] = preg_replace('# {2,}#', ' ', $_POST['firstName']);
+	$_POST['firstName'] = strtolower($_POST['firstName']);
+	$_POST['firstName'] = ucfirst($_POST['firstName']);
+
+
+	$_POST['lastName'] = trim($_POST['lastName']);
+	$_POST['lastName'] = preg_replace('# {2,}#', ' ', $_POST['lastName']);
+	$_POST['lastName'] = strtolower($_POST['lastName']);
+	$_POST['lastName'] = ucfirst($_POST['lastName']);
+
+
+	$_POST['jobTitle'] = trim($_POST['jobTitle']);
+	$_POST['jobTitle'] = preg_replace('# {2,}#', ' ', $_POST['jobTitle']);
+	$_POST['jobTitle'] = strtolower($_POST['jobTitle']);
+	$_POST['jobTitle'] = ucfirst($_POST['jobTitle']);
+
+
+	$_POST['email'] = trim($_POST['email']);
+	$_POST['email'] = preg_replace('# {2,}#', ' ', $_POST['email']);
 
 
     $query = 'UPDATE personnel SET firstName = "' . $_POST['firstName'] . '", lastName = "' . $_POST['lastName'] . '", jobTitle = "' . $_POST['jobTitle'] . '", email = "' . $_POST['email'] . '", departmentID = "' . $_POST['departmentID'] . '" WHERE id = ' . $_POST['id'];

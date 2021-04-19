@@ -182,12 +182,12 @@ table th {
   /*sm*/
   @media only screen and (max-width:767px) {
 
-    main div[class*='col-lg-3'] {
+    #mainDiv1 {
         height: auto;
         
     }
     
-    main div[class*='col-lg-9'] {
+    #mainDiv2 {
         font-size: 10px;
     }
 
@@ -213,11 +213,11 @@ table th {
   @media only screen and (min-width:768px) and (max-width:991px) {
 
 
-    main div[class*='col-lg-3'] {
+    #mainDiv1 {
         height: auto;
     }
     
-    main div[class*='col-lg-9'] {
+    #mainDiv2 {
         font-size: 16px;
     }
 
@@ -243,15 +243,13 @@ table th {
    /*lg*/
   @media only screen and (min-width:992px) {
 
-    main div[class*='col-lg-3'] {
-        height: 100%;
-        width: 240px;
+    #mainDiv1 {
+        
         
     }
     
-    main div[class*='col-lg-9'] {
-        height: 100%;
-        width: calc(100% - 240px);
+    #mainDiv2 {
+        
     }
 
 

@@ -11,42 +11,8 @@ $(window).on('load', function() {
 
 });
 
-//insert Person
 
-$('#addPerson').submit(function (e) {
-    
-    e.preventDefault();
-
-    $.ajax({
-        type: 'post',
-        url: window.location.href + 'php/insert/insertPerson.php',
-        data: $('#addPerson').serialize(),
-        success: function (result) {
-        console.log(result.status.code);
-        getAllStaff();
-        $('#addPerson')[0].reset();
-        }
-    });
-
-    return false;
-});
-
-//update and delete person
-
-$(document).on("click",".updatePer", function(){
-    globalThis.id = $(this).next().val();
-    var perDepId = $(this).next().next().val();
-    
-    $('#editPerson select').val(perDepId).trigger('change');
-
-    var fullName = $($(this).closest("tr").find("td")[0]).children("div").text().split(" ");
-    
-    $('#editPerson input[name="firstName"]').attr("value", fullName[0]);
-    $('#editPerson input[name="lastName"]').attr("value", fullName[1]);
-    $('#editPerson input[name="email"]').attr("value", $($(this).closest("tr").find("td")[3]).children("div").text());
-    
-});
-
+//copy button
 
 $(document).on("click",".copyBtn", function(){
 
@@ -68,6 +34,43 @@ $(document).on("click",".copyBtn", function(){
     
 });
 
+//insert Person
+
+$('#addPerson').submit(function (e) {
+    
+    e.preventDefault();
+
+    $.ajax({
+        type: 'post',
+        url: window.location.href + 'php/insert/insertPerson.php',
+        data: $('#addPerson').serialize(),
+        success: function (result) {
+            console.log(result.status.code);
+            getAllStaff();
+            $('#addPerson')[0].reset();
+        }
+    });
+
+    return false;
+});
+
+//update and delete person
+
+$(document).on("click",".updatePer", function(){
+    globalThis.id = $(this).next().val();
+    var perDepId = $(this).next().next().val();
+    
+    $('#editPerson select').val(perDepId).trigger('change');
+
+    var fullName = $($(this).closest("tr").find("td")[0]).children("div").text().split(/(?=[A-Z])/);
+    
+    $('#editPerson input[name="firstName"]').attr("value", fullName[0]);
+    $('#editPerson input[name="lastName"]').attr("value", fullName[1]);
+    $('#editPerson input[name="email"]').attr("value", $($(this).closest("tr").find("td")[3]).children("div").text());
+    
+});
+
+
 $('#deletePerson').click(function (e) {
     
     e.preventDefault();
@@ -80,7 +83,6 @@ $('#deletePerson').click(function (e) {
         console.log(result.status.code);
         $('#updatePerson').modal("toggle");
         getAllStaff();
-        $('#deletePerson')[0].reset();
         }
     });
 
@@ -118,9 +120,9 @@ $('#insertDepartment').submit(function (e) {
         url: window.location.href + 'php/insert/insertDepartment.php',
         data: $('#insertDepartment').serialize(),
         success: function (result) {
-        console.log(result.status.code);
-        getAllDepartments();
-        $('#insertDepartment')[0].reset();
+            console.log(result.status.code);
+            getAllDepartments();
+            $('#insertDepartment')[0].reset();
         }
     });
 
@@ -138,9 +140,9 @@ $('#deleteDepartment').submit(function (e) {
         url: window.location.href + 'php/delete/deleteDepartmentByID.php',
         data: $('#deleteDepartment').serialize(),
         success: function (result) {
-        console.log(result.status.code);
-        getAllDepartments();
-        $('#deleteDepartment')[0].reset();
+            console.log(result.status.code);
+            getAllDepartments();
+            $('#deleteDepartment')[0].reset();
         }
     });
 
@@ -158,9 +160,9 @@ $('#editDepartment').submit(function (e) {
         url: window.location.href + 'php/update/updateDepartment.php',
         data: $('#editDepartment').serialize(),
         success: function (result) {
-        console.log(result.status.code);
-        getAllDepartments();
-        $('#editDepartment')[0].reset();
+            console.log(result.status.code);
+            getAllDepartments();
+            $('#editDepartment')[0].reset();
         }
     });
 
@@ -330,7 +332,7 @@ $("#reset").on("click", function() {
 
 //sort table by columns
 
-$('th').wrapInner('<span title="sort this column"/>').click(function(){
+$('.sortTab').wrapInner('<span title="sort this column"/>').click(function(){
     var table = $('table').eq(0);
     var rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()));
     this.asc = !this.asc;
