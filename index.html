@@ -70,41 +70,39 @@
               <div class="row m-0">
 
                 <div class="col-12 d-flex align-items-center justify-content-center justify-content-md-start d-lg-none">
+                  
                   <form>
                     <div class="input-group">
                       <input class="form-control" id="searchMain" type="text"  placeholder="Search...">
                       <label class="input-group-text">Search</label>
                     </div>
                   </form>
+
+                  <div class="d-none d-md-flex d-lg-none ms-auto me-md-2 my-2">
+                    <button class="btn btn-success btn-lg" type="button" data-bs-toggle="modal" data-bs-target="#insertNewPerson"><i class="bi bi-person-plus"></i></button>
+                  </div>
+
                 </div>
 
                 <div class="col-12 d-flex flex-column flex-md-row align-items-start align-items-md-center my-2">
 
-                  <div class="text-center styleSortTitle">Sort By: </div>
+                  <div class="text-center styleSortTitle">Sort:</div>
 
-                  <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="LocationsFropDown" data-bs-toggle="dropdown" aria-expanded="false">
-                      Select Location
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="LocationsFropDown">
-                      <li class="dropdown-item p-0"><select class="locations form-control" id="selectLocation"></select></li>
-                    </ul>
+                  <div class="d-flex selectForTable">
+                    <label class="input-group-text">By Location</label>
+                    <select class="locations" id="selectLocation"></select>
                   </div>
 
-                  <div class="dropdown">
-                    <button class="btn btn-secondary dropdown-toggle" type="button" id="DepartmentssFropDown" data-bs-toggle="dropdown" aria-expanded="false">
-                      Select Department
-                    </button>
-                    <ul class="dropdown-menu" aria-labelledby="DepartmentssFropDown">
-                      <li class="dropdown-item p-0"><select class="deparments form-control" id="selectDepartmens"></select></li>
-                    </ul>
+                  <div class="d-flex selectForTable">
+                    <label class="input-group-text">By Department</label>
+                    <select class="deparments" id="selectDepartmens"></select>
                   </div>
 
                   <div class="d-flex">
-                    <button class="btn btn-secondary" id="reset">Reset Filters<i class="bi bi-arrow-counterclockwise ms-2"></i></button>
+                    <button class="btn btn-secondary me-auto" id="reset">Reset<i class="bi bi-arrow-counterclockwise ms-2"></i></button>
                   </div>
 
-                  <div class="d-flex d-block d-lg-none mx-auto mx-md-0 ms-md-auto me-md-2 my-2">
+                  <div class="d-sm-flex d-md-none mx-auto">
                     <button class="btn btn-success btn-lg" type="button" data-bs-toggle="modal" data-bs-target="#insertNewPerson"><i class="bi bi-person-plus"></i></button>
                   </div>
 
@@ -213,7 +211,7 @@
                         <select class="form-select locations" name="id" required></select>
                       </div>
                       <div class="d-flex">
-                        <input class="btn btn-success mx-auto" type="submit" value="Delete" />
+                        <input class="btn btn-danger mx-auto" type="submit" value="Delete" />
                       </div>
                     </form>
                   </div>
@@ -298,7 +296,7 @@
                         <select class="form-select deparments" name="id" required></select>
                       </div>
                       <div class="d-flex">
-                        <input class="btn btn-success mx-auto" type="submit" value="Delete" />
+                        <input class="btn btn-danger mx-auto" type="submit" value="Delete" />
                       </div>
                     </form>
                   </div>

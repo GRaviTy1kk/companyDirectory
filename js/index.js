@@ -236,12 +236,7 @@ $('#editLocation').submit(function (e) {
 //select by department
 
 $('#selectDepartmens').change(function(){ 
-    $('#menu_dep').collapse('toggle');
-    if (window.matchMedia('(max-width: 991px)').matches) {
-        $('#nav_accordion').collapse('toggle');
-      }
-
-
+   
     $('#tableBody').text("");
 
     if ($(this).val() == "refreshTable") {
@@ -276,11 +271,7 @@ $('#selectDepartmens').change(function(){
 //select by location
 
 $('#selectLocation').change(function(){ 
-    $('#menu_loc').collapse('toggle');
-    if (window.matchMedia('(max-width: 991px)').matches) {
-        $('#nav_accordion').collapse('toggle');
-    }
-
+    
     $('#tableBody').text("");
 
     if ($(this).val() == "refreshTable") {

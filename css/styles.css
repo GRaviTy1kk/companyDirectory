@@ -110,6 +110,10 @@ table th {
     cursor: pointer;
 }
 
+#mainDiv1 .selectForTable label, #mainDiv1 .selectForTable select   {
+    border-radius: 7px;
+}
+
 /*       modal edit person       */
 
 #editPerson span {
@@ -218,9 +222,17 @@ table th {
         width: 60vw;
     }
 
-    #mainDiv1 div.dropdown button {
-        width: 180px;
-        margin: 4px;
+    #mainDiv1 .selectForTable {
+        margin: 10px;
+        margin-left: 0;
+    }
+
+    #mainDiv1 .selectForTable label {
+        width: 130px;
+    }
+
+    #mainDiv1 .selectForTable select {
+        width: 230px;
     }
 
     .styleSortTitle {
@@ -228,10 +240,6 @@ table th {
         font-size: 18px;
         color: black;
         margin-top: 10px;
-    }
-
-    #reset {
-        margin-left: 4px;
     }
 
 }
@@ -248,17 +256,16 @@ table th {
         font-size: 16px;
     }
 
-    #mainDiv1 div.dropdown button {
-        width: 180px;
-        margin: 10px 10px;
-    }
-
     #mainDiv1 form {
         margin-top: 10px;
     }
 
     #mainDiv1 form input {
         width: 300px;
+    }
+
+    #mainDiv1 .selectForTable {
+        margin: 15px;
     }
 
     .styleSortTitle {
@@ -275,15 +282,14 @@ table th {
         height: auto;
     }
 
+    #mainDiv1 .selectForTable {
+        margin: 20px;
+    }
+
+
     .styleSortTitle {
         font-weight: bold; 
         font-size: 22px;
     }
-
-    #mainDiv1 div.dropdown button {
-        width: 250px;
-        margin: 10px 10px;
-    }
-
 
   }
