@@ -98,7 +98,7 @@ main {
     overflow-x: hidden;
     background-color: rgb(118, 130, 133);
 
-    background-image: url("../img/mainBack.jpg");
+    background-image: url("../../img/mainBack.jpg");
     background-color: lightblue;
     background-position: center; 
     background-repeat: no-repeat; 
@@ -146,7 +146,7 @@ table th {
 
 
 .modal-content {
-    background-image: url("../img/modalBack.jpg");
+    background-image: url("../../img/modalBack.jpg");
     background-color: lightgray;
     background-position: center; 
     background-repeat: no-repeat; 

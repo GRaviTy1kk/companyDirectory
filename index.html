@@ -13,7 +13,7 @@
       <meta content="width=device-width, initial-scale=1.0" name="viewport">
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.0/font/bootstrap-icons.css">
       <link href="./vendors/bootrtrap/css/bootstrap.min.css" rel="stylesheet">
-      <link href="css/styles.css" rel="stylesheet" type="text/css">
+      <link href="libs/css/style.css" rel="stylesheet" type="text/css">
       <link href="img/group.png" rel="icon">
       <title>Company Directory</title>
       
@@ -98,12 +98,11 @@
                     <select class="deparments" id="selectDepartmens"></select>
                   </div>
 
-                  <div class="d-flex">
+                  <div class="d-flex w-100">
                     <button class="btn btn-secondary me-auto" id="reset">Reset<i class="bi bi-arrow-counterclockwise ms-2"></i></button>
-                  </div>
-
-                  <div class="d-sm-flex d-md-none mx-auto">
-                    <button class="btn btn-success btn-lg" type="button" data-bs-toggle="modal" data-bs-target="#insertNewPerson"><i class="bi bi-person-plus"></i></button>
+                    <div class="d-sm-flex d-md-none ms-auto">
+                      <button class="btn btn-success btn-lg" type="button" data-bs-toggle="modal" data-bs-target="#insertNewPerson"><i class="bi bi-person-plus"></i></button>
+                    </div>
                   </div>
 
                 </div>
@@ -182,9 +181,6 @@
                         <span class="input-group-text">New Location</span>
                         <input type="text" class="form-control" name="name" pattern="[a-zA-Z0-9\s]+" title="Only letters and numbers" required />
                       </div>
-                      <div class="d-flex">
-                        <input class="btn btn-success mx-auto" type="submit" value="Add" />
-                      </div>
                     </form>
                   </div>
 
@@ -196,10 +192,7 @@
                       </div>
                       <div class="input-group my-3">
                         <span class="input-group-text">New Name</span>
-                        <input type="text" class="form-control" name="name" pattern="[a-zA-Z0-9\s]+" title="Only letters and numbers" />
-                      </div>
-                      <div class="d-flex">
-                        <input class="btn btn-success mx-auto" type="submit" value="Update" />
+                        <input type="text" class="form-control" name="name" pattern="[a-zA-Z0-9\s]+" title="Only letters and numbers" required />
                       </div>
                     </form>
                   </div>
@@ -210,9 +203,6 @@
                         <label class="input-group-text">Location</label>
                         <select class="form-select locations" name="id" required></select>
                       </div>
-                      <div class="d-flex">
-                        <input class="btn btn-danger mx-auto" type="submit" value="Delete" />
-                      </div>
                     </form>
                   </div>
 
@@ -221,6 +211,13 @@
               
             </div>
             <div class="modal-footer">
+
+              <button class="btn btn-success" id="aadLocBtn" type="submit" form="insertLocation" >Add</button>
+             
+              <button class="btn btn-success d-none" id="editLocBtn" type="submit" form="editLocation">Update</button>
+              
+              <button class="btn btn-danger d-none" id="delLocBtn" type="submit" form="deleteLocation">Delete</button>
+
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
           </div>
@@ -265,14 +262,11 @@
                         <label class="input-group-text">Choose Location</label>
                         <select class="form-select locations" name="locationID" required></select>
                       </div>
-                      <div class="d-flex">
-                        <input class="btn btn-success mx-auto" type="submit" value="Add" />
-                      </div>
                     </form>
 
                   </div>
 
-                  <div class="col-12 editDep collapse">
+                  <div class="col-12 editDep d-none">
 
                     <form id="editDepartment">
                       <div class="input-group my-3">
@@ -281,22 +275,16 @@
                       </div>
                       <div class="input-group mb-3">
                         <span class="input-group-text">New Name</span>
-                        <input type="text" class="form-control" name="name" pattern="[a-zA-Z0-9\s]+" title="Only letters and numbers"  />
-                      </div>
-                      <div class="d-flex">
-                        <input class="btn btn-success mx-auto" type="submit" value="Edit" />
+                        <input type="text" class="form-control" name="name" pattern="[a-zA-Z0-9\s]+" title="Only letters and numbers"  required />
                       </div>
                     </form>
                   </div>
 
-                  <div class="col-12 delDep collapse">
+                  <div class="col-12 delDep d-none">
                     <form id="deleteDepartment">
                       <div class="input-group my-3">
                         <label class="input-group-text">Departments</label>
                         <select class="form-select deparments" name="id" required></select>
-                      </div>
-                      <div class="d-flex">
-                        <input class="btn btn-danger mx-auto" type="submit" value="Delete" />
                       </div>
                     </form>
                   </div>
@@ -306,6 +294,13 @@
 
             </div>
             <div class="modal-footer">
+              
+              <button class="btn btn-success" id="addDepBtn" type="submit" form="insertDepartment" >Add</button>
+             
+              <button class="btn btn-success d-none" id="editDepBtn" type="submit" form="editDepartment">Update</button>
+              
+              <button class="btn btn-danger d-none" id="delDepBtn" type="submit" form="deleteDepartment">Delete</button>
+              
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
           </div>
@@ -343,14 +338,14 @@
                 <div class="input-group mb-3">
                   <label class="input-group-text">Departments</label>
                   <select class="form-select deparments" name="departmentID" required></select>
-                </div>
-                <div class="d-flex">
-                  <input class="btn btn-success mx-auto" type="submit" value="Add" />
                 </div> 
               </form>
 
             </div>
             <div class="modal-footer">
+              <div class="d-flex">
+                <input class="btn btn-success mx-auto" type="submit" form="addPerson" value="Add" />
+              </div>
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
           </div>
@@ -371,11 +366,11 @@
               <form id="editPerson">
                 <div class="input-group mb-3">
                   <span class="input-group-text">First Name</span>
-                  <input type="text" class="form-control" name="firstName" pattern="[a-zA-Z\s]+" title="Only letters"  />
+                  <input type="text" class="form-control" name="firstName" pattern="[a-zA-Z\s]+" title="Only letters" required  />
                 </div>
                 <div class="input-group mb-3">
                   <span class="input-group-text">Last Name</span>
-                  <input type="text" class="form-control" name="lastName" pattern="[a-zA-Z\s]+" title="Only letters"  />
+                  <input type="text" class="form-control" name="lastName" pattern="[a-zA-Z\s]+" title="Only letters" required />
                 </div>
                 <div class="input-group mb-3">
                   <span class="input-group-text">Job Title</span>
@@ -383,25 +378,22 @@
                 </div>
                 <div class="input-group mb-3">
                   <span class="input-group-text">Email</span>
-                  <input type="email" class="form-control" name="email" />
+                  <input type="email" class="form-control" name="email" required/>
                 </div>
                 <div class="input-group mb-3">
                   <label class="input-group-text">Departments</label>
-                  <select class="form-select deparments" name="departmentID"></select>
+                  <select class="form-select deparments" name="departmentID" required></select>
                 </div>
-                <div class="d-flex">
-                  <input class="btn btn-success mx-auto" type="submit" value="Update" />
-                </div>
-              </form>
-    
-              <span class="divider"></span>
-
-              <div class="d-flex">
-                <button type="button" class="btn btn-danger mx-auto" id="deletePerson">Delete</button>
-              </div>   
+              </form>  
               
             </div>
             <div class="modal-footer">
+              
+              <button class="btn btn-success" type="submit" form="editPerson">Update</button>
+              
+              
+              <button type="button" class="btn btn-danger" id="deletePerson">Delete</button>
+              
               <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
           </div>
@@ -415,9 +407,9 @@
       </div>
 
       <script src="vendors/jquery/jquery-3.5.1.min.js"></script>
-      <script src="./vendors/bootrtrap/js/bootstrap.bundle.min.js"></script>
-      <script src="js/pageFunctionality.js"></script>
-      <script src="js/index.js"></script>
+      <script src="vendors/bootrtrap/js/bootstrap.bundle.min.js"></script>
+      <script src="libs/js/pageFunctionality.js"></script>
+      <script src="libs/js/script.js"></script>
 
   </body>
 

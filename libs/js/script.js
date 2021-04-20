@@ -38,20 +38,27 @@ $(document).on("click",".copyBtn", function(){
 
 $('#addPerson').submit(function (e) {
     
+    var confirmation = confirm('Do you want to add a new person?');
+
+    if (confirmation) {
+
+        $.ajax({
+            type: 'post',
+            url: window.location.href + 'libs/php/insert/insertPerson.php',
+            data: $('#addPerson').serialize(),
+            success: function (result) {
+                console.log(result.status.code);
+                $('#insertNewPerson').modal("toggle");
+                getAllStaff();
+                $('#addPerson')[0].reset();
+            }
+        });
+
+        return false;
+    }
     e.preventDefault();
-
-    $.ajax({
-        type: 'post',
-        url: window.location.href + 'php/insert/insertPerson.php',
-        data: $('#addPerson').serialize(),
-        success: function (result) {
-            console.log(result.status.code);
-            getAllStaff();
-            $('#addPerson')[0].reset();
-        }
-    });
-
     return false;
+    
 });
 
 //update and delete person
@@ -72,101 +79,157 @@ $(document).on("click",".updatePer", function(){
 
 
 $('#deletePerson').click(function (e) {
-    
-    e.preventDefault();
-    
-    $.ajax({
-        type: 'post',
-        url: window.location.href + 'php/delete/deletePerson.php',
-        data: {id: id},
-        success: function (result) {
-        console.log(result.status.code);
-        $('#updatePerson').modal("toggle");
-        getAllStaff();
-        }
-    });
 
+    var confirmation = confirm('Do you want to delete person\' details?');
+
+    if (confirmation) {
+        
+        $.ajax({
+            type: 'post',
+            url: window.location.href + 'libs/php/delete/deletePerson.php',
+            data: {id: id},
+            success: function (result) {
+                console.log(result.status.code);
+                $('#updatePerson').modal("toggle");
+                getAllStaff();
+            }
+        });
+
+        return false;
+    }
+
+    e.preventDefault();
     return false;
+
 });
 
 $('#editPerson').submit(function (e) {
+
+    var confirmation = confirm('Do you want to update details?');
+
+    if (confirmation) {
     
+        e.preventDefault();
+        console.log($('#editPerson').serialize() + "&id=" + id);
+        $.ajax({
+            type: 'post',
+            url: window.location.href + 'libs/php/update/updatePerson.php',
+            data: $('#editPerson').serialize() + "&id=" + id,
+            success: function (result) {
+                console.log(result.status.code);
+                $('#updatePerson').modal("toggle");
+                getAllStaff();
+            }
+        });
+
+        return false;
+    }
+
     e.preventDefault();
-    console.log($('#editPerson').serialize() + "&id=" + id);
-    $.ajax({
-        type: 'post',
-        url: window.location.href + 'php/update/updatePerson.php',
-        data: $('#editPerson').serialize() + "&id=" + id,
-        success: function (result) {
-        console.log(result.status.code);
-        $('#updatePerson').modal("toggle");
-        getAllStaff();
-        }
-    });
-
     return false;
-});
 
+});
 
 
 //insert department
 
 $('#insertDepartment').submit(function (e) {
+
+    var confirmation = confirm('Do you want to add a new department?');
+
+    if (confirmation) {
     
+        $.ajax({
+            type: 'post',
+            url: window.location.href + 'libs/php/insert/insertDepartment.php',
+            data: $('#insertDepartment').serialize(),
+            success: function (result) {
+                console.log(result.status.code);
+                getAllDepartments();
+                $('#insertDepartment')[0].reset();
+            }
+        });
+
+        return false;
+    }
+
     e.preventDefault();
-
-    $.ajax({
-        type: 'post',
-        url: window.location.href + 'php/insert/insertDepartment.php',
-        data: $('#insertDepartment').serialize(),
-        success: function (result) {
-            console.log(result.status.code);
-            getAllDepartments();
-            $('#insertDepartment')[0].reset();
-        }
-    });
-
     return false;
+
 });
 
 //delete department
 
-$('#deleteDepartment').submit(function (e) {
-    
-    e.preventDefault();
+$('#deleteDepartment select').change(function() {
 
     $.ajax({
         type: 'post',
-        url: window.location.href + 'php/delete/deleteDepartmentByID.php',
-        data: $('#deleteDepartment').serialize(),
+        url: window.location.href + 'libs/php/get/getAllbyDepID.php',
+        data: {departmentID: $(this).val()},
         success: function (result) {
-            console.log(result.status.code);
-            getAllDepartments();
-            $('#deleteDepartment')[0].reset();
+            console.log(result.data);
+            if (result.data.length !== 0) {
+                $('#deleteDepartment')[0].reset();
+                alert("Imposible to delete department with allocated staff within!");
+                return false;
+            }
+
+            $('#deleteDepartment').submit(function (e) {
+
+                var confirmation = confirm('Do you want to delete selected department?');
+
+                if (confirmation) {
+            
+                    $.ajax({
+                        type: 'post',
+                        url: window.location.href + 'libs/php/delete/deleteDepartmentByID.php',
+                        data: $('#deleteDepartment').serialize(),
+                        success: function (result) {
+                            console.log(result.status.code);
+                            getAllDepartments();
+                            $('#deleteDepartment')[0].reset();
+                        }
+                    });
+                
+                    return false;
+                }
+
+                e.preventDefault();
+                return false;
+
+            });
+            
         }
     });
 
-    return false;
 });
+
 
 //update department
 
 $('#editDepartment').submit(function (e) {
     
+    var confirmation = confirm('Do you want to update the department name?');
+
+    if (confirmation) {
+
+        $.ajax({
+            type: 'post',
+            url: window.location.href + 'libs/php/update/updateDepartment.php',
+            data: $('#editDepartment').serialize(),
+            success: function (result) {
+                console.log(result.status.code);
+                getAllDepartments();
+                $('#editDepartment')[0].reset();
+            }
+        });
+
+        return false;
+    }
+
     e.preventDefault();
-
-    $.ajax({
-        type: 'post',
-        url: window.location.href + 'php/update/updateDepartment.php',
-        data: $('#editDepartment').serialize(),
-        success: function (result) {
-            console.log(result.status.code);
-            getAllDepartments();
-            $('#editDepartment')[0].reset();
-        }
-    });
-
     return false;
+
 });
 
 
@@ -175,60 +238,99 @@ $('#editDepartment').submit(function (e) {
 
 $('#insertLocation').submit(function (e) {
     
+    var confirmation = confirm('Do you want to add a new location?');
+
+    if (confirmation) {
+
+        $.ajax({
+            type: 'post',
+            url: window.location.href + 'libs/php/insert/insertLocation.php',
+            data: $('#insertLocation').serialize(),
+            success: function (result) {
+            console.log(result.status.code);
+            getAllLocations();
+            $('#insertLocation')[0].reset();
+            }
+        });
+
+        return false;
+    }
+
     e.preventDefault();
-
-    $.ajax({
-        type: 'post',
-        url: window.location.href + 'php/insert/insertLocation.php',
-        data: $('#insertLocation').serialize(),
-        success: function (result) {
-        console.log(result.status.code);
-        getAllLocations();
-        $('#insertLocation')[0].reset();
-        }
-    });
-
     return false;
+
 });
 
 //delete location
 
-$('#deleteLocation').submit(function (e) {
-    
-    e.preventDefault();
+$('#deleteLocation select').change(function() {
 
     $.ajax({
         type: 'post',
-        url: window.location.href + 'php/delete/deleteLocationbyID.php',
-        data: $('#deleteLocation').serialize(),
+        url: window.location.href + 'libs/php/get/getAllByLocID.php',
+        data: {locationID: $(this).val()},
         success: function (result) {
-        console.log(result.status.code);
-        getAllLocations();
-        $('#deleteLocation')[0].reset();
+            
+            if (result.data.length !== 0) {
+                $('#deleteLocation')[0].reset();
+                alert("Imposible to delete location with allocated staff within!");
+                return false;
+            }
+
+            $('#deleteLocation').submit(function (e) {
+    
+                var confirmation = confirm('Do you want to delete the selected location?');
+
+                if (confirmation) {
+            
+                    $.ajax({
+                        type: 'post',
+                        url: window.location.href + 'libs/php/delete/deleteLocationbyID.php',
+                        data: $('#deleteLocation').serialize(),
+                        success: function (result) {
+                            console.log(result.status.code);
+                            getAllLocations();
+                            $('#deleteLocation')[0].reset();
+                        }
+                    });
+                
+                    return false;
+                }
+
+                e.preventDefault();
+                return false;
+
+            });
         }
     });
 
-    return false;
 });
 
 //update location
 
 $('#editLocation').submit(function (e) {
     
+    var confirmation = confirm('Do you want to update the location name?');
+
+    if (confirmation) {
+
+        $.ajax({
+            type: 'post',
+            url: window.location.href + 'libs/php/update/updateLocation.php',
+            data: $('#editLocation').serialize(),
+            success: function (result) {
+            console.log(result.status.code);
+            getAllLocations();
+            $('#editLocation')[0].reset();
+            }
+        });
+
+        return false;
+    }
+
     e.preventDefault();
-
-    $.ajax({
-        type: 'post',
-        url: window.location.href + 'php/update/updateLocation.php',
-        data: $('#editLocation').serialize(),
-        success: function (result) {
-        console.log(result.status.code);
-        getAllLocations();
-        $('#editLocation')[0].reset();
-        }
-    });
-
     return false;
+
 });
 
 
@@ -245,7 +347,7 @@ $('#selectDepartmens').change(function(){
         return;
     }
 
-    $.post(window.location.href +"php/get/getAllbyDepID.php", {departmentID: $(this).val()},  function(result) {
+    $.post(window.location.href +"libs/php/get/getAllbyDepID.php", {departmentID: $(this).val()},  function(result) {
   
         result.data.forEach(person => {
             $('#tableBody').append(`<tr><td><div class='d-flex'>${person.firstName + " " + person.lastName}<i class="ms-auto bi bi-file-person"></i></div></td>
@@ -280,7 +382,7 @@ $('#selectLocation').change(function(){
         return;
     }
     
-    $.post( window.location.href + "php/get/getAllByLocID.php", {locationID: $(this).val()},  function(result) {
+    $.post( window.location.href + "libs/php/get/getAllByLocID.php", {locationID: $(this).val()},  function(result) {
   
         result.data.forEach(person => {
             $('#tableBody').append(`<tr><td><div class='d-flex'>${person.firstName + " " + person.lastName}<i class="ms-auto bi bi-file-person"></i></div></td>
@@ -370,29 +472,13 @@ function searchTable() {
 
 //functions 
 
-//get all departments 
-
-function getAllDepartments() {
-
-    $('.deparments').text("");
-    $('.deparments').append(`<option value="refreshTable" selected>All Departments</option>`);
-    $.get("./php/get/getAllDepartments.php",  function(result) {
-        console.log(result.data);
-
-        result.data.forEach(dep => {
-            $('.deparments').append(`<option value=${dep.id}>${dep.name}</option>`);
-        });
-
-    });
-}
-
 //get all staff
 
 function getAllStaff() {
 
     $('#tableBody').text("");
 
-    $.get("./php/get/getAll.php",   function(result) {
+    $.get("libs//php/get/getAll.php",   function(result) {
         console.log(result.data[0]);
 
         result.data.forEach(person => {
@@ -415,6 +501,25 @@ function getAllStaff() {
     });
 }
 
+//get all departments 
+
+function getAllDepartments() {
+
+    $('.deparments').text("");
+    $('.deparments').append(`<option value="refreshTable" selected>All Departments</option>`);
+    $.get("libs//php/get/getAllDepartments.php",  function(result) {
+        console.log(result.data);
+
+        result.data.forEach(dep => {
+            $('.deparments').append(`<option value=${dep.id}>${dep.name}</option>`);
+        });
+
+    });
+
+}
+
+
+
 //get all locations
 
 function getAllLocations() {
@@ -422,7 +527,7 @@ function getAllLocations() {
     $('.locations').text("");
     $('.locations').append(`<option value="refreshTable" selected>All Locations</option>`);
 
-    $.get("./php/get/getAllLocations.php",  function(result) {
+    $.get("libs//php/get/getAllLocations.php",  function(result) {
         console.log(result.data);
 
         result.data.forEach(loc => {
@@ -431,6 +536,9 @@ function getAllLocations() {
 
     });
 
+    $('#insertNewPerson select option[value="refreshTable"]').attr("value", "");
+    $('#departmentModal select option[value="refreshTable"]').attr("value", "");
+    $('#locationModal select option[value="refreshTable"]').attr("value", ""); 
 
 }
 
