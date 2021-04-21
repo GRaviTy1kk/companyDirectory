@@ -262,6 +262,7 @@ table th {
         font-size: 13px;
         min-width: 120px;
         width: 30vw;
+        height: 35px;
     }
 
     #mainDiv1 div[class*=col-12] {
@@ -337,7 +338,12 @@ table th {
     }
 
     .formSearchMain{
-        border-top: 10px solid black;
+        height: 70px;
+        border-top: 15px solid black;
+    }
+
+    .formSearchMain form{
+        margin: auto 0;
     }
 
     #reset {
