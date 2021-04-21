@@ -505,7 +505,7 @@ function getAllStaff() {
 function getAllDepartments() {
 
     $('.deparments').text("");
-    $('.deparments').append(`<option value="refreshTable" selected>By Departments</option>`);
+    $('.deparments').append(`<option value="refreshTable" selected>All Departments</option>`);
     $.get("libs//php/get/getAllDepartments.php",  function(result) {
         console.log(result.data);
 
@@ -524,7 +524,7 @@ function getAllDepartments() {
 function getAllLocations() {
 
     $('.locations').text("");
-    $('.locations').append(`<option value="refreshTable" selected>By Locations</option>`);
+    $('.locations').append(`<option value="refreshTable" selected>All Locations</option>`);
 
     $.get("libs//php/get/getAllLocations.php",  function(result) {
         console.log(result.data);
