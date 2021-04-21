@@ -205,8 +205,13 @@ table th {
   /*sm*/
   @media only screen and (max-width:767px) {
 
+    main{
+        top: 0;
+    }
+
     #mainDiv1 {
         height: auto;
+        background-color: black;
         
     }
     
@@ -236,8 +241,8 @@ table th {
     #mainDiv1 .selectForTable label {
         padding: 0;
         height: 35px;
-        font-size: 11px;
-        width: 65px;
+        font-size: 12px;
+        width: 70px;
     }
 
     #mainDiv1 .selectForTable select {
@@ -257,10 +262,6 @@ table th {
         padding: 0;
     }
 
-    .formSearchMain {
-        border-bottom: 7px solid black;
-    }
-
     .resetBtn {
         width: 100%;
     }
@@ -271,8 +272,10 @@ table th {
         margin: 5px 10px;
     }
 
-    .smBck {
-        background-color: black;
+    #dropdownMenuMain {
+        padding: 2px;
+        height: 40px;
+        width: 140px;
     }
 
 }

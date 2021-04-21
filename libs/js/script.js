@@ -167,7 +167,6 @@ $('#deleteDepartment select').change(function() {
         url: window.location.href + 'libs/php/get/getAllbyDepID.php',
         data: {departmentID: $(this).val()},
         success: function (result) {
-            console.log(result.data);
             if (result.data.length !== 0) {
                 $('#deleteDepartment')[0].reset();
                 alert("Imposible to delete department with allocated staff within!");
