@@ -110,8 +110,8 @@ table th {
     cursor: pointer;
 }
 
-#mainDiv1 .selectForTable label, #mainDiv1 .selectForTable select   {
-    border-radius: 7px;
+#mainDiv1 .selectForTable select   {
+    border-radius: 5px;
 }
 
 /*       modal edit person       */
@@ -215,31 +215,64 @@ table th {
     }
 
     #mainDiv1 form {
-        margin-top: 15px;
+        margin-top: 10px;
+        padding-bottom: 10px;
     }
 
     #mainDiv1 form input {
-        width: 60vw;
+        width: 65vw;
     }
 
     #mainDiv1 .selectForTable {
-        margin: 10px;
+        margin: 3px;
         margin-left: 0;
+        width: 100%; 
+    }
+
+    #mainDiv1 .selectForTable div {
+        margin: 5px auto; 
     }
 
     #mainDiv1 .selectForTable label {
-        width: 130px;
+        padding: 0;
+        height: 35px;
+        font-size: 11px;
+        width: 65px;
     }
 
     #mainDiv1 .selectForTable select {
-        width: 230px;
+        font-size: 12px;
+        min-width: 120px;
+        width: 30vw;
     }
 
     .styleSortTitle {
+        padding: 5px;
         font-weight: bold; 
-        font-size: 18px;
-        color: black;
-        margin-top: 10px;
+        font-size: 14px;
+        color: white;
+    }
+
+    #mainDiv1 div[class*=col-12] {
+        padding: 0;
+    }
+
+    .formSearchMain {
+        border-bottom: 7px solid black;
+    }
+
+    .resetBtn {
+        width: 100%;
+    }
+
+    #reset {
+        width: 70px;
+        height: 40px;
+        margin: 5px 10px;
+    }
+
+    .smBck {
+        background-color: black;
     }
 
 }
@@ -264,14 +297,18 @@ table th {
         width: 300px;
     }
 
-    #mainDiv1 .selectForTable {
+    #mainDiv1 .selectForTable div {
         margin: 15px;
     }
 
     .styleSortTitle {
+        background-color: rgba(0, 0, 0, 0.4);
+        padding: 5px;
         font-weight: bold; 
         font-size: 20px;
-        color: black;
+        color: white;
+        border: 4px solid black;
+        border-radius: 10px;
     }
    
   }
@@ -282,14 +319,19 @@ table th {
         height: auto;
     }
 
-    #mainDiv1 .selectForTable {
+    #mainDiv1 .selectForTable div {
         margin: 20px;
     }
 
 
     .styleSortTitle {
+        background-color: rgba(0, 0, 0, 0.4);
+        padding: 5px;
         font-weight: bold; 
         font-size: 22px;
+        color: white;
+        border: 4px solid black;
+        border-radius: 10px;
     }
 
   }

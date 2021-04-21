@@ -69,7 +69,7 @@
 
               <div class="row m-0">
 
-                <div class="col-12 d-flex align-items-center justify-content-center justify-content-md-start d-lg-none">
+                <div class="col-12 d-flex align-items-center justify-content-center justify-content-md-start d-lg-none formSearchMain">
                   
                   <form>
                     <div class="input-group">
@@ -84,24 +84,24 @@
 
                 </div>
 
-                <div class="col-12 d-flex flex-column flex-md-row align-items-start align-items-md-center my-2">
+                <div class="col-12 d-flex flex-column flex-md-row align-items-start align-items-center smBck">
 
-                  <div class="text-center styleSortTitle">Sort:</div>
-
-                  <div class="d-flex selectForTable">
-                    <label class="input-group-text">By Location</label>
-                    <select class="locations" id="selectLocation"></select>
-                  </div>
+                  <div class="text-center styleSortTitle">Sort By:</div>
 
                   <div class="d-flex selectForTable">
-                    <label class="input-group-text">By Department</label>
-                    <select class="deparments" id="selectDepartmens"></select>
+                    <div class="d-flex">
+                      <label class="input-group-text">Department</label>
+                      <select class="deparments" id="selectDepartmens"></select>
+                    </div>
+                    <div class="d-flex">
+                      <label class="input-group-text">Location</label>
+                      <select class="locations" id="selectLocation"></select>
+                    </div>
                   </div>
-
-                  <div class="d-flex w-100">
-                    <button class="btn btn-secondary me-auto" id="reset">Reset<i class="bi bi-arrow-counterclockwise ms-2"></i></button>
-                    <div class="d-sm-flex d-md-none ms-auto">
-                      <button class="btn btn-success btn-lg" type="button" data-bs-toggle="modal" data-bs-target="#insertNewPerson"><i class="bi bi-person-plus"></i></button>
+                  <div class="d-flex resetBtn">
+                    <button class="btn btn-secondary" id="reset">Reset</button>
+                    <div class="d-flex d-md-none">
+                      <button class="btn btn-success btn-lg ms-4 mb-1" type="button" data-bs-toggle="modal" data-bs-target="#insertNewPerson"><i class="bi bi-person-plus"></i></button>
                     </div>
                   </div>
 
