@@ -118,6 +118,7 @@ $('#editPerson').submit(function (e) {
             success: function (result) {
                 console.log(result.status.code);
                 $('#updatePerson').modal("toggle");
+                $('#editPerson')[0].reset();
                 getAllStaff();
             }
         });
@@ -349,10 +350,10 @@ $('#selectDepartmens').change(function(){
     $.post(window.location.href +"libs/php/get/getAllbyDepID.php", {departmentID: $(this).val()},  function(result) {
   
         result.data.forEach(person => {
-            $('#tableBody').append(`<tr><td><div class='d-flex'>${person.firstName + " " + person.lastName}<i class="ms-auto bi bi-file-person"></i></div></td>
+            $('#tableBody').append(`<tr><td><div class='d-flex filterSearch'>${person.firstName + " " + person.lastName}<i class="ms-auto bi bi-file-person"></i></div></td>
             <td><div class='d-flex'>${person.department}<i class=" ms-auto bi bi-briefcase"></i></div></td>
             <td><div class='d-flex'>${person.location}<i class="ms-auto bi bi-building"></i></div></td>
-            <td><div class='d-none d-md-flex'>${person.email}<i class="ms-auto bi bi-envelope"></i></div><button type="button" class="btn btn-outline-info btn-sm d-sm-block d-md-none mx-auto copyBtn">Copy</button></td>
+            <td><div class='d-none d-md-flex filterSearch'>${person.email}<i class="ms-auto bi bi-envelope"></i></div><button type="button" class="btn btn-outline-info btn-sm d-sm-block d-md-none mx-auto copyBtn">Copy</button></td>
             <td d-flex><button type="button" class="d-block updatePer mx-auto" data-bs-toggle="modal" data-bs-target="#updatePerson">Edit</button>
             <input class="d-none perIdVal" type="number" value=${person.id} /><input class="d-none perIdDep" type="number" value=${person.departmentId} /></td></tr>`);
         });
@@ -384,10 +385,10 @@ $('#selectLocation').change(function(){
     $.post( window.location.href + "libs/php/get/getAllByLocID.php", {locationID: $(this).val()},  function(result) {
   
         result.data.forEach(person => {
-            $('#tableBody').append(`<tr><td><div class='d-flex'>${person.firstName + " " + person.lastName}<i class="ms-auto bi bi-file-person"></i></div></td>
+            $('#tableBody').append(`<tr><td><div class='d-flex filterSearch'>${person.firstName + " " + person.lastName}<i class="ms-auto bi bi-file-person"></i></div></td>
             <td><div class='d-flex'>${person.department}<i class=" ms-auto bi bi-briefcase"></i></div></td>
             <td><div class='d-flex'>${person.location}<i class="ms-auto bi bi-building"></i></div></td>
-            <td><div class='d-none d-md-flex'>${person.email}<i class="ms-auto bi bi-envelope"></i></div><button type="button" class="btn btn-outline-info btn-sm d-sm-block d-md-none mx-auto copyBtn">Copy</button></td>
+            <td><div class='d-none d-md-flex filterSearch'>${person.email}<i class="ms-auto bi bi-envelope"></i></div><button type="button" class="btn btn-outline-info btn-sm d-sm-block d-md-none mx-auto copyBtn">Copy</button></td>
             <td d-flex><button type="button" class="d-block updatePer mx-auto" data-bs-toggle="modal" data-bs-target="#updatePerson">Edit</button>
             <input class="d-none perIdVal" type="number" value=${person.id} /><input class="d-none perIdDep" type="number" value=${person.departmentId} /></td></tr>`);
         });
@@ -443,7 +444,7 @@ function searchTable() {
     var table = $('#tableBody');
 
     table.find('tr').each(function(index, row) {
-        var allCells = $(row).find('td');
+        var allCells = $(row).find('.filterSearch');
         if(allCells.length > 0) {
             var found = false;
             allCells.each(function(index, td) {
@@ -481,10 +482,10 @@ function getAllStaff() {
         console.log(result.data[0]);
 
         result.data.forEach(person => {
-            $('#tableBody').append(`<tr><td><div class='d-flex'>${person.firstName + " " + person.lastName}<i class="ms-auto bi bi-file-person"></i></div></td>
+            $('#tableBody').append(`<tr><td><div class='d-flex filterSearch'>${person.firstName + " " + person.lastName}<i class="ms-auto bi bi-file-person"></i></div></td>
             <td><div class='d-flex'>${person.department}<i class=" ms-auto bi bi-briefcase"></i></div></td>
             <td><div class='d-flex'>${person.location}<i class="ms-auto bi bi-building"></i></div></td>
-            <td><div class='d-none d-md-flex'>${person.email}<i class="ms-auto bi bi-envelope"></i></div><button type="button" class="btn btn-outline-info btn-sm d-sm-block d-md-none mx-auto copyBtn">Copy</button></td>
+            <td><div class='d-none d-md-flex filterSearch'>${person.email}<i class="ms-auto bi bi-envelope"></i></div><button type="button" class="btn btn-outline-info btn-sm d-sm-block d-md-none mx-auto copyBtn">Copy</button></td>
             <td d-flex><button type="button" class="btn btn-secondary d-block updatePer mx-auto" data-bs-toggle="modal" data-bs-target="#updatePerson">Edit</button>
             <input class="d-none perIdVal" type="number" value=${person.id} /><input class="d-none perIdDep" type="number" value=${person.departmentId} /></td></tr>`);
         });
