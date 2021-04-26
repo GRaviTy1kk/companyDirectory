@@ -482,10 +482,10 @@ function getAllStaff() {
         console.log(result.data[0]);
 
         result.data.forEach(person => {
-            $('#tableBody').append(`<tr><td><div class='d-flex filterSearch'>${person.firstName + " " + person.lastName}<i class="ms-auto bi bi-file-person"></i></div></td>
-            <td><div class='d-flex'>${person.department}<i class=" ms-auto bi bi-briefcase"></i></div></td>
-            <td><div class='d-flex'>${person.location}<i class="ms-auto bi bi-building"></i></div></td>
-            <td><div class='d-none d-md-flex filterSearch'>${person.email}<i class="ms-auto bi bi-envelope"></i></div><button type="button" class="btn btn-outline-info btn-sm d-sm-block d-md-none mx-auto copyBtn">Copy</button></td>
+            $('#tableBody').append(`<tr><td><div class='d-flex filterSearch'>${person.firstName + " " + person.lastName}<i class="ms-auto my-auto bi bi-file-person"></i></div></td>
+            <td><div class='d-flex'>${person.department}<i class="ms-auto my-auto bi bi-briefcase"></i></div></td>
+            <td><div class='d-flex'>${person.location}<i class="ms-auto my-auto bi bi-building"></i></div></td>
+            <td><div class='d-none d-md-flex filterSearch'>${person.email}<i class="ms-auto my-auto bi bi-envelope"></i></div><button type="button" class="btn btn-outline-info btn-sm d-sm-block d-md-none mx-auto copyBtn">Copy</button></td>
             <td d-flex><button type="button" class="btn btn-secondary d-block updatePer mx-auto" data-bs-toggle="modal" data-bs-target="#updatePerson">Edit</button>
             <input class="d-none perIdVal" type="number" value=${person.id} /><input class="d-none perIdDep" type="number" value=${person.departmentId} /></td></tr>`);
         });

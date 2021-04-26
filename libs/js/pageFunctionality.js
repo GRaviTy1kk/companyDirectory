@@ -109,62 +109,21 @@ function functionality() {
   });
 
 
-  //search
-  
-
-  if (window.matchMedia('(min-width: 991px)').matches) {
-    $('#searchNav').addClass('searchInput');
-    $('#searchNav').attr('onkeyup', "searchTable()");
-    $('#searchMain').removeClass('searchInput');
-    $('#searchMain').removeAttr('onkeyup');
-    
-  }
+  //table size
 
   if (window.matchMedia('(max-width: 991px)').matches) {
-    $('#searchMain').addClass('searchInput');
-    $('#searchMain').attr('onkeyup', "searchTable()");
-    $('#searchNav').removeClass('searchInput');
-    $('#searchNav').removeAttr('onkeyup');
-    }
-
-  $(window).resize(function() {
-      if (window.matchMedia('(min-width: 991px)').matches) {
-        $('#searchNav').addClass('searchInput');
-        $('#searchNav').attr('onkeyup', "searchTable()");
-        $('#searchMain').removeClass('searchInput');
-        $('#searchMain').removeAttr('onkeyup');
-        $('#searchMain').val('');
-        $( "#searchNav" ).trigger("keyup");
-      }
-  });
-  
-  $(window).resize(function() {
-      if (window.matchMedia('(max-width: 991px)').matches) {
-        $('#searchMain').addClass('searchInput');
-        $('#searchMain').attr('onkeyup', "searchTable()");
-        $('#searchNav').removeClass('searchInput');
-        $('#searchNav').removeAttr('onkeyup');
-        $('#searchNav').val('');
-        $("#searchMain").trigger("keyup");
-      }
-  });
-
-  
-
-  //navigation hide on modal click
-  
-  if (window.matchMedia('(max-width: 991px)').matches) {
-    $('#mainNav button[data-bs-toggle="modal"]').click(function() {
-      $('#mainNav button[class="navbar-toggler"]').click();
-    });
+    $('table').addClass("table-sm");
+  } else {
+    $('table').removeClass("table-sm");
   }
 
   $(window).resize(function() {
       if (window.matchMedia('(max-width: 991px)').matches) {
-        $('#mainNav button[data-bs-toggle="modal"]').click(function() {
-          $('#mainNav button[class="navbar-toggler"]').click();
-        });
+        $('table').addClass("table-sm");
+      } else {
+        $('table').removeClass("table-sm");
       }
   });
 
+  
 }
