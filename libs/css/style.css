@@ -139,15 +139,7 @@ table thead th {
 }
 
 
-/*    modals    */updatePerson insertNewPerson  departmentModal  locationModal
-
-
-
-.modal-content {
-    background-color: white;
- 
-}
-
+/*    modals    */
 
 .headerForModal {
     width: 100%;
@@ -159,12 +151,7 @@ table thead th {
     font-size: 24px;
 }
 
-
-/*#updatePerson .modal-footer i, #insertNewPerson .modal-footer i, #departmentModal .modal-footer i, #locationModal .modal-footer i {
-    font-size: 24px;
-}*/
-
-.modal-footer button {
+.modalFooterBtn {
     width: 50px;
 }
 

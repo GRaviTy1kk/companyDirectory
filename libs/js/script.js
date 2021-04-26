@@ -105,9 +105,9 @@ $(document).on("click",".deletePerson", function (e) {
 
 });
 
-$('#editPerson').submit(function (e) {
+$('#editPerson').submit(async function (e) {
 
-    var confirmation = confirm('Do you want to update details?');
+    var confirmation = await confirm('Do you want to update details?');
 
     if (confirmation) {
     
@@ -172,7 +172,13 @@ $('#deleteDepartment select').change(function() {
         success: function (result) {
             if (result.data.length !== 0) {
                 $('#deleteDepartment')[0].reset();
-                alert("Imposible to delete department with allocated staff within!");
+
+                bootbox.alert({
+                    message: "Imposible to delete department with allocated staff within!",
+                    closeButton: false,
+                    backdrop: true
+                });
+
                 return false;
             }
             
@@ -295,15 +301,13 @@ $('#deleteLocation select').change(function() {
             
             if (result.data.length !== 0) {
                 $('#deleteLocation')[0].reset();
+
                 bootbox.alert({
-                    message: "This is an alert with a callback!"
+                    message: "Imposible to delete location with allocated staff within!",
+                    closeButton: false,
+                    backdrop: true
                 });
 
-                bootbox.confirm("This is the default confirm!", function(result){ 
-                    console.log('This was logged in the callback: ' + result); 
-                });
-              
-                //alert("Imposible to delete location with allocated staff within!");
                 return false;
             }
         }
@@ -346,26 +350,39 @@ $('#editLocation select').change(function() {
 
 $('#editLocation').submit(function (e) {
     
-    var confirmation = confirm('Do you want to update the location name?');
-
-    if (confirmation) {
-
-        $.ajax({
-            type: 'post',
-            url: window.location.href + 'libs/php/update/updateLocation.php',
-            data: $('#editLocation').serialize(),
-            success: function (result) {
-            console.log(result.status.code);
-            getAllLocations();
-            $('#editLocation')[0].reset();
-            $('#editLocation input').attr("value", "");
-            }
-        });
-
-        return false;
-    }
-
     e.preventDefault();
+
+    bootbox.confirm({
+        title: "Change Location Name",
+        message: "Do you want to change the location name?",
+        buttons: {
+            cancel: {
+                label: '<i class="fa fa-times"></i> Cancel'
+            },
+            confirm: {
+                label: '<i class="fa fa-check"></i> Confirm'
+            }
+        },
+        callback: function (result) {
+           
+            if (result) {
+
+                $.ajax({
+                    type: 'post',
+                    url: window.location.href + 'libs/php/update/updateLocation.php',
+                    data: $('#editLocation').serialize(),
+                    success: function (result) {
+                    console.log(result.status.code);
+                    getAllLocations();
+                    $('#editLocation')[0].reset();
+                    $('#editLocation input').attr("value", "");
+                    }
+                });
+            }
+            
+        }
+    });
+
     return false;
 
 });
@@ -387,12 +404,13 @@ $('#selectDepartmens').change(function(){
     $.post(window.location.href +"libs/php/get/getAllbyDepID.php", {departmentID: $(this).val()},  function(result) {
   
         result.data.forEach(person => {
-            $('#tableBody').append(`<tr><td><div class='d-flex filterSearch'>${person.firstName + " " + person.lastName}<i class="ms-auto bi bi-file-person"></i></div></td>
-            <td><div class='d-flex'>${person.department}<i class=" ms-auto bi bi-briefcase"></i></div></td>
-            <td><div class='d-flex'>${person.location}<i class="ms-auto bi bi-building"></i></div></td>
-            <td><div class='d-none d-md-flex filterSearch'>${person.email}<i class="ms-auto bi bi-envelope"></i></div><button type="button" class="btn btn-outline-info btn-sm d-sm-block d-md-none mx-auto copyBtn">Copy</button></td>
-            <td d-flex><button type="button" class="d-block updatePer mx-auto" data-bs-toggle="modal" data-bs-target="#updatePerson">Edit</button>
-            <input class="d-none perIdVal" type="number" value=${person.id} /><input class="d-none perIdDep" type="number" value=${person.departmentId} /></td></tr>`);
+            $('#tableBody').append(`<tr><td><i class="my-auto bi bi-file-person"></i><div class='d-inline-flex filterSearch'>${person.firstName + " " + person.lastName}</div></td>
+            <td><i class="my-auto bi bi-briefcase"></i><div class='d-inline-flex'>${person.department}</div></td>
+            <td><i class="my-auto bi bi-building"></i><div class='d-inline-flex'>${person.location}</div></td>
+            <td><i class="d-none d-md-inline ms-auto my-auto bi bi-envelope"></i><div class='d-none d-md-inline-flex filterSearch'>${person.email}</div><button type="button" class="btn btn-outline-info btn-sm d-sm-block d-md-none mx-auto copyBtn">Copy</button></td>
+            <td><div class="d-flex"><button type="button" class="btn btn-outline-info updatePer  mx-auto" data-bs-toggle="modal" data-bs-target="#updatePerson"><i class="bi bi-pencil"></i></button>
+            <button type="button" class="btn btn-outline-danger deletePerson mx-auto"><i class="bi bi-x-circle"></i></button>
+            <input class="d-none perIdVal" type="number" value=${person.id} /><input class="d-none perIdDep" type="number" value=${person.departmentId} /></div></td></tr>`);
         });
 
         $('#tableBody').append("<tr class='hideDataRow d-none'><td class='text-center' colspan=5>No Results</td></tr>");
@@ -422,12 +440,13 @@ $('#selectLocation').change(function(){
     $.post( window.location.href + "libs/php/get/getAllByLocID.php", {locationID: $(this).val()},  function(result) {
   
         result.data.forEach(person => {
-            $('#tableBody').append(`<tr><td><div class='d-flex filterSearch'>${person.firstName + " " + person.lastName}<i class="ms-auto bi bi-file-person"></i></div></td>
-            <td><div class='d-flex'>${person.department}<i class=" ms-auto bi bi-briefcase"></i></div></td>
-            <td><div class='d-flex'>${person.location}<i class="ms-auto bi bi-building"></i></div></td>
-            <td><div class='d-none d-md-flex filterSearch'>${person.email}<i class="ms-auto bi bi-envelope"></i></div><button type="button" class="btn btn-outline-info btn-sm d-sm-block d-md-none mx-auto copyBtn">Copy</button></td>
-            <td d-flex><button type="button" class="d-block updatePer mx-auto" data-bs-toggle="modal" data-bs-target="#updatePerson">Edit</button>
-            <input class="d-none perIdVal" type="number" value=${person.id} /><input class="d-none perIdDep" type="number" value=${person.departmentId} /></td></tr>`);
+            $('#tableBody').append(`<tr><td><i class="my-auto bi bi-file-person"></i><div class='d-inline-flex filterSearch'>${person.firstName + " " + person.lastName}</div></td>
+            <td><i class="my-auto bi bi-briefcase"></i><div class='d-inline-flex'>${person.department}</div></td>
+            <td><i class="my-auto bi bi-building"></i><div class='d-inline-flex'>${person.location}</div></td>
+            <td><i class="d-none d-md-inline ms-auto my-auto bi bi-envelope"></i><div class='d-none d-md-inline-flex filterSearch'>${person.email}</div><button type="button" class="btn btn-outline-info btn-sm d-sm-block d-md-none mx-auto copyBtn">Copy</button></td>
+            <td><div class="d-flex"><button type="button" class="btn btn-outline-info updatePer  mx-auto" data-bs-toggle="modal" data-bs-target="#updatePerson"><i class="bi bi-pencil"></i></button>
+            <button type="button" class="btn btn-outline-danger deletePerson mx-auto"><i class="bi bi-x-circle"></i></button>
+            <input class="d-none perIdVal" type="number" value=${person.id} /><input class="d-none perIdDep" type="number" value=${person.departmentId} /></div></td></tr>`);
         });
 
         $('#tableBody').append("<tr class='hideDataRow d-none'><td class='text-center' colspan=5>No Results</td></tr>");
