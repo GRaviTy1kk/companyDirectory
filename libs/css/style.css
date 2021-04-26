@@ -75,6 +75,19 @@
 
 /*Web page */
 
+
+body {
+
+    height: 100vh;
+
+    background-image: url("../../img/mainBack.jpg");
+    background-color: lightblue;
+    background-position: center; 
+    background-repeat: no-repeat; 
+    background-size: cover;
+}
+
+
 /*       navbar        */
 
 #companynav {
@@ -123,6 +136,10 @@ table thead th {
     position: sticky; 
     top: 0; 
     z-index: 1; 
+}
+
+table td>i{
+    margin-right: 10px;
 }
 
 
@@ -220,10 +237,6 @@ table thead th {
     }
 
     /*main*/
-    
-    #tableDiv {
-        font-size: 11px;
-    }
 
     .formSearchMain {
         margin-top: 20px;
@@ -281,6 +294,18 @@ table thead th {
         padding: 2px;
         height: 35px;
         width: 140px;
+    }
+
+
+    /* table */
+
+    #tableDiv {
+        font-size: 11px;
+    }
+
+
+    table td>i{
+        margin-right: 5px;
     }
 
 }
@@ -396,22 +421,9 @@ table thead th {
     /*main*/
 
     #toolsDiv {
-    
+
         height: 180px;
-
-        background-image: url("../../img/mainBack.jpg");
-        background-color: lightblue;
-        background-position: center; 
-        background-repeat: no-repeat; 
-        background-size: cover;
-    }
-
-    #tableDiv{
-        position: absolute;
-        top: 260px;
-        right: 0;
-        left: 0;
-        bottom: 0;
+        background-color: transparent;
     }
 
     .formSearchMain{
@@ -452,6 +464,16 @@ table thead th {
         font-size: 20px;
         color: white;
        
+    }
+
+    /*   table   */
+
+    #tableDiv{
+        position: absolute;
+        top: 260px;
+        right: 0;
+        left: 0;
+        bottom: 0;
     }
 
   }

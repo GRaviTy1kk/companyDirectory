@@ -222,7 +222,9 @@ $('#editDepartment select.deparments').change(function() {
         }
     });
 
-    
+    var location = $( "#editDepartment select.deparments option:selected" ).text();
+    $('#editDepartment input').attr("value", location);
+
 });
 
 
@@ -326,6 +328,12 @@ $('#deleteLocation').submit(function (e) {
 });
 
 //update location
+
+$('#editLocation select').change(function() {
+    console.log($( "#editLocation select option:selected" ).text());
+    var location = $( "#editLocation select option:selected" ).text();
+    $('#editLocation input').attr("value", location);
+});
 
 $('#editLocation').submit(function (e) {
     
@@ -505,8 +513,8 @@ function getAllStaff() {
 
         result.data.forEach(person => {
             $('#tableBody').append(`<tr><td><i class="my-auto bi bi-file-person"></i><div class='d-inline-flex filterSearch'>${person.firstName + " " + person.lastName}</div></td>
-            <td><i class="ms-auto my-auto bi bi-briefcase"></i><div class='d-inline-flex'>${person.department}</div></td>
-            <td><i class="ms-auto my-auto bi bi-building"></i><div class='d-inline-flex'>${person.location}</div></td>
+            <td><i class="my-auto bi bi-briefcase"></i><div class='d-inline-flex'>${person.department}</div></td>
+            <td><i class="my-auto bi bi-building"></i><div class='d-inline-flex'>${person.location}</div></td>
             <td><i class="d-none d-md-inline ms-auto my-auto bi bi-envelope"></i><div class='d-none d-md-inline-flex filterSearch'>${person.email}</div><button type="button" class="btn btn-outline-info btn-sm d-sm-block d-md-none mx-auto copyBtn">Copy</button></td>
             <td><div class="d-flex"><button type="button" class="btn btn-success updatePer  mx-auto" data-bs-toggle="modal" data-bs-target="#updatePerson"><i class="bi bi-pencil"></i></button>
             <button type="button" class="btn btn-danger deletePerson  mx-auto"><i class="bi bi-x-circle"></i></button>

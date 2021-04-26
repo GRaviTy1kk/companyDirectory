@@ -19,7 +19,7 @@
       
   </head>
 
-  <body>
+  <body class="overflow-hidden">
 
 
     <div class="container-fluid" id="companynav">
@@ -93,9 +93,9 @@
     </div>
 
 
-    <div class="col-12 p-0 overflow-auto" id="tableDiv">
+    <div class="p-0 w-100 overflow-auto" id="tableDiv">
 
-      <table class="table table-sm table-dark table-striped table-hover table-bordered align-middle m-0">
+      <table class="table table-dark table-striped table-hover table-bordered align-middle m-0">
 
         <thead>
 
@@ -122,259 +122,259 @@
 
 
 
-      <!--location modal-->
-  
-      <div class="modal fade" id="locationModal" tabindex="-1" aria-labelledby="#locationModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="locationModalLabel">Manage Locations</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
+    <!--location modal-->
 
-              <div class="container-fluid">
-                <div classs="row">
+    <div class="modal fade" id="locationModal" tabindex="-1" aria-labelledby="#locationModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="locationModalLabel">Manage Locations</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
 
-                  <div class="col-12">
-                    <div class="btn-group" role="group">
-                      <input type="radio" class="btn-check" name="locrad" id="btnradioAddLoc" autocomplete="off" checked>
-                      <label class="btn btn-outline-secondary makeLabelWhite" for="btnradioAddLoc">Add Location</label>
-                    
-                      <input type="radio" class="btn-check" name="locrad" id="btnradioEditLoc" autocomplete="off">
-                      <label class="btn btn-outline-secondary makeLabelWhite" for="btnradioEditLoc">Update Location</label>
-                    
-                      <input type="radio" class="btn-check" name="locrad" id="btnradioDeleteLoc" autocomplete="off">
-                      <label class="btn btn-outline-secondary makeLabelWhite" for="btnradioDeleteLoc">Delete Location</label>
+            <div class="container-fluid">
+              <div classs="row">
+
+                <div class="col-12">
+                  <div class="btn-group" role="group">
+                    <input type="radio" class="btn-check" name="locrad" id="btnradioAddLoc" autocomplete="off" checked>
+                    <label class="btn btn-outline-secondary makeLabelWhite" for="btnradioAddLoc">Add Location</label>
+                  
+                    <input type="radio" class="btn-check" name="locrad" id="btnradioEditLoc" autocomplete="off">
+                    <label class="btn btn-outline-secondary makeLabelWhite" for="btnradioEditLoc">Update Location</label>
+                  
+                    <input type="radio" class="btn-check" name="locrad" id="btnradioDeleteLoc" autocomplete="off">
+                    <label class="btn btn-outline-secondary makeLabelWhite" for="btnradioDeleteLoc">Delete Location</label>
+                  </div>
+                </div>
+
+                <div class="col-12 aadLoc">
+                  <form id="insertLocation">
+                    <div class="input-group my-3">
+                      <span class="input-group-text">New Location</span>
+                      <input type="text" class="form-control" name="name" pattern="[a-zA-Z0-9\s]+" title="Only letters and numbers" required />
                     </div>
-                  </div>
-
-                  <div class="col-12 aadLoc">
-                    <form id="insertLocation">
-                      <div class="input-group my-3">
-                        <span class="input-group-text">New Location</span>
-                        <input type="text" class="form-control" name="name" pattern="[a-zA-Z0-9\s]+" title="Only letters and numbers" required />
-                      </div>
-                    </form>
-                  </div>
-
-                  <div class="col-12 editLoc collapse">
-                    <form id="editLocation">
-                      <div class="input-group my-3">
-                        <label class="input-group-text">Locations</label>
-                        <select class="form-select locations"  name="id"></select>
-                      </div>
-                      <div class="input-group my-3">
-                        <span class="input-group-text">New Name</span>
-                        <input type="text" class="form-control" name="name" pattern="[a-zA-Z0-9\s]+" title="Only letters and numbers" required />
-                      </div>
-                    </form>
-                  </div>
-
-                  <div class="col-12 delLoc collapse">
-                    <form id="deleteLocation">
-                      <div class="input-group my-3">
-                        <label class="input-group-text">Location</label>
-                        <select class="form-select locations" name="id" required></select>
-                      </div>
-                    </form>
-                  </div>
-
+                  </form>
                 </div>
-              </div>
-              
-            </div>
-            <div class="modal-footer">
 
-              <button class="btn btn-success" id="aadLocBtn" type="submit" form="insertLocation" >Add</button>
-             
-              <button class="btn btn-success d-none" id="editLocBtn" type="submit" form="editLocation">Update</button>
-              
-              <button class="btn btn-danger d-none" id="delLocBtn" type="submit" form="deleteLocation">Delete</button>
-
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
-          </div>
-        </div>
-      </div>
-
-       <!--department modal-->
-
-      <div class="modal fade" id="departmentModal" tabindex="-1" aria-labelledby="#departmentModalLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="departmentModalLabel">Manage Departments</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-
-              <div class="container-fluid">
-                <div classs="row">
-
-                  <div class="col-12">
-                    <div class="btn-group" role="group">
-                      <input type="radio" class="btn-check" name="deprad" id="btnradioAddDep" autocomplete="off" checked>
-                      <label class="btn btn-outline-secondary makeLabelWhite" for="btnradioAddDep">Add Department</label>
-                    
-                      <input type="radio" class="btn-check" name="deprad" id="btnradioEditDep" autocomplete="off">
-                      <label class="btn btn-outline-secondary makeLabelWhite" for="btnradioEditDep">Update Department</label>
-                    
-                      <input type="radio" class="btn-check" name="deprad" id="btnradioDeleteDep" autocomplete="off">
-                      <label class="btn btn-outline-secondary makeLabelWhite" for="btnradioDeleteDep">Delete Department</label>
+                <div class="col-12 editLoc collapse">
+                  <form id="editLocation">
+                    <div class="input-group my-3">
+                      <label class="input-group-text">Locations</label>
+                      <select class="form-select locations"  name="id"></select>
                     </div>
-                  </div>
-
-                  <div class="col-12 aadDep">
-
-                    <form id="insertDepartment">
-                      <div class="input-group my-3">
-                        <span class="input-group-text">New Department</span>
-                        <input type="text" class="form-control" name="name" pattern="[a-zA-Z0-9\s]+" title="Only letters and numbers" required />
-                      </div>
-                      <div class="input-group mb-3">
-                        <label class="input-group-text">Choose Location</label>
-                        <select class="form-select locations" name="locationID" required></select>
-                      </div>
-                    </form>
-
-                  </div>
-
-                  <div class="col-12 editDep d-none">
-
-                    <form id="editDepartment">
-                      <div class="input-group my-3">
-                        <label class="input-group-text">Departments</label>
-                        <select class="form-select deparments" name="id"></select>
-                      </div>
-                      <div class="input-group mb-3">
-                        <span class="input-group-text">New Name</span>
-                        <input type="text" class="form-control" name="name" pattern="[a-zA-Z0-9\s]+" title="Only letters and numbers"  required />
-                      </div>
-                      <div class="input-group my-3">
-                        <label class="input-group-text">New Location</label>
-                        <select class="form-select locations" name="locationID" required></select>
-                      </div>
-                    </form>
-                  </div>
-
-                  <div class="col-12 delDep d-none">
-                    <form id="deleteDepartment">
-                      <div class="input-group my-3">
-                        <label class="input-group-text">Departments</label>
-                        <select class="form-select deparments" name="id" required></select>
-                      </div>
-                    </form>
-                  </div>
-
+                    <div class="input-group my-3">
+                      <span class="input-group-text">New Name</span>
+                      <input type="text" class="form-control" name="name" pattern="[a-zA-Z0-9\s]+" title="Only letters and numbers" required />
+                    </div>
+                  </form>
                 </div>
+
+                <div class="col-12 delLoc collapse">
+                  <form id="deleteLocation">
+                    <div class="input-group my-3">
+                      <label class="input-group-text">Location</label>
+                      <select class="form-select locations" name="id" required></select>
+                    </div>
+                  </form>
+                </div>
+
               </div>
+            </div>
+            
+          </div>
+          <div class="modal-footer">
 
-            </div>
-            <div class="modal-footer">
-              
-              <button class="btn btn-success" id="addDepBtn" type="submit" form="insertDepartment" >Add</button>
-             
-              <button class="btn btn-success d-none" id="editDepBtn" type="submit" form="editDepartment">Update</button>
-              
-              <button class="btn btn-danger d-none" id="delDepBtn" type="submit" form="deleteDepartment">Delete</button>
-              
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-            </div>
+            <button class="btn btn-success" id="aadLocBtn" type="submit" form="insertLocation" >Add</button>
+            
+            <button class="btn btn-success d-none" id="editLocBtn" type="submit" form="editLocation">Update</button>
+            
+            <button class="btn btn-danger d-none" id="delLocBtn" type="submit" form="deleteLocation">Delete</button>
+
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
+    </div>
 
-      <!--insert new person modal-->
+      <!--department modal-->
 
-      <div class="modal fade" id="insertNewPerson" tabindex="-1" aria-labelledby="#insertNewPersonLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="insertNewPersonLabel">Add New Person</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
+    <div class="modal fade" id="departmentModal" tabindex="-1" aria-labelledby="#departmentModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="departmentModalLabel">Manage Departments</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
 
-              <form id="addPerson">
-                <div class="input-group mb-3">
-                  <span class="input-group-text">First Name</span>
-                  <input type="text" class="form-control" name="firstName" pattern="[a-zA-Z\s]+" title="Only letters" required />
-                </div>
-                <div class="input-group mb-3">
-                  <span class="input-group-text">Last Name</span>
-                  <input type="text" class="form-control" name="lastName" pattern="[a-zA-Z\s]+" title="Only letters" required />
-                </div>
-                <div class="input-group mb-3">
-                  <span class="input-group-text">Job Title</span>
-                  <input type="text" class="form-control" name="jobTitle"  placeholder="optional" />
-                </div>
-                <div class="input-group mb-3">
-                  <span class="input-group-text">Email</span>
-                  <input type="email" class="form-control" name="email" required/>
-                </div>
-                <div class="input-group mb-3">
-                  <label class="input-group-text">Departments</label>
-                  <select class="form-select deparments" name="departmentID" required></select>
-                </div> 
-              </form>
+            <div class="container-fluid">
+              <div classs="row">
 
-            </div>
-            <div class="modal-footer">
-              <div class="d-flex">
-                <input class="btn btn-success mx-auto" type="submit" form="addPerson" value="Add" />
+                <div class="col-12">
+                  <div class="btn-group" role="group">
+                    <input type="radio" class="btn-check" name="deprad" id="btnradioAddDep" autocomplete="off" checked>
+                    <label class="btn btn-outline-secondary makeLabelWhite" for="btnradioAddDep">Add Department</label>
+                  
+                    <input type="radio" class="btn-check" name="deprad" id="btnradioEditDep" autocomplete="off">
+                    <label class="btn btn-outline-secondary makeLabelWhite" for="btnradioEditDep">Update Department</label>
+                  
+                    <input type="radio" class="btn-check" name="deprad" id="btnradioDeleteDep" autocomplete="off">
+                    <label class="btn btn-outline-secondary makeLabelWhite" for="btnradioDeleteDep">Delete Department</label>
+                  </div>
+                </div>
+
+                <div class="col-12 aadDep">
+
+                  <form id="insertDepartment">
+                    <div class="input-group my-3">
+                      <span class="input-group-text">New Department</span>
+                      <input type="text" class="form-control" name="name" pattern="[a-zA-Z0-9\s]+" title="Only letters and numbers" required />
+                    </div>
+                    <div class="input-group mb-3">
+                      <label class="input-group-text">Choose Location</label>
+                      <select class="form-select locations" name="locationID" required></select>
+                    </div>
+                  </form>
+
+                </div>
+
+                <div class="col-12 editDep d-none">
+
+                  <form id="editDepartment">
+                    <div class="input-group my-3">
+                      <label class="input-group-text">Departments</label>
+                      <select class="form-select deparments" name="id"></select>
+                    </div>
+                    <div class="input-group mb-3">
+                      <span class="input-group-text">New Name</span>
+                      <input type="text" class="form-control" name="name" pattern="[a-zA-Z0-9\s]+" title="Only letters and numbers"  required />
+                    </div>
+                    <div class="input-group my-3">
+                      <label class="input-group-text">New Location</label>
+                      <select class="form-select locations" name="locationID" required></select>
+                    </div>
+                  </form>
+                </div>
+
+                <div class="col-12 delDep d-none">
+                  <form id="deleteDepartment">
+                    <div class="input-group my-3">
+                      <label class="input-group-text">Departments</label>
+                      <select class="form-select deparments" name="id" required></select>
+                    </div>
+                  </form>
+                </div>
+
               </div>
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
             </div>
+
+          </div>
+          <div class="modal-footer">
+            
+            <button class="btn btn-success" id="addDepBtn" type="submit" form="insertDepartment" >Add</button>
+            
+            <button class="btn btn-success d-none" id="editDepBtn" type="submit" form="editDepartment">Update</button>
+            
+            <button class="btn btn-danger d-none" id="delDepBtn" type="submit" form="deleteDepartment">Delete</button>
+            
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
+    </div>
 
-      <!--edit existing person modal-->
+    <!--insert new person modal-->
 
-      <div class="modal fade" id="updatePerson" tabindex="-1" aria-labelledby="#updatePersonLabel" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title" id="updatePersonLabel">Change details</h5>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+    <div class="modal fade" id="insertNewPerson" tabindex="-1" aria-labelledby="#insertNewPersonLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="insertNewPersonLabel">Add New Person</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+            <form id="addPerson">
+              <div class="input-group mb-3">
+                <span class="input-group-text">First Name</span>
+                <input type="text" class="form-control" name="firstName" pattern="[a-zA-Z\s]+" title="Only letters" required />
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text">Last Name</span>
+                <input type="text" class="form-control" name="lastName" pattern="[a-zA-Z\s]+" title="Only letters" required />
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text">Job Title</span>
+                <input type="text" class="form-control" name="jobTitle"  placeholder="optional" />
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text">Email</span>
+                <input type="email" class="form-control" name="email" required/>
+              </div>
+              <div class="input-group mb-3">
+                <label class="input-group-text">Departments</label>
+                <select class="form-select deparments" name="departmentID" required></select>
+              </div> 
+            </form>
+
+          </div>
+          <div class="modal-footer">
+            <div class="d-flex">
+              <input class="btn btn-success mx-auto" type="submit" form="addPerson" value="Add" />
             </div>
-            <div class="modal-body">
-
-              <form id="editPerson">
-                <div class="input-group mb-3">
-                  <span class="input-group-text">First Name</span>
-                  <input type="text" class="form-control" name="firstName" pattern="[a-zA-Z\s]+" title="Only letters" required  />
-                </div>
-                <div class="input-group mb-3">
-                  <span class="input-group-text">Last Name</span>
-                  <input type="text" class="form-control" name="lastName" pattern="[a-zA-Z\s]+" title="Only letters" required />
-                </div>
-                <div class="input-group mb-3">
-                  <span class="input-group-text">Job Title</span>
-                  <input type="text" class="form-control" name="jobTitle" pattern="[a-zA-Z\s]+" title="Only letters"  placeholder="optional" />
-                </div>
-                <div class="input-group mb-3">
-                  <span class="input-group-text">Email</span>
-                  <input type="email" class="form-control" name="email" required/>
-                </div>
-                <div class="input-group mb-3">
-                  <label class="input-group-text">Departments</label>
-                  <select class="form-select deparments" name="departmentID" required></select>
-                </div>
-              </form>  
-              
-            </div>
-            <div class="modal-footer">
-              
-              <button type="button" class="btn" data-bs-dismiss="modal"><i class="bi bi-x-circle"></i></button>
-              
-              <button class="btn" type="submit" form="editPerson"><i class="bi bi-check-circle"></i></button>
-
-            </div>
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
           </div>
         </div>
       </div>
+    </div>
+
+    <!--edit existing person modal-->
+
+    <div class="modal fade" id="updatePerson" tabindex="-1" aria-labelledby="#updatePersonLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title" id="updatePersonLabel">Change details</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+          </div>
+          <div class="modal-body">
+
+            <form id="editPerson">
+              <div class="input-group mb-3">
+                <span class="input-group-text">First Name</span>
+                <input type="text" class="form-control" name="firstName" pattern="[a-zA-Z\s]+" title="Only letters" required  />
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text">Last Name</span>
+                <input type="text" class="form-control" name="lastName" pattern="[a-zA-Z\s]+" title="Only letters" required />
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text">Job Title</span>
+                <input type="text" class="form-control" name="jobTitle" pattern="[a-zA-Z\s]+" title="Only letters"  placeholder="optional" />
+              </div>
+              <div class="input-group mb-3">
+                <span class="input-group-text">Email</span>
+                <input type="email" class="form-control" name="email" required/>
+              </div>
+              <div class="input-group mb-3">
+                <label class="input-group-text">Departments</label>
+                <select class="form-select deparments" name="departmentID" required></select>
+              </div>
+            </form>  
+            
+          </div>
+          <div class="modal-footer">
+            
+            <button type="button" class="btn" data-bs-dismiss="modal"><i class="bi bi-x-circle"></i></button>
+            
+            <button class="btn" type="submit" form="editPerson"><i class="bi bi-check-circle"></i></button>
+
+          </div>
+        </div>
+      </div>
+    </div>
 
 
       <!--The preloader data-->
