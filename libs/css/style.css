@@ -138,12 +138,8 @@ table thead th {
     z-index: 1; 
 }
 
-table td>i{
-    margin-right: 10px;
-}
 
-
-/*    modals    */
+/*    modals    */updatePerson insertNewPerson  departmentModal  locationModal
 
 
 
@@ -151,14 +147,25 @@ table td>i{
     background-color: white;
  
 }
-.modal-content .modal-header h5 {
+
+
+.headerForModal {
     width: 100%;
     text-align: center;
-    
 }
 
-.modal-footer i {
-    font-size: 30px;
+
+.modalFooterIcon {
+    font-size: 24px;
+}
+
+
+/*#updatePerson .modal-footer i, #insertNewPerson .modal-footer i, #departmentModal .modal-footer i, #locationModal .modal-footer i {
+    font-size: 24px;
+}*/
+
+.modal-footer button {
+    width: 50px;
 }
 
 /*       modal add person       */
@@ -178,8 +185,9 @@ table td>i{
 
 /*       modal edit departments       */
 
-#departmentModal .modal-content{
-    height: 410px;
+
+#departmentModal .modal-content .modal-body{
+    height: 270px;
 }
 
 
@@ -198,8 +206,8 @@ table td>i{
 
 /*       modal edit locations       */
 
-#locationModal .modal-content{
-    height: 330px;
+#locationModal .modal-content .modal-body{
+    height: 195px;
 }
 
 
@@ -236,7 +244,7 @@ table td>i{
         width: 40%;
     }
 
-    /*main*/
+    /*  tools  */
 
     .formSearchMain {
         margin-top: 20px;
@@ -248,7 +256,6 @@ table td>i{
 
     #toolsDiv .formSearchMain form input {
         width: 60vw;
-        border-radius: 10px;
     }
 
     .styleFilterTitle {
@@ -285,9 +292,9 @@ table td>i{
     }
 
     #reset {
-        width: 70px;
-        height: 35px;
+        width: 60px;
         margin: auto 15px;
+        font-size: 16px;
     }
 
     #dropdownMenuMain {
@@ -299,13 +306,20 @@ table td>i{
 
     /* table */
 
-    #tableDiv {
-        font-size: 11px;
+    #tableDiv{
+        position: absolute;
+        top: 260px;
+        right: 0;
+        left: 0;
+        bottom: 0;
     }
-
 
     table td>i{
         margin-right: 5px;
+    }
+
+    table {
+        font-size: 11px;
     }
 
 }
@@ -328,7 +342,7 @@ table td>i{
         width: 70%;
     }
 
-    /*main*/
+    /* tools */
 
     #toolsDiv {
         
@@ -377,8 +391,8 @@ table td>i{
 
     #reset {
         width: 70px;
-        height: 35px;
         margin: auto 15px;
+        font-size: 18px;
     }
 
     .styleFilterTitle p {
@@ -389,6 +403,29 @@ table td>i{
         font-size: 20px;
         color: white;
         border-radius: 10px;
+    }
+
+
+    /*  table */
+
+    #tableDiv{
+        position: absolute;
+        top: 260px;
+        right: 0;
+        left: 0;
+        bottom: 0;
+    }
+
+    table {
+        font-size: 14px;
+    }
+
+    table td>i{
+        margin-right: 5px;
+    }
+
+    table button i {
+        font-size: 18px;
     }
    
   }
@@ -418,7 +455,7 @@ table td>i{
         border-bottom: none;
     }
 
-    /*main*/
+    /* tools */
 
     #toolsDiv {
 
@@ -446,8 +483,8 @@ table td>i{
 
     #reset {
         width: 70px;
-        height: 35px;
         margin: auto 15px;
+        font-size: 18px;
     }
 
     .styleFilterTitle {
@@ -474,6 +511,18 @@ table td>i{
         right: 0;
         left: 0;
         bottom: 0;
+    }
+
+    table {
+        font-size: 18px;
+    }
+
+    table button i {
+        font-size: 22px;
+    }
+
+    table td>i{
+        margin-right: 8px;
     }
 
   }

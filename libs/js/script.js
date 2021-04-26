@@ -242,6 +242,7 @@ $('#editDepartment').submit(function (e) {
                 console.log(result.status.code);
                 getAllDepartments();
                 $('#editDepartment')[0].reset();
+                $('#editDepartment input').attr("value", "");
             }
         });
 
@@ -294,7 +295,15 @@ $('#deleteLocation select').change(function() {
             
             if (result.data.length !== 0) {
                 $('#deleteLocation')[0].reset();
-                alert("Imposible to delete location with allocated staff within!");
+                bootbox.alert({
+                    message: "This is an alert with a callback!"
+                });
+
+                bootbox.confirm("This is the default confirm!", function(result){ 
+                    console.log('This was logged in the callback: ' + result); 
+                });
+              
+                //alert("Imposible to delete location with allocated staff within!");
                 return false;
             }
         }
@@ -349,6 +358,7 @@ $('#editLocation').submit(function (e) {
             console.log(result.status.code);
             getAllLocations();
             $('#editLocation')[0].reset();
+            $('#editLocation input').attr("value", "");
             }
         });
 
@@ -516,8 +526,8 @@ function getAllStaff() {
             <td><i class="my-auto bi bi-briefcase"></i><div class='d-inline-flex'>${person.department}</div></td>
             <td><i class="my-auto bi bi-building"></i><div class='d-inline-flex'>${person.location}</div></td>
             <td><i class="d-none d-md-inline ms-auto my-auto bi bi-envelope"></i><div class='d-none d-md-inline-flex filterSearch'>${person.email}</div><button type="button" class="btn btn-outline-info btn-sm d-sm-block d-md-none mx-auto copyBtn">Copy</button></td>
-            <td><div class="d-flex"><button type="button" class="btn btn-success updatePer  mx-auto" data-bs-toggle="modal" data-bs-target="#updatePerson"><i class="bi bi-pencil"></i></button>
-            <button type="button" class="btn btn-danger deletePerson  mx-auto"><i class="bi bi-x-circle"></i></button>
+            <td><div class="d-flex"><button type="button" class="btn btn-outline-info updatePer  mx-auto" data-bs-toggle="modal" data-bs-target="#updatePerson"><i class="bi bi-pencil"></i></button>
+            <button type="button" class="btn btn-outline-danger deletePerson mx-auto"><i class="bi bi-x-circle"></i></button>
             <input class="d-none perIdVal" type="number" value=${person.id} /><input class="d-none perIdDep" type="number" value=${person.departmentId} /></div></td></tr>`);
         });
 
