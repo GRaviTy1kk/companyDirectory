@@ -17,11 +17,11 @@
 CREATE DATABASE IF NOT EXISTS `companydirectory` /*!40100 DEFAULT CHARACTER SET utf8 */;
 USE `companydirectory`;
 
--- Dumping structure for table companydirectory.department
+-- Dumping structure for table companydirectory.department 
 CREATE TABLE IF NOT EXISTS `department` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) DEFAULT NULL,
-  `locationID` int(11) DEFAULT NULL,
+  `locationID` int(11) DEFAULT NULL, 
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8;
 

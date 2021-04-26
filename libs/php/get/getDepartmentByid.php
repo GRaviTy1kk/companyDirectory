@@ -1,17 +1,18 @@
 <?php
 
-
 	// example use from browser
-	// http://localhost/companydirectory/libs/php/getDepartmentByID.php?id=2
-	
-	// remove next two lines for production
+	// http://localhost/companydirectory/libs/php/getAll.php
 
+	// remove next two lines for production
+	
 	ini_set('display_errors', 'On');
 	error_reporting(E_ALL);
 
 	$executionStartTime = microtime(true);
 
 	include("../../sql/config.php");
+
+	header('Content-Type: application/json; charset=UTF-8');
 
 	$conn = new mysqli($cd_host, $cd_user, $cd_password, $cd_dbname, $cd_port, $cd_socket);
 
@@ -22,27 +23,19 @@
 		$output['status']['description'] = "database unavailable";
 		$output['status']['returnedIn'] = (microtime(true) - $executionStartTime) / 1000 . " ms";
 		$output['data'] = [];
-		
+
 		mysqli_close($conn);
 
-		echo json_encode($output); 
+		echo json_encode($output);
 
 		exit;
 
-	}	  
+	}	
 
-	// $_REQUEST used for development / debugging. Remember to cange to $_POST for production
 
-	//remove spaces
+	$query = 'SELECT locationID FROM department WHERE id =' . $_POST['id'];
+    
 
-	$_POST['name'] = trim($_POST['name']);
-	$_POST['name'] = preg_replace('# {2,}#', ' ', $_POST['name']);
-	$_POST['name'] = strtolower($_POST['name']);
-	$_POST['name'] = ucfirst($_POST['name']);
-
-    $query = 'UPDATE department SET name = "' . $_POST['name'] . '", locationID = "' . $_POST['locationID'] . '"  WHERE id = ' . $_POST['id'];
-	
-         
 	$result = $conn->query($query);
 	
 	if (!$result) {
@@ -60,14 +53,19 @@
 
 	}
    
+   	$data = [];
+
+	while ($row = mysqli_fetch_assoc($result)) {
+
+		array_push($data, $row);
+
+	}
 
 	$output['status']['code'] = "200";
 	$output['status']['name'] = "ok";
 	$output['status']['description'] = "success";
 	$output['status']['returnedIn'] = (microtime(true) - $executionStartTime) / 1000 . " ms";
-	$output['data'] = [];
-
-	header('Content-Type: application/json; charset=UTF-8');
+	$output['data'] = $data;
 	
 	mysqli_close($conn);
 

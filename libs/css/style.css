@@ -82,6 +82,10 @@
     height: 80px;
 }
 
+a.pageTitle:hover {
+    color:white;
+}
+
 #companynav {
     border-bottom: 20px solid rgb(37, 104, 192);
 }

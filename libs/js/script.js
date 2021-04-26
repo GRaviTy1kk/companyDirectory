@@ -173,39 +173,56 @@ $('#deleteDepartment select').change(function() {
                 alert("Imposible to delete department with allocated staff within!");
                 return false;
             }
-
-            $('#deleteDepartment').submit(function (e) {
-
-                var confirmation = confirm('Do you want to delete selected department?');
-
-                if (confirmation) {
-            
-                    $.ajax({
-                        type: 'post',
-                        url: window.location.href + 'libs/php/delete/deleteDepartmentByID.php',
-                        data: $('#deleteDepartment').serialize(),
-                        success: function (result) {
-                            console.log(result.status.code);
-                            getAllDepartments();
-                            $('#deleteDepartment')[0].reset();
-                        }
-                    });
-                
-                    return false;
-                }
-
-                e.preventDefault();
-                return false;
-
-            });
             
         }
     });
 
 });
 
+$('#deleteDepartment').submit(function (e) {
+
+    var confirmation = confirm('Do you want to delete selected department?');
+
+    if (confirmation) {
+
+        $.ajax({
+            type: 'post',
+            url: window.location.href + 'libs/php/delete/deleteDepartmentByID.php',
+            data: $('#deleteDepartment').serialize(),
+            success: function (result) {
+                console.log(result.status.code);
+                getAllDepartments();
+                $('#deleteDepartment')[0].reset();
+            }
+        });
+    
+        return false;
+    }
+
+    e.preventDefault();
+    return false;
+
+});
+
 
 //update department
+
+$('#editDepartment select.deparments').change(function() {
+
+    $.ajax({
+        type: 'post',
+        url: window.location.href + 'libs/php/get/getDepartmentByid.php',
+        data: {id: $(this).val()},
+        success: function (result) {
+           var locId = result.data[0].locationID;
+           $(`#editDepartment select.locations option[value=${locId}]`).prop('selected', true)
+            
+        }
+    });
+
+    
+});
+
 
 $('#editDepartment').submit(function (e) {
     
@@ -276,33 +293,33 @@ $('#deleteLocation select').change(function() {
                 alert("Imposible to delete location with allocated staff within!");
                 return false;
             }
-
-            $('#deleteLocation').submit(function (e) {
-    
-                var confirmation = confirm('Do you want to delete the selected location?');
-
-                if (confirmation) {
-            
-                    $.ajax({
-                        type: 'post',
-                        url: window.location.href + 'libs/php/delete/deleteLocationbyID.php',
-                        data: $('#deleteLocation').serialize(),
-                        success: function (result) {
-                            console.log(result.status.code);
-                            getAllLocations();
-                            $('#deleteLocation')[0].reset();
-                        }
-                    });
-                
-                    return false;
-                }
-
-                e.preventDefault();
-                return false;
-
-            });
         }
     });
+
+});
+
+$('#deleteLocation').submit(function (e) {
+    
+    var confirmation = confirm('Do you want to delete the selected location?');
+
+    if (confirmation) {
+
+        $.ajax({
+            type: 'post',
+            url: window.location.href + 'libs/php/delete/deleteLocationbyID.php',
+            data: $('#deleteLocation').serialize(),
+            success: function (result) {
+                console.log(result.status.code);
+                getAllLocations();
+                $('#deleteLocation')[0].reset();
+            }
+        });
+    
+        return false;
+    }
+
+    e.preventDefault();
+    return false;
 
 });
 
@@ -422,7 +439,7 @@ $("#reset").on("click", function() {
 //sort table by columns
 
 $('.sortTab').wrapInner('<span title="sort this column"/>').click(function(){
-    var table = $('table').eq(0);
+    var table = $('table');
     var rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()));
     this.asc = !this.asc;
     if (!this.asc){rows = rows.reverse()};
@@ -462,9 +479,9 @@ function searchTable() {
     }); 
 
 
-    if ($('#tableBody').find('tr:visible').length === 0 && $('.hideDataRow').find(':visible').length === 0) { //$('#tableBody').find('tr[colspan=5]:visible').length === 0
+    if ($('#tableBody').find('tr:visible').length === 0 && $('.hideDataRow').is(":hidden")) { 
         $('#tableBody .hideDataRow').removeClass("d-none");
-    }else if ($('#tableBody').find('tr:visible').length === 1 && $('.hideDataRow').find(':visible').length === 1) {
+    }else if ($('#tableBody').find('tr:visible').length === 1 && $('.hideDataRow').is(":visible")) {
         $('#tableBody .hideDataRow').removeClass("d-none");
     }else{
         $('#tableBody .hideDataRow').addClass("d-none");
@@ -518,6 +535,10 @@ function getAllDepartments() {
         });
 
     });
+
+    $('#insertNewPerson select option[value="refreshTable"]').attr("value", "");
+    $('#departmentModal select option[value="refreshTable"]').attr("value", "");
+    $('#locationModal select option[value="refreshTable"]').attr("value", "");
 
 }
 
