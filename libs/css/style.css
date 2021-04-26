@@ -398,6 +398,10 @@ table th {
         width: 200px;
     }
 
+    #companynav {
+        border-bottom: none;
+    }
+
     /*main*/
 
     #mainDiv1 {
