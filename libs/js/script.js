@@ -456,13 +456,16 @@ function searchTable() {
             });
 
         if(found == true)$(row).show();else $(row).hide();
-    };
+
+        };
         
     }); 
 
-    if ($('#tableBody').find(':visible').length === 0) {
-        $('#tableBody .hideDataRow').removeClass("d-none"); 
-        $('#tableBody .hideDataRow').toggle();
+
+    if ($('#tableBody').find('tr:visible').length === 0 && $('.hideDataRow').find(':visible').length === 0) { //$('#tableBody').find('tr[colspan=5]:visible').length === 0
+        $('#tableBody .hideDataRow').removeClass("d-none");
+    }else if ($('#tableBody').find('tr:visible').length === 1 && $('.hideDataRow').find(':visible').length === 1) {
+        $('#tableBody .hideDataRow').removeClass("d-none");
     }else{
         $('#tableBody .hideDataRow').addClass("d-none");
     }
