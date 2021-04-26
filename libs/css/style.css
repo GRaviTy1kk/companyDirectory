@@ -90,34 +90,21 @@ a.pageTitle:hover {
     border-bottom: 20px solid rgb(37, 104, 192);
 }
 
-/*         main        */
+/*         tools section        */
 
-main {
-    position: absolute;
-    top: 80px;
-    bottom: 0;
-    left: 0;
-    right: 0;
+#toolsDiv {
+
     overflow-x: hidden;
-    background-color: rgb(118, 130, 133);
 
-    background-image: url("../../img/mainBack.jpg");
-    background-color: lightblue;
-    background-position: center; 
-    background-repeat: no-repeat; 
-    background-size: cover;
+    background-color: black;
+  
 }
 
-
-table th {
-    cursor: pointer;
-}
-
-#mainDiv1 .selectForTable select   {
+#toolsDiv .selectForTable select   {
     border-radius: 5px;
 }
 
-#mainDiv1 {
+#toolsDiv {
     background-color: black;
     border-bottom: 10px solid rgb(82, 85, 87);
     padding-bottom: 20px !important;
@@ -126,91 +113,91 @@ table th {
 }
 
 
-/*       modal edit person       */
+/*    table      */
 
-#editPerson span {
-    width: 150px;
+table th, tr {
+    cursor: pointer;
 }
 
-#editPerson input {
-    width: 200px;
-    margin-left: 5px;
+table thead th { 
+    position: sticky; 
+    top: 0; 
+    z-index: 1; 
 }
 
-#editPerson input[type="submit"] {
-    width: 100px;
-}
 
 /*    modals    */
 
-.modal-content .btn-group label {
-    color: white;
-    font-weight: 600;
-    text-shadow: 2px 2px 1px #000000;
-}
-
-.divider {
-    display: block;
-    width: 100%;
-    border-bottom: 5px solid white;
-    margin: 15px 0;
-}
 
 
 .modal-content {
-    background-image: url("../../img/modalBack.jpg");
-    background-color: lightgray;
-    background-position: center; 
-    background-repeat: no-repeat; 
-    background-size: cover;
+    background-color: white;
+ 
 }
 .modal-content .modal-header h5 {
     width: 100%;
     text-align: center;
-    color: white;
-    text-shadow: 2px 2px 1px #000000;
+    
+}
+
+.modal-footer i {
+    font-size: 30px;
 }
 
 /*       modal add person       */
 
-#addPerson span {
+ #addPerson span, #addPerson label{
     width: 150px;
 }
 
-#addPerson input {
-    width: 200px;
-    margin-left: 5px;
+
+/*       modal edit person       */
+
+#editPerson span, #editPerson label {
+    width: 150px;
 }
+
+
 
 /*       modal edit departments       */
 
-#insertDepartment input, #editDepartment input, #deleteDepartment input {
-    width: 160px;
-    margin-left: 5px;
+#departmentModal .modal-content{
+    height: 410px;
+}
+
+
+#insertDepartment span, #editDepartment span {
+    width: 150px;
+}
+
+#insertDepartment label, #editDepartment label, #deleteDepartment label {
+    width: 150px;
 }
 
 #insertDepartment input[type="submit"], #editDepartment input[type="submit"], #deleteDepartment input[type="submit"] {
     width: 100px;
 }
 
-#insertDepartment span, #editDepartment span, #deleteDepartment span {
-    width: 150px;
-}
 
 /*       modal edit locations       */
 
-#insertLocation input, #editLocation input, #deleteLocation input {
+#locationModal .modal-content{
+    height: 330px;
+}
+
+
+#editLocation label, #deleteLocation label {
     width: 160px;
-    margin-left: 5px;
+}
+
+#insertLocation span, #editLocation span {
+    width: 160px;
 }
 
 #insertLocation input[type="submit"], #editLocation input[type="submit"], #deleteLocation input[type="submit"] {
     width: 100px;
 }
 
-#insertLocation span, #editLocation span, #deleteLocation span {
-    width: 150px;
-}
 
 /*responsive*/
 
@@ -234,7 +221,7 @@ table th {
 
     /*main*/
     
-    #mainDiv2 {
+    #tableDiv {
         font-size: 11px;
     }
 
@@ -246,7 +233,7 @@ table th {
         margin: 10px;
     }
 
-    #mainDiv1 .formSearchMain form input {
+    #toolsDiv .formSearchMain form input {
         width: 60vw;
         border-radius: 10px;
     }
@@ -280,7 +267,7 @@ table th {
         height: 35px;
     }
 
-    #mainDiv1 div[class*=col-12] {
+    #toolsDiv div[class*=col-12] {
         padding: 0;
     }
 
@@ -318,19 +305,19 @@ table th {
 
     /*main*/
 
-    #mainDiv1 {
-        height: auto;
+    #toolsDiv {
+        
     }
     
     #mainDiv2 {
         font-size: 16px;
     }
 
-    #mainDiv1 form {
+    #toolsDiv form {
         margin-top: 10px;
     }
 
-    #mainDiv1 form input {
+    #toolsDiv form input {
         width: 300px;
     }
 
@@ -343,11 +330,11 @@ table th {
         width: 83%;
     }
 
-    #mainDiv1 .selectForTable div {
+    #toolsDiv .selectForTable div {
         margin: 15px;
     }
     
-    #mainDiv1 .selectForTable select {
+    #toolsDiv .selectForTable select {
         width: 170px;
         
     }
@@ -408,25 +395,39 @@ table th {
 
     /*main*/
 
-    #mainDiv1 {
-        background-color: transparent;
-        height: auto;
+    #toolsDiv {
+    
+        height: 180px;
+
+        background-image: url("../../img/mainBack.jpg");
+        background-color: lightblue;
+        background-position: center; 
+        background-repeat: no-repeat; 
+        background-size: cover;
+    }
+
+    #tableDiv{
+        position: absolute;
+        top: 260px;
+        right: 0;
+        left: 0;
+        bottom: 0;
     }
 
     .formSearchMain{
         margin-top: 10px;
     }
 
-    #mainDiv1 .formSearchMain form input {
+    #toolsDiv .formSearchMain form input {
         width: 300px;
     }
 
 
-    #mainDiv1 .selectForTable div {
+    #toolsDiv .selectForTable div {
         margin: 20px;
     }
     
-    #mainDiv1 .selectForTable select {
+    #toolsDiv .selectForTable select {
         width: 200px;
         
     }

@@ -64,12 +64,14 @@ $('#addPerson').submit(function (e) {
 //update and delete person
 
 $(document).on("click",".updatePer", function(){
-    globalThis.id = $(this).next().val();
-    var perDepId = $(this).next().next().val();
+    
+    var perDepId = $(this).next().next().next().val();
     
     $('#editPerson select').val(perDepId).trigger('change');
 
     var fullName = $($(this).closest("tr").find("td")[0]).children("div").text().split(/(?=[A-Z])/);
+
+    console.log(fullName);
     
     $('#editPerson input[name="firstName"]').attr("value", fullName[0]);
     $('#editPerson input[name="lastName"]').attr("value", fullName[1]);
@@ -78,8 +80,9 @@ $(document).on("click",".updatePer", function(){
 });
 
 
-$('#deletePerson').click(function (e) {
-
+$(document).on("click",".deletePerson", function (e) {   
+    var id = $(this).next().val();
+    console.log(id);
     var confirmation = confirm('Do you want to delete person\' details?');
 
     if (confirmation) {
@@ -90,7 +93,6 @@ $('#deletePerson').click(function (e) {
             data: {id: id},
             success: function (result) {
                 console.log(result.status.code);
-                $('#updatePerson').modal("toggle");
                 getAllStaff();
             }
         });
@@ -502,12 +504,13 @@ function getAllStaff() {
         console.log(result.data[0]);
 
         result.data.forEach(person => {
-            $('#tableBody').append(`<tr><td><div class='d-flex filterSearch'>${person.firstName + " " + person.lastName}<i class="ms-auto my-auto bi bi-file-person"></i></div></td>
-            <td><div class='d-flex'>${person.department}<i class="ms-auto my-auto bi bi-briefcase"></i></div></td>
-            <td><div class='d-flex'>${person.location}<i class="ms-auto my-auto bi bi-building"></i></div></td>
-            <td><div class='d-none d-md-flex filterSearch'>${person.email}<i class="ms-auto my-auto bi bi-envelope"></i></div><button type="button" class="btn btn-outline-info btn-sm d-sm-block d-md-none mx-auto copyBtn">Copy</button></td>
-            <td d-flex><button type="button" class="btn btn-secondary d-block updatePer mx-auto" data-bs-toggle="modal" data-bs-target="#updatePerson">Edit</button>
-            <input class="d-none perIdVal" type="number" value=${person.id} /><input class="d-none perIdDep" type="number" value=${person.departmentId} /></td></tr>`);
+            $('#tableBody').append(`<tr><td><i class="my-auto bi bi-file-person"></i><div class='d-inline-flex filterSearch'>${person.firstName + " " + person.lastName}</div></td>
+            <td><i class="ms-auto my-auto bi bi-briefcase"></i><div class='d-inline-flex'>${person.department}</div></td>
+            <td><i class="ms-auto my-auto bi bi-building"></i><div class='d-inline-flex'>${person.location}</div></td>
+            <td><i class="d-none d-md-inline ms-auto my-auto bi bi-envelope"></i><div class='d-none d-md-inline-flex filterSearch'>${person.email}</div><button type="button" class="btn btn-outline-info btn-sm d-sm-block d-md-none mx-auto copyBtn">Copy</button></td>
+            <td><div class="d-flex"><button type="button" class="btn btn-success updatePer  mx-auto" data-bs-toggle="modal" data-bs-target="#updatePerson"><i class="bi bi-pencil"></i></button>
+            <button type="button" class="btn btn-danger deletePerson  mx-auto"><i class="bi bi-x-circle"></i></button>
+            <input class="d-none perIdVal" type="number" value=${person.id} /><input class="d-none perIdDep" type="number" value=${person.departmentId} /></div></td></tr>`);
         });
 
         $('#tableBody').append("<tr class='hideDataRow d-none'><td class='text-center' colspan=5>No Results</td></tr>");
