@@ -2,7 +2,7 @@ $(window).on('load', function() {
 
   //preloader
   if ($('#preloader').length) {
-    $('#preloader').delay(100).fadeOut('slow', function () {
+    $('#preloader').delay(1000).fadeOut('slow', function () {
         $(this).remove();
     });
   }
@@ -124,6 +124,10 @@ function functionality() {
         $('table').removeClass("table-sm");
       }
   });
+
+  //back to top button
+
+  
 
   
 }

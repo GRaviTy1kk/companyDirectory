@@ -38,25 +38,40 @@ $(document).on("click",".copyBtn", function(){
 
 $('#addPerson').submit(function (e) {
     
-    var confirmation = confirm('Do you want to add a new person?');
-
-    if (confirmation) {
-
-        $.ajax({
-            type: 'post',
-            url: window.location.href + 'libs/php/insert/insertPerson.php',
-            data: $('#addPerson').serialize(),
-            success: function (result) {
-                console.log(result.status.code);
-                $('#insertNewPerson').modal("toggle");
-                getAllStaff();
-                $('#addPerson')[0].reset();
-            }
-        });
-
-        return false;
-    }
     e.preventDefault();
+
+    bootbox.confirm({
+        title: "Add Personeel",
+        message: "<strong>Do you want to add a new person?</strong>",
+        buttons: {
+            confirm: {
+                label: 'Yes',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-danger'
+            }
+    },
+        callback: function (result) {
+            
+            if (result) {
+
+                $.ajax({
+                    type: 'post',
+                    url: window.location.href + 'libs/php/insert/insertPerson.php',
+                    data: $('#addPerson').serialize(),
+                    success: function (result) {
+                        console.log(result.status.code);
+                        $('#insertNewPerson').modal("toggle");
+                        getAllStaff();
+                        $('#addPerson')[0].reset();
+                    }
+                });
+            }     
+        }
+    });
+
     return false;
     
 });
@@ -66,6 +81,8 @@ $('#addPerson').submit(function (e) {
 $(document).on("click",".updatePer", function(){
     
     var perDepId = $(this).next().next().next().val();
+
+    globalThis.personIdtoUpdate = $(this).next().next().val();
     
     $('#editPerson select').val(perDepId).trigger('change');
 
@@ -81,54 +98,83 @@ $(document).on("click",".updatePer", function(){
 
 
 $(document).on("click",".deletePerson", function (e) {   
-    var id = $(this).next().val();
-    console.log(id);
-    var confirmation = confirm('Do you want to delete person\' details?');
-
-    if (confirmation) {
-        
-        $.ajax({
-            type: 'post',
-            url: window.location.href + 'libs/php/delete/deletePerson.php',
-            data: {id: id},
-            success: function (result) {
-                console.log(result.status.code);
-                getAllStaff();
-            }
-        });
-
-        return false;
-    }
 
     e.preventDefault();
+
+    var personIdtoDelete = $(this).next().val();
+
+    bootbox.confirm({
+        title: "Delete Personeel",
+        message: "<strong>Do you want to delete person\' details?</strong>",
+        buttons: {
+            confirm: {
+                label: 'Yes',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-danger'
+            }
+    },
+        callback: function (result) {
+            
+            if (result) {
+        
+                $.ajax({
+                    type: 'post',
+                    url: window.location.href + 'libs/php/delete/deletePerson.php',
+                    data: {id: personIdtoDelete},
+                    success: function (result) {
+                        console.log(result.status.code);
+                        getAllStaff();
+                    }
+                });
+            }            
+        }
+    });
+
     return false;
 
 });
 
-$('#editPerson').submit(async function (e) {
-
-    var confirmation = await confirm('Do you want to update details?');
-
-    if (confirmation) {
-    
-        e.preventDefault();
-        console.log($('#editPerson').serialize() + "&id=" + id);
-        $.ajax({
-            type: 'post',
-            url: window.location.href + 'libs/php/update/updatePerson.php',
-            data: $('#editPerson').serialize() + "&id=" + id,
-            success: function (result) {
-                console.log(result.status.code);
-                $('#updatePerson').modal("toggle");
-                $('#editPerson')[0].reset();
-                getAllStaff();
-            }
-        });
-
-        return false;
-    }
+$('#editPerson').submit(function (e) {
 
     e.preventDefault();
+    
+    bootbox.confirm({
+        title: "Change staff details",
+        message: "<strong>Do you want to update the staff details?</strong>",
+        buttons: {
+            confirm: {
+                label: 'Yes',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-danger'
+            }
+    },
+        callback: function (result) {
+            
+            if (result) {
+    
+                e.preventDefault();
+            
+                $.ajax({
+                    type: 'post',
+                    url: window.location.href + 'libs/php/update/updatePerson.php',
+                    data: $('#editPerson').serialize() + "&id=" + personIdtoUpdate,
+                    success: function (result) {
+                        console.log(result.status.code);
+                        $('#updatePerson').modal("toggle");
+                        $('#editPerson')[0].reset();
+                        getAllStaff();
+                    }
+                });
+            }    
+        }
+    });
+
     return false;
 
 });
@@ -138,25 +184,39 @@ $('#editPerson').submit(async function (e) {
 
 $('#insertDepartment').submit(function (e) {
 
-    var confirmation = confirm('Do you want to add a new department?');
-
-    if (confirmation) {
-    
-        $.ajax({
-            type: 'post',
-            url: window.location.href + 'libs/php/insert/insertDepartment.php',
-            data: $('#insertDepartment').serialize(),
-            success: function (result) {
-                console.log(result.status.code);
-                getAllDepartments();
-                $('#insertDepartment')[0].reset();
-            }
-        });
-
-        return false;
-    }
-
     e.preventDefault();
+
+    bootbox.confirm({
+        title: "New Department",
+        message: "<strong>Do you want to add a new department?</strong>",
+        buttons: {
+            confirm: {
+                label: 'Yes',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-danger'
+            }
+    },
+        callback: function (result) {
+            
+            if (result) {
+    
+                $.ajax({
+                    type: 'post',
+                    url: window.location.href + 'libs/php/insert/insertDepartment.php',
+                    data: $('#insertDepartment').serialize(),
+                    success: function (result) {
+                        console.log(result.status.code);
+                        getAllDepartments();
+                        $('#insertDepartment')[0].reset();
+                    }
+                });
+           }    
+        }
+    });
+
     return false;
 
 });
@@ -174,7 +234,7 @@ $('#deleteDepartment select').change(function() {
                 $('#deleteDepartment')[0].reset();
 
                 bootbox.alert({
-                    message: "Imposible to delete department with allocated staff within!",
+                    message: "<strong>Imposible to delete department with allocated staff within!<strong>",
                     closeButton: false,
                     backdrop: true
                 });
@@ -189,25 +249,39 @@ $('#deleteDepartment select').change(function() {
 
 $('#deleteDepartment').submit(function (e) {
 
-    var confirmation = confirm('Do you want to delete selected department?');
-
-    if (confirmation) {
-
-        $.ajax({
-            type: 'post',
-            url: window.location.href + 'libs/php/delete/deleteDepartmentByID.php',
-            data: $('#deleteDepartment').serialize(),
-            success: function (result) {
-                console.log(result.status.code);
-                getAllDepartments();
-                $('#deleteDepartment')[0].reset();
-            }
-        });
-    
-        return false;
-    }
-
     e.preventDefault();
+
+    bootbox.confirm({
+        title: "Delete Department",
+        message: "<strong>Do you want to delete selected department?</strong>",
+        buttons: {
+            confirm: {
+                label: 'Yes',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-danger'
+            }
+    },
+        callback: function (result) {
+            
+            if (result) {
+
+                $.ajax({
+                    type: 'post',
+                    url: window.location.href + 'libs/php/delete/deleteDepartmentByID.php',
+                    data: $('#deleteDepartment').serialize(),
+                    success: function (result) {
+                        console.log(result.status.code);
+                        getAllDepartments();
+                        $('#deleteDepartment')[0].reset();
+                    }
+                });
+            }      
+        }
+    });
+
     return false;
 
 });
@@ -235,27 +309,41 @@ $('#editDepartment select.deparments').change(function() {
 
 
 $('#editDepartment').submit(function (e) {
-    
-    var confirmation = confirm('Do you want to update the department name?');
-
-    if (confirmation) {
-
-        $.ajax({
-            type: 'post',
-            url: window.location.href + 'libs/php/update/updateDepartment.php',
-            data: $('#editDepartment').serialize(),
-            success: function (result) {
-                console.log(result.status.code);
-                getAllDepartments();
-                $('#editDepartment')[0].reset();
-                $('#editDepartment input').attr("value", "");
-            }
-        });
-
-        return false;
-    }
 
     e.preventDefault();
+
+    bootbox.confirm({
+        title: "Department Change",
+        message: "<strong>Do you want to update the department name?</strong>",
+        buttons: {
+            confirm: {
+                label: 'Yes',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-danger'
+            }
+        },
+        callback: function (result) {
+            
+            if (result) {
+
+                $.ajax({
+                    type: 'post',
+                    url: window.location.href + 'libs/php/update/updateDepartment.php',
+                    data: $('#editDepartment').serialize(),
+                    success: function (result) {
+                        console.log(result.status.code);
+                        getAllDepartments();
+                        $('#editDepartment')[0].reset();
+                        $('#editDepartment input').attr("value", "");
+                    }
+                });
+            }     
+        }
+    });
+
     return false;
 
 });
@@ -265,26 +353,42 @@ $('#editDepartment').submit(function (e) {
 //insert location
 
 $('#insertLocation').submit(function (e) {
-    
-    var confirmation = confirm('Do you want to add a new location?');
-
-    if (confirmation) {
-
-        $.ajax({
-            type: 'post',
-            url: window.location.href + 'libs/php/insert/insertLocation.php',
-            data: $('#insertLocation').serialize(),
-            success: function (result) {
-            console.log(result.status.code);
-            getAllLocations();
-            $('#insertLocation')[0].reset();
-            }
-        });
-
-        return false;
-    }
 
     e.preventDefault();
+    
+    bootbox.confirm({
+        title: "New Location",
+        message: "<strong>Do you want to add a new location?</strong>",
+        buttons: {
+            confirm: {
+                label: 'Yes',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-danger'
+            }
+        },
+        callback: function (result) {
+            
+            if (result) {
+
+                $.ajax({
+                    type: 'post',
+                    url: window.location.href + 'libs/php/insert/insertLocation.php',
+                    data: $('#insertLocation').serialize(),
+                    success: function (result) {
+                    console.log(result.status.code);
+                    getAllLocations();
+                    $('#insertLocation')[0].reset();
+                    }
+                });
+        
+            }
+            
+        }
+    });
+
     return false;
 
 });
@@ -303,7 +407,7 @@ $('#deleteLocation select').change(function() {
                 $('#deleteLocation')[0].reset();
 
                 bootbox.alert({
-                    message: "Imposible to delete location with allocated staff within!",
+                    message: "<strong>Imposible to delete location with allocated staff within!</strong>",
                     closeButton: false,
                     backdrop: true
                 });
@@ -317,25 +421,40 @@ $('#deleteLocation select').change(function() {
 
 $('#deleteLocation').submit(function (e) {
     
-    var confirmation = confirm('Do you want to delete the selected location?');
-
-    if (confirmation) {
-
-        $.ajax({
-            type: 'post',
-            url: window.location.href + 'libs/php/delete/deleteLocationbyID.php',
-            data: $('#deleteLocation').serialize(),
-            success: function (result) {
-                console.log(result.status.code);
-                getAllLocations();
-                $('#deleteLocation')[0].reset();
-            }
-        });
-    
-        return false;
-    }
-
     e.preventDefault();
+
+    bootbox.confirm({
+        title: "Delete Location",
+        message: "<strong>Do you want to delete the selected location?</strong>",
+        buttons: {
+            confirm: {
+                label: 'Yes',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-danger'
+            }
+        },
+        callback: function (result) {
+
+            if (result) {
+
+                $.ajax({
+                    type: 'post',
+                    url: window.location.href + 'libs/php/delete/deleteLocationbyID.php',
+                    data: $('#deleteLocation').serialize(),
+                    success: function (result) {
+                        console.log(result.status.code);
+                        getAllLocations();
+                        $('#deleteLocation')[0].reset();
+                    }
+                });
+        
+            }       
+        }
+    });
+
     return false;
 
 });
@@ -356,11 +475,13 @@ $('#editLocation').submit(function (e) {
         title: "Change Location Name",
         message: "Do you want to change the location name?",
         buttons: {
-            cancel: {
-                label: '<i class="fa fa-times"></i> Cancel'
-            },
             confirm: {
-                label: '<i class="fa fa-check"></i> Confirm'
+                label: 'Yes',
+                className: 'btn-success'
+            },
+            cancel: {
+                label: 'No',
+                className: 'btn-danger'
             }
         },
         callback: function (result) {
@@ -605,5 +726,3 @@ function getAllLocations() {
     $('#locationModal select option[value="refreshTable"]').attr("value", ""); 
 
 }
-
-
