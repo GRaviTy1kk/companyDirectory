@@ -62,7 +62,6 @@ $('#addPerson').submit(function (e) {
                     url: window.location.href + 'libs/php/insert/insertPerson.php',
                     data: $('#addPerson').serialize(),
                     success: function (result) {
-                        console.log(result.status.code);
                         $('#insertNewPerson').modal("toggle");
                         getAllStaff();
                         $('#addPerson')[0].reset();
@@ -87,8 +86,6 @@ $(document).on("click",".updatePer", function(){
     $('#editPerson select').val(perDepId).trigger('change');
 
     var fullName = $($(this).closest("tr").find("td")[0]).children("div").text().split(/(?=[A-Z])/);
-
-    console.log(fullName);
     
     $('#editPerson input[name="firstName"]').attr("value", fullName[0]);
     $('#editPerson input[name="lastName"]').attr("value", fullName[1]);
@@ -125,7 +122,6 @@ $(document).on("click",".deletePerson", function (e) {
                     url: window.location.href + 'libs/php/delete/deletePerson.php',
                     data: {id: personIdtoDelete},
                     success: function (result) {
-                        console.log(result.status.code);
                         getAllStaff();
                     }
                 });
@@ -165,7 +161,7 @@ $('#editPerson').submit(function (e) {
                     url: window.location.href + 'libs/php/update/updatePerson.php',
                     data: $('#editPerson').serialize() + "&id=" + personIdtoUpdate,
                     success: function (result) {
-                        console.log(result.status.code);
+                       
                         $('#updatePerson').modal("toggle");
                         $('#editPerson')[0].reset();
                         getAllStaff();
@@ -208,7 +204,7 @@ $('#insertDepartment').submit(function (e) {
                     url: window.location.href + 'libs/php/insert/insertDepartment.php',
                     data: $('#insertDepartment').serialize(),
                     success: function (result) {
-                        console.log(result.status.code);
+                        
                         getAllDepartments();
                         $('#insertDepartment')[0].reset();
                     }
@@ -273,7 +269,7 @@ $('#deleteDepartment').submit(function (e) {
                     url: window.location.href + 'libs/php/delete/deleteDepartmentByID.php',
                     data: $('#deleteDepartment').serialize(),
                     success: function (result) {
-                        console.log(result.status.code);
+                      
                         getAllDepartments();
                         $('#deleteDepartment')[0].reset();
                     }
@@ -334,7 +330,7 @@ $('#editDepartment').submit(function (e) {
                     url: window.location.href + 'libs/php/update/updateDepartment.php',
                     data: $('#editDepartment').serialize(),
                     success: function (result) {
-                        console.log(result.status.code);
+                        
                         getAllDepartments();
                         $('#editDepartment')[0].reset();
                         $('#editDepartment input').attr("value", "");
@@ -378,7 +374,7 @@ $('#insertLocation').submit(function (e) {
                     url: window.location.href + 'libs/php/insert/insertLocation.php',
                     data: $('#insertLocation').serialize(),
                     success: function (result) {
-                    console.log(result.status.code);
+                    
                     getAllLocations();
                     $('#insertLocation')[0].reset();
                     }
@@ -445,7 +441,7 @@ $('#deleteLocation').submit(function (e) {
                     url: window.location.href + 'libs/php/delete/deleteLocationbyID.php',
                     data: $('#deleteLocation').serialize(),
                     success: function (result) {
-                        console.log(result.status.code);
+                        
                         getAllLocations();
                         $('#deleteLocation')[0].reset();
                     }
@@ -462,7 +458,7 @@ $('#deleteLocation').submit(function (e) {
 //update location
 
 $('#editLocation select').change(function() {
-    console.log($( "#editLocation select option:selected" ).text());
+    
     var location = $( "#editLocation select option:selected" ).text();
     $('#editLocation input').attr("value", location);
 });
@@ -493,7 +489,7 @@ $('#editLocation').submit(function (e) {
                     url: window.location.href + 'libs/php/update/updateLocation.php',
                     data: $('#editLocation').serialize(),
                     success: function (result) {
-                    console.log(result.status.code);
+                  
                     getAllLocations();
                     $('#editLocation')[0].reset();
                     $('#editLocation input').attr("value", "");
@@ -659,7 +655,7 @@ function getAllStaff() {
     $('#tableBody').text("");
 
     $.get("libs//php/get/getAll.php",   function(result) {
-        console.log(result.data[0]);
+      
 
         result.data.forEach(person => {
             $('#tableBody').append(`<tr><td><i class="my-auto bi bi-file-person"></i><div class='d-inline-flex filterSearch'>${person.firstName + " " + person.lastName}</div></td>
@@ -689,7 +685,6 @@ function getAllDepartments() {
     $('.deparments').text("");
     $('.deparments').append(`<option value="refreshTable" selected>All Departments</option>`);
     $.get("libs//php/get/getAllDepartments.php",  function(result) {
-        console.log(result.data);
 
         result.data.forEach(dep => {
             $('.deparments').append(`<option value=${dep.id}>${dep.name}</option>`);
@@ -713,7 +708,6 @@ function getAllLocations() {
     $('.locations').append(`<option value="refreshTable" selected>All Locations</option>`);
 
     $.get("libs//php/get/getAllLocations.php",  function(result) {
-        console.log(result.data);
 
         result.data.forEach(loc => {
             $('.locations').append(`<option value=${loc.id}>${loc.name}</option>`);

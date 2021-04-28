@@ -92,10 +92,11 @@ body {
     background-size: cover;
 }
 
+
 #scrollBack {
     position: fixed;
     bottom: 30px;
-    right: 40px;
+    left: 40px;
     display: none;
     z-index: 100;
 }
