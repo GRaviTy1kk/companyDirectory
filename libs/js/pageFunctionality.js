@@ -125,9 +125,33 @@ function functionality() {
       }
   });
 
+  //table scroll
+
+  var $th = $('#tableDiv').find('thead th')
+  $('#tableDiv').on('scroll', function() {
+    if ($(this).scrollTop()) {
+      $th.css('transform', 'translateY('+ -5 +'px)');
+  } else {
+      $th.css('transform', 'translateY('+ 0 +'px)');
+  }
+  });
+
+
   //back to top button
 
-  
+  $('#tableDiv').scroll(function() {
+    var height = $('#tableDiv').scrollTop();
+    if (height > 100) {
+        $('#scrollBack').fadeIn();
+    } else {
+        $('#scrollBack').fadeOut();
+    }
+  });
 
-  
+  $("#scrollBack").click(function(event) {
+        $('#tableDiv').animate({ scrollTop: 0 }, "slow");
+  });
+
+
+ 
 }

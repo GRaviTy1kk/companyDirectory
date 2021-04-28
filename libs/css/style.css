@@ -79,13 +79,25 @@
 
 body {
 
-    height: 100vh;
-
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    
     background-image: url("../../img/mainBack.jpg");
     background-color: lightblue;
     background-position: center; 
-    background-repeat: no-repeat; 
+    background-repeat: repeat; 
     background-size: cover;
+}
+
+#scrollBack {
+    position: fixed;
+    bottom: 30px;
+    right: 40px;
+    display: none;
+    z-index: 100;
 }
 
 
@@ -134,9 +146,10 @@ table th, tr {
 }
 
 table thead th { 
+    
     position: sticky; 
     top: 0; 
-    z-index: 1; 
+    z-index: 1;
 }
 
 
@@ -501,10 +514,20 @@ table thead th {
         bottom: 0;
     }
 
+
+    /**/
+
+    
+
+    /**/
+
+
     table {
+       
         font-size: 18px;
     }
 
+ 
     table button i {
         font-size: 22px;
     }

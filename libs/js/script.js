@@ -41,7 +41,7 @@ $('#addPerson').submit(function (e) {
     e.preventDefault();
 
     bootbox.confirm({
-        title: "Add Personeel",
+        title: "Action Required",
         message: "<strong>Do you want to add a new person?</strong>",
         buttons: {
             confirm: {
@@ -104,8 +104,8 @@ $(document).on("click",".deletePerson", function (e) {
     var personIdtoDelete = $(this).next().val();
 
     bootbox.confirm({
-        title: "Delete Personeel",
-        message: "<strong>Do you want to delete person\' details?</strong>",
+        title: "Action Required",
+        message: "<strong>Do you want to delete person\'s details?</strong>",
         buttons: {
             confirm: {
                 label: 'Yes',
@@ -142,7 +142,7 @@ $('#editPerson').submit(function (e) {
     e.preventDefault();
     
     bootbox.confirm({
-        title: "Change staff details",
+        title: "Action Required",
         message: "<strong>Do you want to update the staff details?</strong>",
         buttons: {
             confirm: {
@@ -187,7 +187,7 @@ $('#insertDepartment').submit(function (e) {
     e.preventDefault();
 
     bootbox.confirm({
-        title: "New Department",
+        title: "Action Required",
         message: "<strong>Do you want to add a new department?</strong>",
         buttons: {
             confirm: {
@@ -234,8 +234,8 @@ $('#deleteDepartment select').change(function() {
                 $('#deleteDepartment')[0].reset();
 
                 bootbox.alert({
+                    title: "Attention",
                     message: "<strong>Imposible to delete department with allocated staff within!<strong>",
-                    closeButton: false,
                     backdrop: true
                 });
 
@@ -252,7 +252,7 @@ $('#deleteDepartment').submit(function (e) {
     e.preventDefault();
 
     bootbox.confirm({
-        title: "Delete Department",
+        title: "Action Required",
         message: "<strong>Do you want to delete selected department?</strong>",
         buttons: {
             confirm: {
@@ -313,7 +313,7 @@ $('#editDepartment').submit(function (e) {
     e.preventDefault();
 
     bootbox.confirm({
-        title: "Department Change",
+        title: "Action Required",
         message: "<strong>Do you want to update the department name?</strong>",
         buttons: {
             confirm: {
@@ -357,7 +357,7 @@ $('#insertLocation').submit(function (e) {
     e.preventDefault();
     
     bootbox.confirm({
-        title: "New Location",
+        title: "Action Required",
         message: "<strong>Do you want to add a new location?</strong>",
         buttons: {
             confirm: {
@@ -407,8 +407,8 @@ $('#deleteLocation select').change(function() {
                 $('#deleteLocation')[0].reset();
 
                 bootbox.alert({
+                    title: "Attention",
                     message: "<strong>Imposible to delete location with allocated staff within!</strong>",
-                    closeButton: false,
                     backdrop: true
                 });
 
@@ -424,7 +424,7 @@ $('#deleteLocation').submit(function (e) {
     e.preventDefault();
 
     bootbox.confirm({
-        title: "Delete Location",
+        title: "Action Required",
         message: "<strong>Do you want to delete the selected location?</strong>",
         buttons: {
             confirm: {
@@ -472,7 +472,7 @@ $('#editLocation').submit(function (e) {
     e.preventDefault();
 
     bootbox.confirm({
-        title: "Change Location Name",
+        title: "Action Required",
         message: "Do you want to change the location name?",
         buttons: {
             confirm: {
