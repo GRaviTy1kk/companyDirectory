@@ -130,7 +130,7 @@ function functionality() {
   var $th = $('#tableDiv').find('thead th')
   $('#tableDiv').on('scroll', function() {
     if ($(this).scrollTop()) {
-      $th.css('transform', 'translateY('+ -5 +'px)');
+      $th.css('transform', 'translateY('+ -1 +'px)');
   } else {
       $th.css('transform', 'translateY('+ 0 +'px)');
   }
