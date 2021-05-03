@@ -657,9 +657,9 @@ function getAllStaff() {
       
 
         result.data.forEach(person => {
-            $('#tableBody').append(`<tr><td><i class="my-auto bi bi-file-person w-25"></i><div class='d-inline-flex w-75 overflow-hidden filterSearch'>${person.firstName + " " + person.lastName}</div></td>
-            <td><i class="my-auto bi bi-briefcase w-25"></i><div class='d-inline-flex w-75 text-nowrap overflow-hidden'>${person.department}</div></td>
-            <td><i class="my-auto bi bi-building"></i><div class='d-inline-flex'>${person.location}</div></td>
+            $('#tableBody').append(`<tr><td><i class="my-auto bi bi-file-person"></i><div class='d-inline-flex w-75 overflow-hidden filterSearch'>${person.firstName + " " + person.lastName}</div></td>
+            <td><i class="my-auto bi bi-briefcase"></i><div class='d-inline-flex w-75 overflow-hidden'>${person.department}</div></td>
+            <td><i class="my-auto bi bi-building"></i><div class='d-inline-flex w-75'>${person.location}</div></td>
             <td><i class="d-none d-md-inline ms-auto my-auto bi bi-envelope"></i><div class='d-none d-md-inline-flex filterSearch'>${person.email}</div><button type="button" class="btn btn-outline-info btn-sm d-sm-block d-md-none mx-auto copyBtn">Copy</button></td>
             <td><div class="d-flex"><button type="button" class="btn btn-outline-info updatePer  mx-auto" data-bs-toggle="modal" data-bs-target="#updatePerson"><i class="bi bi-pencil"></i></button>
             <button type="button" class="btn btn-outline-danger deletePerson mx-auto"><i class="bi bi-x-circle"></i></button>
