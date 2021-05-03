@@ -224,7 +224,7 @@ $('#deleteDepartment select').change(function() {
     $.ajax({
         type: 'post',
         url: window.location.href + 'libs/php/get/getAllbyDepID.php',
-        data: {departmentID: $(this).val()},
+        data: {departmentID: $(this).val(), p_code: 2},
         success: function (result) {
             if (result.data.length !== 0) {
                 $('#deleteDepartment')[0].reset();
@@ -396,9 +396,9 @@ $('#deleteLocation select').change(function() {
     $.ajax({
         type: 'post',
         url: window.location.href + 'libs/php/get/getAllByLocID.php',
-        data: {locationID: $(this).val()},
+        data: {locationID: $(this).val(), p_code: 2},
         success: function (result) {
-            
+           
             if (result.data.length !== 0) {
                 $('#deleteLocation')[0].reset();
 
@@ -512,13 +512,13 @@ $('#selectDepartmens').change(function(){
    
     $('#tableBody').text("");
 
-    if ($(this).val() == "refreshTable") {
+    $.post(window.location.href +"libs/php/get/getAllbyDepID.php", 
+    {
+        departmentID: $(this).val(), 
+        locationID: $('#selectLocation option:selected').val(),
+        p_code: 1
 
-        getAllStaff();
-        return;
-    }
-
-    $.post(window.location.href +"libs/php/get/getAllbyDepID.php", {departmentID: $(this).val()},  function(result) {
+    }, function(result) {
   
         result.data.forEach(person => {
             $('#tableBody').append(`<tr><td><i class="my-auto bi bi-file-person"></i><div class='d-inline-flex filterSearch'>${person.firstName + " " + person.lastName}</div></td>
@@ -547,33 +547,32 @@ $('#selectDepartmens').change(function(){
 $('#selectLocation').change(function(){ 
     
     $('#tableBody').text("");
-
-    if ($(this).val() == "refreshTable") {
-
-        getAllStaff();
-        return;
-    }
     
-    $.post( window.location.href + "libs/php/get/getAllByLocID.php", {locationID: $(this).val()},  function(result) {
-  
-        result.data.forEach(person => {
-            $('#tableBody').append(`<tr><td><i class="my-auto bi bi-file-person"></i><div class='d-inline-flex filterSearch'>${person.firstName + " " + person.lastName}</div></td>
-            <td><i class="my-auto bi bi-briefcase"></i><div class='d-inline-flex'>${person.department}</div></td>
-            <td><i class="my-auto bi bi-building"></i><div class='d-inline-flex'>${person.location}</div></td>
-            <td><i class="d-none d-md-inline ms-auto my-auto bi bi-envelope"></i><div class='d-none d-md-inline-flex filterSearch'>${person.email}</div><button type="button" class="btn btn-outline-info btn-sm d-sm-block d-md-none mx-auto copyBtn">Copy</button></td>
-            <td><div class="d-flex"><button type="button" class="btn btn-outline-info updatePer  mx-auto" data-bs-toggle="modal" data-bs-target="#updatePerson"><i class="bi bi-pencil"></i></button>
-            <button type="button" class="btn btn-outline-danger deletePerson mx-auto"><i class="bi bi-x-circle"></i></button>
-            <input class="d-none perIdVal" type="number" value=${person.id} /><input class="d-none perIdDep" type="number" value=${person.departmentId} /></div></td></tr>`);
-        });
+    $.post( window.location.href + "libs/php/get/getAllByLocID.php", 
+        {
+            locationID: $(this).val(), 
+            name: $("#selectDepartmens option:selected").text(),
+            departmentID: $("#selectDepartmens option:selected").val(),
+            p_code: 1
+        }, function(result) {
 
-        $('#tableBody').append("<tr class='hideDataRow d-none'><td class='text-center' colspan=5>No Results</td></tr>");
+                result.data.forEach(person => {
+                    $('#tableBody').append(`<tr><td><i class="my-auto bi bi-file-person"></i><div class='d-inline-flex filterSearch'>${person.firstName + " " + person.lastName}</div></td>
+                    <td><i class="my-auto bi bi-briefcase"></i><div class='d-inline-flex'>${person.department}</div></td>
+                    <td><i class="my-auto bi bi-building"></i><div class='d-inline-flex'>${person.location}</div></td>
+                    <td><i class="d-none d-md-inline ms-auto my-auto bi bi-envelope"></i><div class='d-none d-md-inline-flex filterSearch'>${person.email}</div><button type="button" class="btn btn-outline-info btn-sm d-sm-block d-md-none mx-auto copyBtn">Copy</button></td>
+                    <td><div class="d-flex"><button type="button" class="btn btn-outline-info updatePer  mx-auto" data-bs-toggle="modal" data-bs-target="#updatePerson"><i class="bi bi-pencil"></i></button>
+                    <button type="button" class="btn btn-outline-danger deletePerson mx-auto"><i class="bi bi-x-circle"></i></button>
+                    <input class="d-none perIdVal" type="number" value=${person.id} /><input class="d-none perIdDep" type="number" value=${person.departmentId} /></div></td></tr>`);
+                });
 
-        if (result.data.length == 0 ) {
-            $('#tableBody .hideDataRow').removeClass("d-none");
-        } else {
-            $('#tableBody .hideDataRow').addClass("d-none");
-        }
-          
+                $('#tableBody').append("<tr class='hideDataRow d-none'><td class='text-center' colspan=5>No Results</td></tr>");
+
+                if (result.data.length == 0 ) {
+                    $('#tableBody .hideDataRow').removeClass("d-none");
+                } else {
+                    $('#tableBody .hideDataRow').addClass("d-none");
+                }    
     });
 
 });
@@ -658,8 +657,8 @@ function getAllStaff() {
       
 
         result.data.forEach(person => {
-            $('#tableBody').append(`<tr><td><i class="my-auto bi bi-file-person"></i><div class='d-inline-flex filterSearch'>${person.firstName + " " + person.lastName}</div></td>
-            <td><i class="my-auto bi bi-briefcase"></i><div class='d-inline-flex'>${person.department}</div></td>
+            $('#tableBody').append(`<tr><td><i class="my-auto bi bi-file-person w-25"></i><div class='d-inline-flex w-75 overflow-hidden filterSearch'>${person.firstName + " " + person.lastName}</div></td>
+            <td><i class="my-auto bi bi-briefcase w-25"></i><div class='d-inline-flex w-75 text-nowrap overflow-hidden'>${person.department}</div></td>
             <td><i class="my-auto bi bi-building"></i><div class='d-inline-flex'>${person.location}</div></td>
             <td><i class="d-none d-md-inline ms-auto my-auto bi bi-envelope"></i><div class='d-none d-md-inline-flex filterSearch'>${person.email}</div><button type="button" class="btn btn-outline-info btn-sm d-sm-block d-md-none mx-auto copyBtn">Copy</button></td>
             <td><div class="d-flex"><button type="button" class="btn btn-outline-info updatePer  mx-auto" data-bs-toggle="modal" data-bs-target="#updatePerson"><i class="bi bi-pencil"></i></button>
@@ -683,7 +682,7 @@ function getAllStaff() {
 function getAllDepartments() {
 
     $('.deparments').text("");
-    $('.deparments').append(`<option value="refreshTable" selected>All Departments</option>`);
+    $('.deparments').append(`<option value="getAll" selected>All Departments</option>`);
     $.get("libs//php/get/getAllDepartments.php",  function(result) {
 
         result.data.forEach(dep => {
@@ -692,9 +691,9 @@ function getAllDepartments() {
 
     });
 
-    $('#insertNewPerson select option[value="refreshTable"]').attr("value", "");
-    $('#departmentModal select option[value="refreshTable"]').attr("value", "");
-    $('#locationModal select option[value="refreshTable"]').attr("value", "");
+    $('#insertNewPerson select option[value="getAll"]').attr("value", "");
+    $('#departmentModal select option[value="getAll"]').attr("value", "");
+    $('#locationModal select option[value="getAll"]').attr("value", "");
 
 }
 
@@ -705,7 +704,7 @@ function getAllDepartments() {
 function getAllLocations() {
 
     $('.locations').text("");
-    $('.locations').append(`<option value="refreshTable" selected>All Locations</option>`);
+    $('.locations').append(`<option value="getAll" selected>All Locations</option>`);
 
     $.get("libs//php/get/getAllLocations.php",  function(result) {
 
@@ -715,8 +714,8 @@ function getAllLocations() {
 
     });
 
-    $('#insertNewPerson select option[value="refreshTable"]').attr("value", "");
-    $('#departmentModal select option[value="refreshTable"]').attr("value", "");
-    $('#locationModal select option[value="refreshTable"]').attr("value", ""); 
+    $('#insertNewPerson select option[value="getAll"]').attr("value", "");
+    $('#departmentModal select option[value="getAll"]').attr("value", "");
+    $('#locationModal select option[value="getAll"]').attr("value", ""); 
 
 }
