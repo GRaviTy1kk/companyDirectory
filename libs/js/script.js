@@ -595,7 +595,7 @@ $("#reset").on("click", function() {
 
 $('.sortTab').wrapInner('<span title="sort this column"/>').click(function(){
     var table = $('table');
-    var rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).index()));
+    var rows = table.find('tr:gt(0)').toArray().sort(comparer($(this).closest('th').index()));
     this.asc = !this.asc;
     if (!this.asc){rows = rows.reverse()};
     for (var i = 0; i < rows.length; i++){table.append(rows[i])};
